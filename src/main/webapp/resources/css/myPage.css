@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+.sideMenu_div{
+	position: fixed;
+	display:flex;
+	flex-direction: column;
+	top: 40%;
+	left: 40px;
+	background-color: silver;
+}
+
+#sideMenu1, #sideMenu2, #sideMenu3{
+	display:flex;
+	width: 100px;
+	height: 40px;
+}
+
+.myPage_include{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+/* simpleInfoPage_css */
+
+.simpleInfo_div{
+	display: flex;
+	flex-direction: row;
+	width: 400px;
+	height: auto;
+	justify-content: center;
+}
+
+.img_div{
+	display:flex;
+	width: 30%;
+	justify-content: center;
+}
+.img_div img{
+	width: 70px;
+	height: 70px;
+	margin-right: 0px;
+}
+
+.info_div{
+	display:flex;
+	width: 70%;
+	align-items: center;
+	justify-content: center;
+}
