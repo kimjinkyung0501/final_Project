@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.common.MemberMapper">
+
+
+<select id="loginCheck" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_id = #{m_id}
+</select>
+
+<select id="checkId_select" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_id = #{m_id}
+</select>
+
+<select id="compareKey" parameterType="com.project.jk.common.MemberPhoneKey" resultType="com.project.jk.common.MemberPhoneKey">
+select m_p_id from member_phone_check where m_p_number = #{m_p_number}
+</select>
+
+<select id="checkSuccessInfo" parameterType="com.project.jk.common.MemberPhoneKey" resultType="com.project.jk.common.MemberPhoneKey">
+select m_p_successInfo from member_phone_check where m_p_number = #{m_p_number}
+</select>
+
+<select id="comparePw" resultType="com.project.jk.common.Member" parameterType="com.project.jk.common.Member">
+select * from (select m_pw from member where m_id = #{m_id}) where m_pw = #{m_pw}
+</select>
+
+
+
+
+<insert id="insertPhoneKey" parameterType="com.project.jk.common.MemberPhoneKey">
+insert into member_phone_check values(member_phone_seq.nextval, #{m_p_number}, #{m_p_id}, #{m_p_successInfo})
+</insert>
+
+<insert id="insertKey" parameterType="com.project.jk.common.TempMemberInfo">
+insert into temp_member values(#{t_m_id}, #{t_m_email}, #{t_m_key})
+</insert>
+
+<insert id="regMember" parameterType="com.project.jk.common.Member">
+insert into member values(#{m_id}, #{m_pw}, #{m_name}, #{m_addr}, #{m_phone}, #{m_email}, #{m_grade}, #{m_photo})
+</insert>
+
+<insert id="insertTempInfo" parameterType="com.project.jk.common.Member">
+insert into temp_member values(#{t_m_id}, #{t_m_email}, #{t_m_key})
+</insert>
+
+
+<update id="updateSuccessInfo" parameterType="com.project.jk.common.MemberPhoneKey">
+update member_phone_check set m_p_successInfo = #{m_p_successInfo} where m_p_number = #{m_p_number}
+</update>
+
+<update id="updateTempMemberInfo" parameterType="com.project.jk.common.TempMemberInfo">
+update temp_member set t_m_key = 'y' where t_m_id = #{t_m_id}
+</update>
+
+<update id="changeName" parameterType="com.project.jk.common.DataChangeBean">
+update member set m_name = #{newData} where m_name = #{preData} and m_id = #{memberId}
+</update>
+
+<update id="changeId" parameterType="com.project.jk.common.DataChangeBean">
+update member set m_id = #{newData} where m_id = #{preData}
+</update>
+
+<update id="changePw" parameterType="com.project.jk.common.Member">
+update member set m_pw = #{m_pw} where m_id = #{m_id}
+</update>
+
+<update id="changeProfile" parameterType="com.project.jk.common.Member">
+update member set = m_photo #{m_photo} where m_id = #{m_id}
+</update>
+
+
+</mapper>

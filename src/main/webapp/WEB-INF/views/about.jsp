@@ -42,7 +42,6 @@ body {
 	<div class="about-table">
 		<div class="about-table2" data-height="7"
 			style="margin-top: px; margin-bottom: px;">
-			<div style="width: 100%; min-height: 1px; height: 7px;"></div>
 		</div>
 	</div>
 	<div style="font-family: 'PT Serif', serif;">
@@ -90,6 +89,7 @@ body {
 				약속합니다.</span>
 		</p>
 	</div>
+		<div style="width: 100%; min-height: 1px; height: 50px;"></div>
 
 
 </body>

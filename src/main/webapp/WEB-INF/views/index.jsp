@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/jquery.js"></script>
+<script type="text/javascript" src="resources/js/notice.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -23,8 +26,6 @@
 <link rel="icon" type="image/png" href="…">
 
 <style type="text/css">
-
-
 </style>
 
 </head>
@@ -54,7 +55,8 @@
 				<li style="display: inline"><span><a href="">Chat </a></span></li>
 				<li style="display: inline"><span><a href="">MyPage
 					</a></span></li>
-				<li style="display: inline"><span><a href="">Login </a></span></li>
+				<li style="display: inline"><span><a href="login.main">Login
+					</a></span></li>
 			</ul>
 		</nav>
 	</header>
@@ -71,18 +73,42 @@
 	</form>
 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
 	<div id="menu2">
-		<li>Class</li>
-		<li>Product</li>
-		<li>Story</li>
-		<li>Chat</li>
-		<li>MyPage</li>
-		<li>Login</li>
+		<ul>
+			<li>Class</li>
+			<li>Product</li>
+			<li>Story</li>
+			<li>Chat</li>
+			<li>MyPage</li>
+			<li>Login</li>
+
+	<div class="text-table" style="padding-left:0px; margin-left : 0px;">
+		<div style="width: 100%; min-height: 10px; height: 60px;"></div>
+		<p>
+			<a href="notice.go"><span style="letter-spacing: 1px;">READ ME FIRST</span></a>
+		</p>
+		<span style="letter-spacing: 1px;"><br></span>
+		<p>
+			<a href="about"><span style="letter-spacing: 1px;">ABOUT</span></a>
+		</p>
+		<span style="letter-spacing: 1px;"><br></span>
+		<p>
+			<a href="about"><span style="letter-spacing: 1px;">FAQ</span></a>
+		</p>
+		<span style="letter-spacing: 1px;"><br></span>
+		<p>
+			<a href="about"><span style="letter-spacing: 1px;">POLICY</span></a>
+		</p>
 	</div>
+		</ul>
+
+	</div>
+
+
 
 
 	<div align="left" id="content">
 		<div class="text-box">
-			<jsp:include page="${contentPage }"></jsp:include>
+			<jsp:include page="${contentPage}"></jsp:include>
 		</div>
 	</div>
 
@@ -91,17 +117,6 @@
 
 
 
-	<div class="text-table">
-		</p>
-		<p>
-			<a href="readme"><span style="letter-spacing: 1px;">READ
-					ME</span></a>
-		</p>
-		<span style="letter-spacing: 1px;"><br></span>
-		<p>
-			<a href="about"><span style="letter-spacing: 1px;">ABOUT</span></a>
-		</p>
-	</div>
 
 	<div class="text-table2">
 		<p>

@@ -21,16 +21,21 @@ function goSimplePage(){
 	location.href="/common/myPage.go"
 }
 
-function goMyPage(session_id){
-	if(session_id == "" || session_id == undefined){
+function goMyPage(login_number){
+	if(login_number == "" || login_number == undefined){
 		alert("로그인을 먼저 해주세요");
 		return false;
 	}
-	else{
+	else if(login_number == 1){
 		location.href="/common/myPage.go"
 		return true;
 	}
+	else if(login_number == 2){
+		alert("카카오톡 로그인 시 일부 서비스가 제한됩니다.");
+		location.href="/common/myPage.go"
+	}
 }
+
 
 	
 myPage.addEventListener("click", goSimplePage)

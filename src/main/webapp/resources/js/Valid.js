@@ -14,14 +14,14 @@ function loginCheck() {
 	}
 	else {
 		$.ajax({
-			url : "login.do",
+			url : "/jk/common/login.do",
 			method : "post",
 			async : false,
 			data : {m_id : m_id, m_pw : m_pw}
 			})
 			.done(function(data){
 				if(data){
-					location.href="/common/"
+					location.href="/jk/common/login.main"
 				}
 				else{
 					alert("아이디 혹은 비밀번호가 옳지 않습니다.");
@@ -37,7 +37,7 @@ function loginCheck() {
 function logout(){
 	let ok = confirm("로그아웃 하시겠습니까?");
 	if(ok){
-		location.href="/common/logout.do";
+		location.href="/jk/common/logout.do";
 	}
 }
 
@@ -117,7 +117,7 @@ $(document).ready(function() {
 		var m_phone = $('#m_phone').val();
 		if (reginValid()) {
 			$.ajax({
-				url: "/common/checkSuccessInfo.do",
+				url: "/jk/common/checkSuccessInfo.do",
 				method: "get",
 				data: {
 					m_p_number: m_phone
@@ -185,7 +185,7 @@ $(document).ready(function() {
 		else {
 			//ID값이 비어있지 않을 경우 중복 검사할 수 있게
 			$.ajax({
-				url: "/common/checkId.do",
+				url: "/jk/common/checkId.do",
 				method: "post",
 				data: {
 					m_id: m_id

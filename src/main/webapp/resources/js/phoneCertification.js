@@ -7,7 +7,7 @@ function phoneCer(){
 		const m_phone = $('#m_phone').val();
 		alert(m_phone);
 	$.ajax({
-		url : "/common/sendSNS",
+		url : "/jk/common/sendSNS",
 		method : "post",
 		data : {
 			userPhoneNumber : m_phone

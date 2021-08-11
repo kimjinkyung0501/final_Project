@@ -88,12 +88,13 @@ padding-left:25px;
 }
 
 #content {
+	margin : 0px;
 	max-height: 1500px;
-	position: relative;
+	/* position: relative; */
 	align: left;
 	width: 100%;
-	height: 900px;
-	top:10%;
+	height: 1300px;
+	min-height: 1000px;
 	
 }
 
@@ -110,8 +111,8 @@ footer {
 
 .text-box {
 	position: absolute;
-	top: 25%;
-	left: 25%;
+	top: 10%;
+	left: 30%;
 }
 
 .text-table {

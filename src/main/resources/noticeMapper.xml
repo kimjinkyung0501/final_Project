@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.notice.NoticeMapper">
+<select id="noticeAll" resultType="com.project.jk.notice.Notice">
+select * from notice
+</select>
+
+<select id="getNotice" resultType="com.project.jk.notice.Notice">
+select * from notice where n_no = #{n_no}
+</select>
+
+<insert id="regNotice" parameterType="com.project.jk.notice.Notice">
+insert into notice values(notice_seq.nextval, #{n_id}, #{n_title}, sysdate, #{n_content}, #{n_photo})
+</insert>
+
+<delete id="delNotice" parameterType="com.project.jk.notice.Notice">
+delete notice where n_no = #{n_no}
+</delete>
+
+<update id="updateNotice" parameterType="com.project.jk.notice.Notice">
+update notice set n_title = #{n_title}, n_content = #{n_content}, n_photo = #{n_photo} where n_no = #{n_no}
+</update>
+</mapper>
