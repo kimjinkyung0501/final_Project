@@ -19,7 +19,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeDAO ndao;
 	
-	@RequestMapping(value = "/notice.go", method = RequestMethod.GET)
+	@RequestMapping(value = "notice/notice.go", method = RequestMethod.GET)
 	public String noticeGo(HttpSession session,HttpServletRequest request) {
 		
 		ndao.noticeAll(request);
@@ -28,7 +28,7 @@ public class NoticeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/notice.reg.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/notice.reg.go", method = RequestMethod.GET)
 	public String noticeRegGo(Notice n, HttpServletRequest request,HttpSession session) {
 		
 		mdao.loginCheck(session,request);
@@ -36,7 +36,7 @@ public class NoticeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/notice.reg.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/notice/notice.reg.do", method = RequestMethod.POST)
 	public String noticeRegDo(Notice n, HttpSession session,HttpServletRequest request) {
 		
 		ndao.regNotice(n, request);
@@ -46,7 +46,7 @@ public class NoticeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/notice.detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/notice.detail", method = RequestMethod.GET)
 	public String noticeDetail(Notice n, HttpSession session, HttpServletRequest request) {
 		
 		mdao.loginCheck(session, request);
@@ -55,7 +55,7 @@ public class NoticeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/notice.del", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice//notice.del", method = RequestMethod.GET)
 	public String noticeDel(Notice n, HttpSession session, HttpServletRequest request) {
 		
 		if(mdao.loginCheck(session, request)) {
@@ -68,7 +68,7 @@ public class NoticeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/goUpdateNotice", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/goUpdateNotice", method = RequestMethod.GET)
 	public String noticeUpdateGo(Notice n, HttpSession session, HttpServletRequest request) {
 		
 		if(mdao.loginCheck(session, request)) {
@@ -81,19 +81,19 @@ public class NoticeController {
 		return "index";
 	}
 	
+
+	
 	@RequestMapping(value = "/notice.update.do", method = RequestMethod.POST)
-	public String noticeUpdate(Notice n,HttpSession session, HttpServletRequest request) {
-		
-		if(mdao.loginCheck(session, request)) {
-			System.out.println(n.getN_no());
-			ndao.updateNotice(n, request);
-			request.setAttribute("contentPage", "notice/noticeDetail.jsp");
-		} else {
-			ndao.noticeAll(request);
-			request.setAttribute("contentPage", "notice/notice.jsp");
-		}
-		return "index";
-	}
+	   public String noticeUpdate(HttpSession session, HttpServletRequest request) {
+	      
+	      if(mdao.loginCheck(session, request)) {
+	         ndao.updateNotice(request);
+	      } 
+	      	request.setAttribute("contentPage", "notice/noticeDetail.jsp");
+	      return "index";
+	   }
+	
+	
 
 	
 }

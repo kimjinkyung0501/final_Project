@@ -132,14 +132,14 @@ textarea::placeholder {
 </head>
 <body>
 	<h5>공지사항 등록</h5>
-	<form action="notice.reg.do" method="post"
+	<form action="${pageContext.request.contextPath}/notice/notice.reg.do" method="post"
 		enctype="multipart/form-data">
 		<div class="board_write">
 			<div class="title_box">
 				<div class="board_title_wrap tabled full-width"
 					style="position: relative">
 					<div>
-						<img src="resources/img/default_profile.png" class="non_member"
+						<img src="${pageContext.request.contextPath}/resources/img/default_profile.png" class="non_member"
 							alt="프로필 이미지">
 					</div>
 					<input id="post_subject" name="n_title" class="title_name"

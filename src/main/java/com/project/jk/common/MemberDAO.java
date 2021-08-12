@@ -1,7 +1,9 @@
 package com.project.jk.common;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -275,10 +277,102 @@ public class MemberDAO {
 		
 	}
 	
-
+	   public void changePhoto(HttpServletRequest request) throws IOException {
+		      // TODO Auto-generated method stub
+		      String saveDirectory = request.getSession().getServletContext().getRealPath("resources/img");
+		      Member member_session = (Member) request.getSession().getAttribute("member_session");
+		      String oldPhoto = member_session.getM_photo();
+		      System.out.println(saveDirectory);
+		      MultipartRequest mr = new MultipartRequest(request, saveDirectory, 31457280, "utf-8",
+		            new DefaultFileRenamePolicy());
+		      String m_photo = mr.getFilesystemName("m_photo");
+		      member_session.setM_photo(m_photo);
+		      request.setAttribute("oldPhoto", oldPhoto);
+		      ss.getMapper(MemberMapper.class).changeProfile(member_session);
+		      
+		      request.setAttribute("member_session", member_session);
+		   }
 
 	
 	
+	   
+	   public void deleteOldPhoto(String oldPhoto, HttpServletRequest request) {
+		      // TODO Auto-generated method stub
+		      String saveDirectory = request.getSession().getServletContext().getRealPath("resources/img/"+oldPhoto);
+		      File file = new File(saveDirectory);
+		      if (file.exists()) {
+		         file.delete();
+		         System.out.println("성공");
+		      }
+		      else {
+		         System.out.println("실패");
+		      }
+		      
+		   }
+	   
+	   
+	   
+	   
+	   public boolean emailCheck(TempMemberInfo tmi) {
+		      //이메일을 사용하는 계정이 있으면 1 없으면 0로 나옴
+		      if (ss.getMapper(MemberMapper.class).checkEmail(tmi) == 1) {
+		         return false;
+		      }
+		      else {
+		         return true;
+		      }
+		      
+		   }
+	   
+	   
+	   
+	   public boolean memberEmailChange(TempMemberInfo tmi, HttpServletRequest request) {
+		      
+		      if (ss.getMapper(MemberMapper.class).changeMemberEmail(tmi)==1) {
+		         //해당 회원의 이메일을 새로운 이메일로 변경하는 update문
+		         Member member_session = (Member) request.getSession().getAttribute("member_session");
+		         //session 값이 정보를 불러온 후 
+		         member_session.setM_email(tmi.getT_m_email());
+		         //새로운 이메일을 값을 세팅
+		         request.getSession().setAttribute("member_session", member_session);
+		         //보내
+		         return true;
+		      }
+		      else {
+		         return false;
+		      }
+		   }
+
+		   public boolean searchIdByNameAndEmail(Member member, HttpServletRequest request) {
+
+		      Member returnMember = ss.getMapper(MemberMapper.class).searchIdByNameAndEmail(member);
+		      if (returnMember!=null) {
+		         request.setAttribute("returnMember", returnMember);
+		         return true;
+		      }
+		      else {
+		         return false;
+		      }
+		      
+		   }
+
+		   public void changePwWithTempPw(String tempPw, Member member, HttpServletRequest request) {
+		      // TODO Auto-generated method stub
+		      String m_name = member.getM_name();
+		      String m_email = member.getM_email();
+		      HashMap<String, String> tempPwMap = new HashMap<String, String>();
+		      tempPwMap.put("tempPw", tempPw);
+		      tempPwMap.put("m_name", m_name);
+		      tempPwMap.put("m_email", m_email);
+		      
+		      ss.getMapper(MemberMapper.class).changePwWithTempPw(tempPwMap);
+		      
+		      
+		   }
+	   
+	   
+	   
+	   
 
 
 }

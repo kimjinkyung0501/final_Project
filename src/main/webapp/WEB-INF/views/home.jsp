@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 body {
-	background-image : url('resources/img/etcAll2.jpg');
+	background-image : url('${pageContext.request.contextPath}/resources/img/etcAll2.jpg');
 	background-repeat: no-repeat;
 	background-position: right;
 	background-size: 50% 100%;
@@ -19,5 +20,6 @@ body {
 </style>
 </head>
 <body>
+<h1>home</h1>
 </body>
 </html>

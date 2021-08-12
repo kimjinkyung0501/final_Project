@@ -84,7 +84,7 @@
 <!-- 등록버튼 시작 -->
 <div id="boardcss_list_add_button_table">
 	<div class="boardcss_list_add_button">
-			<a href="notice.reg.go" class="add_button">등록</a>
+			<a href="${pageContext.request.contextPath}/notice/notice.reg.go" class="add_button">등록</a>
 			
 	</div>
 </div>
@@ -111,7 +111,7 @@
 				<c:forEach var="list" items="${notices }">
 			<tr>
 				<td>${list.n_no }</td>
-				<td><a href="notice.detail?n_no=${list.n_no}">${list.n_title }</a></td>
+				<td><a href="${pageContext.request.contextPath}/notice/notice.detail?n_no=${list.n_no}">${list.n_title }</a></td>
 				<td><fmt:formatDate value="${list.n_date }" type="date"
 						dateStyle="short" /></td>
 			</tr>

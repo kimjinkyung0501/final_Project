@@ -6,19 +6,19 @@ let sideMenu2 = document.getElementById("sideMenu2");
 let sideMenu3 = document.getElementById("sideMenu3");
 
 function toOrderPage(){
-	location.href="/common/toOrderPage.go"
+	location.href="/jk/common/toOrderPage.go"
 }
 
 function toCart(){
-	location.href="/common/toCart.go"
+	location.href="/jk/common/toCart.go"
 }
 
 function changeInfo(){
-	location.href="/common/changeInfo.go"
+	location.href="/jk/common/changeInfo.go"
 }
 
 function goSimplePage(){
-	location.href="/common/myPage.go"
+	location.href="/jk/common/myPage.go"
 }
 
 function goMyPage(login_number){
@@ -27,12 +27,12 @@ function goMyPage(login_number){
 		return false;
 	}
 	else if(login_number == 1){
-		location.href="/common/myPage.go"
+		location.href="/jk/common/myPage.go"
 		return true;
 	}
 	else if(login_number == 2){
 		alert("카카오톡 로그인 시 일부 서비스가 제한됩니다.");
-		location.href="/common/myPage.go"
+		location.href="/jk/common/myPage.go"
 	}
 }
 

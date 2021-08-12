@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/notice.js"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -22,11 +21,12 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/index.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/index.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/searchMemberInfo.css">
 <link rel="icon" type="image/png" href="…">
-
-<style type="text/css">
-</style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 
 </head>
 
@@ -39,12 +39,12 @@
 			<!-- 	<img src="resources/img/menuIcon.png" style="width: 25px;"> -->
 		</div>
 		<div class="black" style="width: 150px;"></div>
-		<a href="home.go" style="font-size: 20pt; font-weight: bold;">생활수집</a>
+		<a href="/jk/" style="font-size: 20pt; font-weight: bold;">생활수집</a>
 
 
 		<nav id="menu1">
 			<ul style="list-style-type: none">
-				<li style="display: inline"><span><a href="home.go">Home
+				<li style="display: inline"><span><a href="/jk/">Home
 					</a></span></li>
 				<li style="display: inline"><span><a href="">Class </a></span>
 				</li>
@@ -53,52 +53,103 @@
 				<li style="display: inline"><span><a href="">Story </a></span>
 				</li>
 				<li style="display: inline"><span><a href="">Chat </a></span></li>
-				<li style="display: inline"><span><a href="">MyPage
+				<li style="display: inline"><span><a
+						href="${pageContext.request.contextPath}/common/myPage.go">MyPage
 					</a></span></li>
-				<li style="display: inline"><span><a href="login.main">Login
-					</a></span></li>
+				<%-- <li style="display: inline"><span><a
+						href="${pageContext.request.contextPath}/common/login.main">Log in
+					</a></span></li> --%>
+
+
+
+				<!-- 로그인별 메뉴바 처리  -->
+				<c:choose>
+					<c:when test="${empty sessionScope}">
+
+						
+						<li style="display: inline"><span><a
+								href="${pageContext.request.contextPath}/common/login.main">Log
+									in </a></span></li>
+					</c:when>
+			<%-- 		<c:when test="${sessionScope.login_number != 2}">
+
+						<li style="display: inline"><span><a
+								href="${pageContext.request.contextPath}/common/login.main">Log
+									in </a></span></li>
+					</c:when> --%>
+
+					<c:when test="${member_session.m_id eq 'admin'}">
+						<li style="display: inline"><span><a href="">Manager
+							</a></span></li>
+						<li style="display: inline"><span><a
+								onclick="logout()">Log out </a></span></li>
+					</c:when>
+					<c:when test="${!empty sessionScope}">
+					<li style="display: inline"><span><a
+								href="${pageContext.request.contextPath}/">Store </a></span></li>
+						<li style="display: inline"><span><a
+								onclick="logout()">Log out </a></span></li>
+					</c:when>
+				<%-- 	<c:when test="${sessionScope.login_number == 2}">
+						<li style="display: inline"><span><a
+								onclick="logout()">Log out </a></span></li>
+					</c:when> --%>
+
+
+				</c:choose>
+
 			</ul>
 		</nav>
 	</header>
+
+
 
 	<form action="search.all">
 		<div>
 			<input class="search_input" name="search" style="display:"
 				placeholder="Search" value="">
 			<button type="button" class="search_btn">
-				<img src="resources/img/search_magnifier_icon_145939.png"
+				<img
+					src="${pageContext.request.contextPath}/resources/img/search_magnifier_icon_145939.png"
 					class="search_icon">
 			</button>
 		</div>
 	</form>
 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
-	<div id="menu2">
-		<ul>
+	<div class="menu2">
+		<ul id="menu2">
 			<li>Class</li>
 			<li>Product</li>
 			<li>Story</li>
 			<li>Chat</li>
-			<li>MyPage</li>
-			<li>Login</li>
+			<li class="menu-v1"><a
+				href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
+				</li>
 
-	<div class="text-table" style="padding-left:0px; margin-left : 0px;">
-		<div style="width: 100%; min-height: 10px; height: 60px;"></div>
-		<p>
-			<a href="notice.go"><span style="letter-spacing: 1px;">READ ME FIRST</span></a>
-		</p>
-		<span style="letter-spacing: 1px;"><br></span>
-		<p>
-			<a href="about"><span style="letter-spacing: 1px;">ABOUT</span></a>
-		</p>
-		<span style="letter-spacing: 1px;"><br></span>
-		<p>
-			<a href="about"><span style="letter-spacing: 1px;">FAQ</span></a>
-		</p>
-		<span style="letter-spacing: 1px;"><br></span>
-		<p>
-			<a href="about"><span style="letter-spacing: 1px;">POLICY</span></a>
-		</p>
-	</div>
+		
+
+		<div class="text-table" style="padding-left: 0px; margin-left: 0px;">
+			<div style="width: 100%; min-height: 10px; height: 60px;"></div>
+			<p>
+				<a href="${pageContext.request.contextPath}/notice/notice.go"><span
+					style="letter-spacing: 1px;">READ ME FIRST</span></a>
+			</p>
+			<span style="letter-spacing: 1px;"><br></span>
+			<p>
+				<a href="${pageContext.request.contextPath}/about.go"><span
+					style="letter-spacing: 1px;">ABOUT</span></a>
+			</p>
+			<span style="letter-spacing: 1px;"><br></span>
+			<p>
+				<a href="${pageContext.request.contextPath}/dropdown.test"><span style="letter-spacing: 1px;">FAQ</span></a>
+			</p>
+			<span style="letter-spacing: 1px;"><br></span>
+			<p>
+				<a href="${pageContext.request.contextPath}/policy.go"><span
+					style="letter-spacing: 1px;">POLICY</span></a>
+			</p>
+		</div>
+</ul>
 		</ul>
 
 	</div>
@@ -149,7 +200,7 @@
 							</p>
 							<p>
 								<span style="letter-spacing: 1px;">802-11-12345&nbsp;/
-									2021-서울종로-0826</span></a>
+									2021-서울종로-0826</span>
 							</p>
 							<p>
 								<span style="letter-spacing: 1px;">OWNER&nbsp;</span><span
@@ -181,6 +232,19 @@
 		<p>생활수집</p>
 	</footer>
 </body>
-</html>
-</body>
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/notice.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/ValidLib.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/locationFile.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/kakaoJS.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/Valid.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/searchMemberInfo.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/reginPage.js"></script>
+
 </html>

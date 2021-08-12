@@ -40,8 +40,8 @@
 
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="typeAliasesPackage" value="com.project.jk.common" />
-		<beans:property name="mapperLocations">
+		<beans:property name="typeAliasesPackage" value="com.project.jk" />
+		<beans:property name="mapperLocations">	
 			<beans:list>
 				<beans:value>classpath:twoMapper.xml</beans:value>
 				<beans:value>classpath:MemberMapper.xml</beans:value>

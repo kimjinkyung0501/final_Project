@@ -6,15 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/myPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}resources/css/myPage.css">
 </head>
 <body>
+
+
 
 <c:set var="login_number" value="${sessionScope.login_number}"/>
 <c:choose>
 <c:when test="${login_number == 1}">
 <div class="simpleInfo_div">
-<div class="img_div"> <img src="resources/img/${sessionScope.member_session.m_photo}"/> </div>
+<div class="img_div"> <img src="${pageContext.request.contextPath}/resources/img/${sessionScope.member_session.m_photo}"/> </div>
 <div class="info_div"> ${sessionScope.member_session.m_name}님 안녕하세요 </div>
 </div>
 </c:when>
@@ -27,6 +29,14 @@
 </c:when>
 </c:choose>
 
+
+
+<div class="sideMenu_div">
+<div id="myPage"> My Page </div>
+<div id="sideMenu1"> 주문 조회</div>
+<div id="sideMenu2"> 장바구니 </div>
+<div id="sideMenu3"> 정보수정 </div>
+</div>
 
 </body>
 </html>

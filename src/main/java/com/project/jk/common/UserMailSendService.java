@@ -91,4 +91,58 @@ public class UserMailSendService {
 	// 이메일 난수 만드는 메서드
 
 //[출처] Spring 이메일 인증 방법 + 데이터베이스 추가|작성자 순남2
+	
+	
+	
+	
+	   public void mailSendId(Member returnMember, HttpServletRequest request) {
+		      
+		      String m_id = returnMember.getM_id();
+		      String m_email = returnMember.getM_email();
+		      MimeMessage mail = mailsender.createMimeMessage();
+		      String htmlStr = "<h2>안녕하세요 소상공인 장터입니다.</h2><br><br>" 
+		                  +"<span>회원 님의 아이디는 " + m_id + "입니다.</span>";
+		      try {
+		         mail.setSubject("요청하신 회원님의 아이디입니다.", "utf-8");
+		         mail.setText(htmlStr, "utf-8", "html");
+		         mail.addRecipient(RecipientType.TO, new InternetAddress(m_email));
+		         mailsender.send(mail);
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      }
+		      
+		      
+		   }
+		   
+		   public void mailSendPw(Member returnMember, HttpServletRequest request) {
+		      // TODO Auto-generated method stub
+		      String tempPw = returnMember.getM_pw();
+		      String m_id = returnMember.getM_id();
+		      String m_email = returnMember.getM_email();
+		      
+		      MimeMessage mail = mailsender.createMimeMessage();
+		      String htmlStr = "<h2>안녕하세요 소상공인 장터입니다.</h2><br><br>" 
+		            + "<h3>" + m_id + "님</h3>" + "<p>임시 비밀번호는 " + tempPw +"입니다."
+		            + "회원 정보 수정 페이지에서 비밀번호를 변경해주세요"
+		            + "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+		      try {
+		         mail.setSubject("요청하신 회원님의 임시 비밀번호입니다..", "utf-8");
+		         mail.setText(htmlStr, "utf-8", "html");
+		         mail.addRecipient(RecipientType.TO, new InternetAddress(m_email));
+		         mailsender.send(mail);
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      }
+		      
+		   }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

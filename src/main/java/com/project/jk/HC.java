@@ -20,14 +20,19 @@ public class HC {
 	}
 	
 	
-	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
-	public String homeGo(HttpServletRequest req) {
-		return home(req);
-	}
+//	@RequestMapping(value = "common/home.go", method = RequestMethod.GET)
+//	public String homeGo(HttpServletRequest req) {
+//		return home(req);
+//	}
 	
-	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	@RequestMapping(value = "/about.go", method = RequestMethod.GET)
 	public String aboutGo(HttpServletRequest req) {
 		req.setAttribute("contentPage", "about.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/dropdown.test", method = RequestMethod.GET)
+	public String dropdown(HttpServletRequest req) {
+		req.setAttribute("contentPage", "dropdown.jsp");
 		return "index";
 	}
 	
@@ -39,7 +44,15 @@ public class HC {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/policy.go", method = RequestMethod.GET)
+	public String policy(HttpServletRequest req) {
+		
+		
+		req.setAttribute("contentPage", "policy.jsp");
+		return "index";
+	}
 	
+
 	
 	
 }

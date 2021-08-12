@@ -23,8 +23,21 @@ select m_p_successInfo from member_phone_check where m_p_number = #{m_p_number}
 select * from (select m_pw from member where m_id = #{m_id}) where m_pw = #{m_pw}
 </select>
 
+<select id="checkEmail" parameterType="com.project.jk.common.TempMemberInfo" resultType="int">
+select count(*) from member where m_email = #{t_m_email}
+</select>
 
+<select id="searchIdByNameAndEmail" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_name = #{m_name} and m_email = #{m_email}
+</select>
 
+<update id="changePwWithTempPw" parameterType="hashmap">
+update member set m_pw = #{tempPw} where m_name = #{m_name} and m_email = #{m_email}
+</update>
+
+<update id="changeMemberEmail" parameterType="com.project.jk.common.TempMemberInfo">
+update member set m_email = #{t_m_email} where m_id = #{t_m_id}
+</update>
 
 <insert id="insertPhoneKey" parameterType="com.project.jk.common.MemberPhoneKey">
 insert into member_phone_check values(member_phone_seq.nextval, #{m_p_number}, #{m_p_id}, #{m_p_successInfo})

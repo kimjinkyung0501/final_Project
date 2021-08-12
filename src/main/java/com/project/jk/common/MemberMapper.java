@@ -1,6 +1,6 @@
 package com.project.jk.common;
 
-
+import java.util.HashMap;
 import java.util.List;
 
 public interface MemberMapper {
@@ -8,11 +8,11 @@ public interface MemberMapper {
 	public Member loginCheck(Member member);
 
 	public List<Member> checkId_select(Member m);
-	
+
 	public int insertPhoneKey(String Key);
-	
+
 	public List<MemberPhoneKey> compareKey(MemberPhoneKey key);
-	
+
 	public int updateSuccessInfo();
 
 	public List<MemberPhoneKey> checkSuccessInfo(MemberPhoneKey mpk);
@@ -35,5 +35,11 @@ public interface MemberMapper {
 
 	public void changeProfile(Member member_session);
 
+	public int checkEmail(TempMemberInfo tmi);
 
+	public int changeMemberEmail(TempMemberInfo tmi);
+
+	public Member searchIdByNameAndEmail(Member member);
+
+	public void changePwWithTempPw(HashMap<String, String> tempPwMap);
 }

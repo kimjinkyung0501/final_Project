@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
 
 $(document).ready(function(){
 	  var fileTarget = $('.filebox .upload-hidden');
@@ -140,24 +140,31 @@ textarea::placeholder {
 				<div class="board_title_wrap tabled full-width"
 					style="position: relative">
 					<div>
-						<img src="resources/img/default_profile.png" class="non_member"
+						<img src="${pageContext.request.contextPath}/resources/img/default_profile.png" class="non_member"
 							alt="프로필 이미지">
 					</div>
+					<input name="n_no" type="hidden" value="${nt.n_no }">
 					<input id="post_subject" name="n_title" class="title_name"
-						type="text" value="" placeholder="제목">
+						type="text" value="${nt.n_title}" >
 				</div>
 				<div style="width: 100%; min-height: 1px; height: 10px;"></div>
 
 				<div class="fr-wrapper" dir="ltr">
 					<p>
-						<textarea name="n_content" placeholder="내용을 입력하세요."></textarea>
+						<textarea name="n_content">${nt.n_content}"</textarea>
 					</p>
 				</div>
 			</div>
 			<div class="filebox">
-				<input class="upload-name" value="파일선택" disabled="disabled">
-				<label for="ex_filename">업로드</label> <input type="file"
-					name="n_photo" id="ex_filename" class="upload-hidden">
+				<img alt="X" src="${pageContext.request.contextPath}/resources/img/${nt.n_photo }" style="width: 100px;">
+				
+				
+				
+				
+				<input class="upload-name" value="${nt.n_photo }" disabled="disabled">
+				<label for="ex_filename">업로드</label>
+				
+				 <input type="file"name="n_photo" id="ex_filename" class="upload-hidden">
 			</div>
 
 

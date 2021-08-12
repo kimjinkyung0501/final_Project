@@ -79,15 +79,13 @@ fieldset {
 
 .text-box {
 	position: absolute;
-	top: 250px;
-	left: 600px;
+	top: 300px;
+	left: 650px;
 }
 </style>
 </head>
 <body>
 
-	${sessionScope.login_number}
-	<!-- 세션 값 확인 -->
 
 	<div>
 		<c:set var="login_number" value="${sessionScope.login_number}" />
@@ -100,7 +98,7 @@ ${sessionScope.member_session.m_id}님 안녕하세요
 			</c:when>
 
 			<c:when test="${login_number == 2}">
-${sessionScope.kakao_member_session.kakao_nickname}
+${sessionScope.kakao_member_session.kakao_nickname}님 안녕하세요
 <button onclick="kakaoLogout()">로그아웃(카카오톡)</button>
 				<div onclick="return goMyPage('${sessionScope.login_number}');">마이
 					페이지</div>
@@ -124,7 +122,10 @@ ${sessionScope.kakao_member_session.kakao_nickname}
 			<button id="loginbtn" onclick="return loginCheck();">로그인</button>
 		</p>
 		<div class="over_h">
-			<a href="searchMemberInfo.go">아이디·비밀번호 찾기</a> <a href="regin.go"
+			<a href="${pageContext.request.contextPath}/common/openId.go">아이디·</a>
+			<a href="${pageContext.request.contextPath}/common/openPw.go">비밀번호 찾기</a>
+			
+			 <a href="regin.go"
 				class="float_r">회원가입</a>
 		</div>
 
@@ -133,16 +134,12 @@ ${sessionScope.kakao_member_session.kakao_nickname}
 			<fieldset><legend>또는</legend></fieldset>
 		</div>
 		<div>
-			<img onclick="kakaoLogin();" src="resources/img/kakaoImg.png"
+			<img onclick="kakaoLogin();" src="${pageContext.request.contextPath}/resources/img/kakaoImg.png"
 				style="width: 200px; align-content: center;">
 		</div>
 	</div>
 
 
 </body>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/ValidLib.js"></script>
-<script type="text/javascript" src="resources/js/locationFile.js"></script>
-<script type="text/javascript" src="resources/js/kakaoJS.js"></script>
-<script type="text/javascript" src="resources/js/Valid.js"></script>
+
 </html>

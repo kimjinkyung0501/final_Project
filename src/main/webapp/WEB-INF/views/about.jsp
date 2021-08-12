@@ -31,7 +31,7 @@ body {
 }
 
 .text-box {
-	top: 30%;
+	top: 400px;
 }
 </style>
 </head>

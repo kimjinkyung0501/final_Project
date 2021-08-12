@@ -33,7 +33,7 @@ public class HomeController {
 	
 	int count = 0;
 	
-	@RequestMapping(value = "/login.main", method = RequestMethod.GET)
+	@RequestMapping(value = "common/login.main", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
 		Member member_session = (Member) request.getSession().getAttribute("member_session");
 		request.setAttribute("member_session", member_session);
@@ -41,30 +41,26 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/toOrderPage.go")
+	@RequestMapping(value = "/common/toOrderPage.go")
 	public String toOrderPage(HttpServletRequest request) {
-		request.setAttribute("contentPage", "myPageFolder/orderPage.jsp");
+		request.setAttribute("contentPage", "memberPage/myPageFolder/orderPage.jsp");
 		
-		return "memberPage/myPage";
+		return "index";
 	}
-	@RequestMapping(value = "/toCart.go")
+	@RequestMapping(value = "common/toCart.go")
 	public String toCart(HttpServletRequest request) {
-		request.setAttribute("contentPage", "myPageFolder/cartPage.jsp");
-		return "memberPage/myPage";
+		request.setAttribute("contentPage", "memberPage/myPageFolder/cartPage.jsp");
+		return "index";
 	}
-	@RequestMapping(value = "/changeInfo.go")
+	@RequestMapping(value = "common/changeInfo.go")
 	public String toChangeInfo(HttpServletRequest request) {
-		request.setAttribute("contentPage", "myPageFolder/infoChangePage.jsp");
-		return "memberPage/myPage";
-	}
-	
-	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
-	public String loginPage(HttpServletRequest request) {
-		request.setAttribute("contentPage", "memberPage/loginPage");
+		request.setAttribute("contentPage", "memberPage/myPageFolder/infoChangePage.jsp");
 		return "index";
 	}
 	
-	@RequestMapping(value = "/regin.go", method = RequestMethod.GET)
+
+	
+	@RequestMapping(value = "common/regin.go", method = RequestMethod.GET)
 	public String reginPage(HttpServletRequest request) {
 		
 		request.setAttribute("contentPage","memberPage/reginPage.jsp");
@@ -72,15 +68,16 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/myPage.go")
+	@RequestMapping(value = "common/myPage.go")
 	public String mypageGo(HttpServletRequest request, HttpSession session) {
 		dao.loginCheck(session, request);
 		
-		request.setAttribute("contentPage","myPageFolder/simplePage.jsp");
-		return "memberPage/myPage";
+		request.setAttribute("contentPage","memberPage/myPageFolder/simplePage.jsp");
+	//원래 이거	return "memberPage/myPage";
+		return "index";
 	}
 	
-	@RequestMapping(value = "/changePw.go")
+	@RequestMapping(value = "common/changePw.go")
 	public String changePwGo(HttpServletRequest request) {
 		
 		request.setAttribute("contentPage", "myPageFolder/PwChangePage.jsp");
@@ -89,15 +86,53 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/searchMemberInfo.go")
-	public String searchMemberInfo(HttpServletRequest request) {
-		
-		request.setAttribute("contentPage", "memberPage/myPageFolder/searchMemberInfo.jsp");
-		return "index";
-	}
+	   @RequestMapping(value = "common/openId.go")
+	   public String openId(HttpServletRequest request) {
+	      request.setAttribute("contentPage", "memberPage/searchMemberInfo/searchId.jsp");
+	      return "index";
+	   }
+	   
+	   @RequestMapping(value = "common/openPw.go")
+	   public String openPw(HttpServletRequest request) {
+	      request.setAttribute("contentPage", "memberPage/searchMemberInfo/searchPw.jsp");
+	      return "index";
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value = "common/searchPw.do", method = RequestMethod.POST)
+	   public boolean searchPw(Member member, HttpServletRequest request) {
+	      String tempPw = mailsender.getKey(false, 6);
+	      //6자리의 임시 비밀번호 생성
+	      
+	      if (dao.searchIdByNameAndEmail(member, request)) {
+	         //해당하는 이름과 이메일이 있을 경우에 실행
+	         dao.changePwWithTempPw(tempPw, member, request);
+	         //현재 비밀번호를 임시 비밀번호로 바꾸는 메소드
+	         Member returnMember = (Member) request.getAttribute("returnMember");
+	         returnMember.setM_pw(tempPw);
+	         mailsender.mailSendPw(returnMember, request);
+	         return true;
+	      }
+	      else {
+	         return false;
+	      }
+	   }
+	   @ResponseBody
+	   @RequestMapping(value = "common/searchId.do", method = RequestMethod.POST)
+	   public boolean searchId(Member member, HttpServletRequest request) {
+	      member.getM_name();
+	      member.getM_email();
+	      if (dao.searchIdByNameAndEmail(member, request)) {
+	         Member returnMember = (Member) request.getAttribute("returnMember");
+	         mailsender.mailSendId(returnMember, request);
+	         return true;
+	      }
+	      else {
+	         return false;
+	      }
+	   }
 	
-	
-	@RequestMapping(value = "/common/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "common/login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean loginDo(Member member, HttpServletRequest request) {
 		
@@ -107,7 +142,7 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/comparePw.do", method = RequestMethod.POST)
+	@RequestMapping(value = "common/comparePw.do", method = RequestMethod.POST)
 	public boolean comparePw(@RequestParam(value = "m_pw")String inputPw, HttpServletRequest request) {
 		Member session_member = (Member) request.getSession().getAttribute("member_session");
 		System.out.println(session_member.getM_id());
@@ -116,7 +151,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/changePw.do", method = RequestMethod.POST)
+	@RequestMapping(value = "common/changePw.do", method = RequestMethod.POST)
 	public String changePwDo(@RequestParam(value = "newPw")String newPw, Member member, HttpServletRequest request) {
 		dao.changePw(newPw, member, request);
 		request.setAttribute("contentPage", "myPageFolder/infoChangePage.jsp");
@@ -127,19 +162,18 @@ public class HomeController {
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/changeProfile.do", method = RequestMethod.POST)
-	public String changeProfile(Member member, HttpServletRequest request) {
-		
-		dao.changeProfile(member, request);
-		
-		
-		return "";
-	}
+	   @RequestMapping(value = "common/changeProfile.do", method = RequestMethod.POST)
+	   public String changeProfile(HttpServletRequest request) throws IOException {
+	      
+	      dao.changePhoto(request);
+	      String oldPhoto = (String) request.getAttribute("oldPhoto");
+	      dao.deleteOldPhoto(oldPhoto, request);
+	      request.setAttribute("contentPage", "myPageFolder/simplePage.jsp");
+	      return "memberPage/myPage";
+	   }
 	
 	
-	
-	@RequestMapping(value = "/common/logout.do")
+	@RequestMapping(value = "common/logout.do")
 	public String logout(HttpServletRequest request, HttpSession session) {
 		
 		dao.logout(request, session);
@@ -149,7 +183,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/regin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "common/regin.do", method = RequestMethod.POST)
 	public String regin(HttpServletRequest request, Member member) throws IOException {
 		dao.regin(request, member);
 		
@@ -157,7 +191,7 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/common/checkId.do", method = RequestMethod.POST)
+	@RequestMapping(value = "common/checkId.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean checkId(Member m) {
 		return dao.checkId(m);
@@ -243,15 +277,19 @@ public class HomeController {
 		return dao.checkSuccessInfo(mpk);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/sendEmail.do", method = RequestMethod.GET)
-	public void sendEmail(TempMemberInfo tmi, HttpServletRequest request) {
-		System.out.println(request.getParameter("t_m_id"));
-		System.out.println(request.getParameter("t_m_email"));
-		
-		mailsender.mailSendWithUserKey(tmi, request);
-	}
-	
+	   @ResponseBody
+	   @RequestMapping(value = "common/sendEmail.do", method = RequestMethod.GET)
+	   public boolean sendEmail(TempMemberInfo tmi, HttpServletRequest request) {
+	      if (dao.emailCheck(tmi)) {
+	         //안에 계정이 없으면 true를 리턴을 하게 되고 아래의 메일 보내는 메소드를 실행
+	            mailsender.mailSendWithUserKey(tmi, request);
+	            //그리고 ajax $(.checkEmail) 부분으로 리턴
+	            return true;
+	         }
+	         else {
+	            return false;
+	         }
+	   }
 	
 	//사용자가 이메일 인증 완료시 이 메소드로 들어오게 됨
 	@RequestMapping(value = "/key_alter")
@@ -282,7 +320,7 @@ public class HomeController {
 			
 			count++;
 			
-			request.setAttribute("contentPage","memberPage/loginPage.jsp");
+			request.setAttribute("contentPage","home.jsp");
 			return "index";
 		}
 		else {
@@ -292,7 +330,7 @@ public class HomeController {
 	}
 	
 	//서비스 로그아웃이든 계정까지 로그아웃이든 이쪽으로 들어옴
-	@RequestMapping(value = "/kakao.logout")
+	@RequestMapping(value = "/common/kakao.logout")
 	public String kakaoLogout(HttpSession session, HttpServletRequest request) throws IOException {
 		KakaoMember kakaoMember = (KakaoMember) request.getSession().getAttribute("kakao_member_session");
 		
@@ -305,11 +343,12 @@ public class HomeController {
 			
 			count = 0;
 			
-			request.setAttribute("contentPage","memberPage/loginHome.jsp");
+			request.setAttribute("contentPage","home.jsp");
 			return "index";
 		}else {
 			//만약 등록되어 있는 session값이 없을 경우 로그인 페이지로
-			return "memberPage/loginPage";
+			request.setAttribute("contentPage", "loginHome.jsp");
+			return "index";
 		}
 		
 	}

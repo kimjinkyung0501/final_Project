@@ -88,7 +88,7 @@
 		<div class="board_summary">
 			<div class="left">
 				<div class="avatar">
-					<img src="resources/img/default_profile.png" class="avatar-image"
+					<img src="${pageContext.request.contextPath}/resources/img/default_profile.png" class="avatar-image"
 						style="width: 50px;">
 					<div class="avatar1">
 						<div class="write">${nt.n_id }</div>
@@ -102,7 +102,7 @@
 		<div class="margin-top-xxl">
 			<p>
 				<span style="font-size: 14px;">${nt.n_content } </span> <br> <img
-					alt="X" src="resources/img/${nt.n_photo }" style="width: 250px">
+					alt="X" src="${pageContext.request.contextPath}/resources/img/${nt.n_photo }" style="width: 250px">
 			</p>
 		</div>
 		<div class="file_area"></div>

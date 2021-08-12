@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/myPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">
 </head>
 <body>
 
-<a href="/common/">home</a>
+<a href="/jk/">home</a>
 
 <div class="sideMenu_div">
 <div id="myPage"> My Page </div>
@@ -29,6 +29,4 @@
 
 </body>
 
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/locationFile.js"></script>
 </html>
