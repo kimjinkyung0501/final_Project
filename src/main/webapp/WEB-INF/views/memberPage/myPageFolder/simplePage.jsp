@@ -10,6 +10,11 @@
 	href="${pageContext.request.contextPath}resources/css/myPage.css">
 <style type="text/css">
 
+body{
+
+    padding: 0;
+}
+
 .box {
 	width: 130px;
 	height: 130px;
@@ -90,8 +95,7 @@ ol.mylist li:hover {
 /*  지금 하는거야 */
 .xans-myshop-orderstate {
     margin: 20px 0 0;
-    border: 1px solid #777;
-    width: 560px;
+    width: 650px;
 }
 
 .xans-myshop-orderstate .title {
@@ -103,6 +107,7 @@ ol.mylist li:hover {
 .xans-myshop-orderstate .state {
     overflow: hidden;
     padding: 19px 0;
+    
 }
 
 
@@ -115,6 +120,17 @@ ol.mylist li:hover {
     text-align: center;
 }
 
+.xans-myshop-orderstate .cs {
+    float: left;
+    width: 20%;
+        padding: 0;
+}
+
+.xans-myshop-orderstate .cs li {
+    padding: 0;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
 
 </style>
 </head>
@@ -148,24 +164,23 @@ ol.mylist li:hover {
 <div class="state">
         <ul class="order">
 <li>
-                <strong>입금전</strong>
+                <strong>결제완료</strong>
                 <a href="" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
             </li>
             <li>
-                <strong>배송준비중</strong>
+                <strong>배송완료</strong>
                 <a href="" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
             </li>
             <li>
-                <strong>결제완료</strong>
+                <strong>주문취소</strong>
                 <a href="" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
             </li>
             <li>
-                <strong>배송완료</strong>
-                <a href=""><span id="xans_myshop_orderstate_shppied_begin_count">1</span></a>
+                <strong>환불완료</strong>
+                <a href=""><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
             </li>
         </ul>
-        
-<!--         
+  <!--       
 <ul class="cs">
 <li>
            <span class="icoDot"></span>
@@ -174,15 +189,10 @@ ol.mylist li:hover {
             </li>
             <li>
                 <span class="icoDot"></span>
-                <strong>교환 : </strong>
-                <a href="/myshop/order/list.html?order_status=order_exchange" class="count"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a>
-            </li>
-            <li>
-                <span class="icoDot"></span>
                 <strong>반품 : </strong>
                 <a href="/myshop/order/list.html?order_status=order_return" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
             </li>
-        </ul> -->
+        </ul>  -->
 </div>
 </div>
 				</div>
@@ -191,25 +201,58 @@ ol.mylist li:hover {
 
 
 
-		<c:when test="${login_number == 2}">
+			<c:when test="${login_number == 2}">
 			<div class="jb-table">
 				<div class="jb-table-row">
-					<div class="jb-table-cell">
-						<p>사진</p>
-						<div class="box" style="background: #BDBDBD; margin-right: 10px;">
+					<div class="jb-table-cell" style="float: left;">
+						<div class="box" 
+							style="background: #BDBDBD;margin-right: 10px;">
 							<img class="profile" style="vertical-align: middle;"
 								src="${sessionScope.kakao_member_session.kakao_profile_img}" />
 						</div>
+						<p style="margin-top: 20px; font-size: 18px;"
+							class="info_div">${sessionScope.kakao_member_session.kakao_nickname}님
+							안녕하세요.</p>
 					</div>
-					<div class="jb-table-cell">
-						<p>인사</p>
-						<div
-							style="margin-top: 20px; font-size: 18px; float: left; margin-right: 10px; left: 50px;"
-							class="info_div">${sessionScope.kakao_member_session.kakao_nickname}
-							님 안녕하세요.</div>
-					</div>
-					
-
+<div class="xans-element- xans-myshop xans-myshop-orderstate" style="float: left;">
+<div class="title">
+        <h3>나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)</span>
+</h3>
+    </div>
+<div class="state">
+        <ul class="order">
+<li>
+                <strong>결제완료</strong>
+                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
+            </li>
+            <li>
+                <strong>배송완료</strong>
+                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
+            </li>
+            <li>
+                <strong>주문취소</strong>
+                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
+            </li>
+            <li>
+                <strong>환불완료</strong>
+                <a href=""><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
+            </li>
+        </ul>
+  <!--       
+<ul class="cs">
+<li>
+           <span class="icoDot"></span>
+                <strong>취소 : </strong>
+                <a href="/myshop/order/list.html?order_status=order_cancel" class="count"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a>
+            </li>
+            <li>
+                <span class="icoDot"></span>
+                <strong>반품 : </strong>
+                <a href="/myshop/order/list.html?order_status=order_return" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
+            </li>
+        </ul>  -->
+</div>
+</div>
 				</div>
 			</div>
 		</c:when>

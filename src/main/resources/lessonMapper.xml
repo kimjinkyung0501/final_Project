@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.store.lesson.LessonMapper">
+<insert id="regLesson" parameterType="com.project.jk.store.lesson.Lesson">
+insert into lesson values(#{l_rn},lesson_seq.nextval,#{l_name},#{l_price},#{l_content},#{l_label},#{l_photo},#{l_video})
+</insert>
+<select id="getAllLesson" resultType="com.project.jk.store.lesson.Lesson">
+select * from lesson
+</select>
+<select id="getLesson" resultType="com.project.jk.store.lesson.Lesson">
+select * from Lesson where l_no=#{l_no}
+</select>
+<delete id="lessonDelete" parameterType="com.project.jk.store.lesson.Lesson">
+delete lesson where l_no=#{l_no}
+</delete>
+<update id="lessonUpdate" parameterType="com.project.jk.store.lesson.Lesson">
+update lesson set l_name=#{l_name},l_price=#{l_price},l_content=#{l_content},l_label=#{l_label},l_photo=#{l_photo},l_video=#{l_video} where l_no=#{l_no}
+</update>
+</mapper>

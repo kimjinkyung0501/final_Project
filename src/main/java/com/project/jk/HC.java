@@ -32,7 +32,7 @@ public class HC {
 	}
 	@RequestMapping(value = "/dropdown.test", method = RequestMethod.GET)
 	public String dropdown(HttpServletRequest req) {
-		req.setAttribute("contentPage", "dropdown.jsp");
+		req.setAttribute("contentPage", "NewFile.jsp");
 		return "index";
 	}
 	

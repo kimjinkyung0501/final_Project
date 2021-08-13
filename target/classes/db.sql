@@ -60,14 +60,24 @@ drop table member_phone_check cascade constraint purge;
 drop sequence member_phone_seq;
 
 --상점 테이블
-
 create table store(
 s_id varchar2(10 char) not null,
 s_no number(8) primary key not null,
-s_name varchar2(10 char) not null
-
+s_name varchar2(10 char) not null,
+s_exp varchar2(100 char) not null,
+s_img varchar2(100 char) not null,
+constraint m_id_s_id
+foreign key(s_id) references member(m_id)
+	on delete cascade
 );
 create sequence store_seq;
+
+drop table store cascade constraint purge;
+drop sequence store_seq;
+insert into store values('cjyv1029',store_seq.nextval,'라면가게','라면','rs.img');
+select * from STORE;
+
+delete from store where s_id='213';
 
 --제품 테이블(아직 추가 안함)
 create table product(
@@ -78,27 +88,37 @@ p_name varchar2(10 char) not null,
 p_price number(7) not null,
 p_content varchar2(1000 char) not null,
 p_label varchar2(10 char) not null,
-p_option varchar2(50 char),
-p_photo varchar2(100 char) not null,
+p_photo1 varchar2(100 char) not null,
+p_photo2 varchar2(100 char),
+p_photo3 varchar2(100 char),
 constraint p_rn_no
 	foreign key(p_rn) references store(s_no)
 	on delete cascade
 );
+select * from PRODUCT;
+create sequence product_seq;
+drop table product cascade constraint purge;
+drop sequence product_seq;
 
 --강의 테이블(아직 추가 안함)
-create table lession(
+
+create table lesson(
 l_rn number(8) not null,
 l_no number(8) primary key not null,
 l_name varchar2(10 char) not null,
 l_price number(7) not null,
-l_content varchar2(10 char) not null,
+l_content varchar2(1000 char) not null,
 l_label varchar2(10 char) not null,
 l_photo varchar2(100 char) not null,
+l_video varchar2(100 char) not null,
 constraint s_rn_no
 	foreign key(l_rn) references store(s_no)
 	on delete cascade
 );
 create sequence lesson_seq;
 
+select * from LESSON
 
+drop table lesson cascade constraint purge;
+drop sequence lesson_seq;
 

@@ -1,0 +1,154 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.text-box {
+	position: absolute;
+	left: 650px;
+	top: 200px;
+}
+
+.container {
+	padding: 2em;
+	font-family: 'Pretendard-Regular';
+}
+
+
+.box {
+	width: 130px;
+	height: 130px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.jb-table .jb-table-row .jb-table-cell {
+}
+
+.jb-table {
+	display: table;
+	
+}
+
+.jb-table-row {
+	display: table-row;
+}
+
+.jb-table-cell {
+	display: table-cell;
+	padding: 0px 30px;
+	height: 120px;
+}
+
+.jb-top {
+	vertical-align: top;
+}
+
+/* GENERAL BUTTON STYLING */
+.btn-5, .btn-5::after {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-5 {
+	background: none;
+	border: 3px solid gray;
+	border-radius: 5px;
+	color: gray;
+	display: block;
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 1em auto;
+	padding: 1em 3em;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.btn-5::before, .btn-5::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+}
+
+.btn-5:hover {
+	color: darkgray;
+}
+
+/* BUTTON 5 */
+.btn-5 {
+	overflow: hidden;
+}
+
+.btn-5::after {
+	/*background-color: #f00;*/
+	height: 100%;
+	left: -35%;
+	top: 0;
+	transform: skew(50deg);
+	transition-duration: 0.6s;
+	transform-origin: top left;
+	width: 0;
+}
+
+.btn-5:hover:after {
+	height: 100%;
+	width: 135%;
+}
+</style>
+
+</head>
+<body>
+	<div style="width: 0; min-height: 10px; height: 50px;"></div>
+
+
+	<c:choose>
+		<c:when test="${m.m_grade==1}">
+			<a href="${pageContext.request.contextPath}/store.reg.go">입점신청</a>
+		</c:when>
+
+
+
+
+
+		<c:when test="${m.m_grade==2}">
+			<form action="${pageContext.request.contextPath}/store.MyPage"
+				method="Post">
+
+				<div class="jb-table">
+					<div class="jb-table-row">
+						<div class="jb-table-cell" style="float: left;">
+							<div class="box" style="background: #BDBDBD; margin-right: 10px;">
+								<img class="profile" style="vertical-align: middle;"
+									src="${pageContext.request.contextPath}/resources/img/${sessionScope.member_session.m_photo}" />
+							</div>
+							<p style="margin-top: 20px; font-size: 18px;" class="info_div">${sessionScope.member_session.m_name} <br> 판매자님
+								안녕하세요. </p>
+						</div>
+					</div>
+				</div>
+					<div style="width: 0; min-height: 10px; height: 50px;"></div>
+				<input type="hidden" name="s_id"
+					value="${sessionScope.member_session.m_id}">
+	<div style="width: 0; min-height: 10px; height: 50px;"></div>
+				<button class="btn-5"><img style="width: 45px; padding-bottom: 0;" src="${pageContext.request.contextPath}/resources/img/storeIcon.png"><br>상점 관리</button>
+			</form>
+
+		</c:when>
+	</c:choose>
+	<script type="text/javascript" src="resources/js/jquery.js"></script>
+	<script type="text/javascript" src="resources/js/locationFile.js"></script>
+	<script type="text/javascript" src="resources/js/Valid.js"></script>
+</body>
+</html>

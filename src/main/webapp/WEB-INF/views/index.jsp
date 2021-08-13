@@ -69,17 +69,11 @@ $(document).ready(function(){
 					</a></span></li>
 				<li style="display: inline"><span><a href="">Class </a></span>
 				</li>
-				<li style="display: inline"><span><a href="">Product
+				<li style="display: inline"><span><a href="${pageContext.request.contextPath}/product.go">Product
 					</a></span></li>
 				<li style="display: inline"><span><a href="">Story </a></span>
 				</li>
 				<li style="display: inline"><span><a href="">Chat </a></span></li>
-				<li style="display: inline"><span><a
-						href="${pageContext.request.contextPath}/common/myPage.go">MyPage
-					</a></span></li>
-				<%-- <li style="display: inline"><span><a
-						href="${pageContext.request.contextPath}/common/login.main">Log in
-					</a></span></li> --%>
 
 
 
@@ -87,7 +81,6 @@ $(document).ready(function(){
 				<c:choose>
 					<c:when test="${empty sessionScope}">
 
-						
 						<li style="display: inline"><span><a
 								href="${pageContext.request.contextPath}/common/login.main">Log
 									in </a></span></li>
@@ -97,12 +90,18 @@ $(document).ready(function(){
 					<c:when test="${member_session.m_id eq 'admin'}">
 						<li style="display: inline"><span><a href="">Manager
 							</a></span></li>
+							<li style="display: inline"><span><a
+						href="${pageContext.request.contextPath}/common/myPage.go">MyPage
+					</a></span></li>
 						<li style="display: inline"><span><a
-								onclick="logout()">Log out </a></span></li>
+								onclick="logout('${sessionScope.member_session}','${sessionScope.kakao_member_session }')">Log out </a></span></li>
 					</c:when>
 					<c:when test="${!empty sessionScope}">
 					<li style="display: inline"><span><a
-								href="${pageContext.request.contextPath}/">Store </a></span></li>
+						href="${pageContext.request.contextPath}/common/myPage.go">MyPage
+					</a></span></li>
+					<li style="display: inline"><span><a
+								href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store </a></span></li>
 						<li style="display: inline"><span><a
 								onclick="logout('${sessionScope.member_session}','${sessionScope.kakao_member_session }')">Log out </a></span></li>
 					</c:when>
@@ -180,6 +179,8 @@ $(document).ready(function(){
 					<li><a href="#">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
 				</ul></li>
+			<li class="menu-v1"><a href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store</a>
+			</li>
 				</ul>
 		<div class="clear"></div>
 		</div>		

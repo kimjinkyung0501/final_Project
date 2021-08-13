@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.store.StoreMapper">
+<insert id="reg">
+insert into store values(#{s_id},store_seq.nextval,#{s_name},#{s_exp},#{s_img})
+</insert>
+<update id="gradeUp" parameterType="com.project.jk.common.Member">
+update member set m_grade=2 where m_id=#{m_id}
+</update>
+<update id="gradedown" parameterType="com.project.jk.common.Member">
+update member set m_grade=1 where m_id=#{m_id}
+</update>
+<select id="getStoreInfo"  parameterType="com.project.jk.store.Store" resultType="com.project.jk.store.Store">
+select * from store where s_id=#{s_id}
+</select>
+<select id="getMemberInfo"  resultType="com.project.jk.common.Member">
+select * from member where m_id=#{m_id}
+</select>
+<delete id="deleteStore" parameterType="com.project.jk.store.Store">
+delete store where s_no=#{s_no}
+</delete>
+<update id="updateStore" parameterType="com.project.jk.store.Store">
+update store set s_name=#{s_name},s_exp=#{s_exp},s_img=#{s_img} where s_id=#{s_id}
+</update>
+</mapper>
