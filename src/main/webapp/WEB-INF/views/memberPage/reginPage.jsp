@@ -13,7 +13,7 @@
 
 .text-box {
 	position: absolute;
-	left:600px;
+	left:650px;
 	top: 270px;
 }
 /* 입력폼 */
@@ -45,7 +45,8 @@ h3 {
 }
 
 input {
-	font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard-Regular';
+
 }
 
 .box.int_id {
@@ -295,7 +296,7 @@ select {
 			<h3 class="join_title">
 				<label for="phoneNo">휴대전화</label>
 			</h3>
-			<span class="box int_mobile"> <input name="m_phone"
+			<span class="box int_mobile"> <input id="m_phone" name="m_phone"
 				type="text" class="int" maxlength="16"> <input hidden="1"
 				value="false" id="check_info">
 			</span> <span>

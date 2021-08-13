@@ -12,7 +12,7 @@
 }
 
 #board-title {
-	font-size: 20px;
+	font-size: 25px;
 	margin-bottom: 15px;
 }
 
@@ -24,7 +24,7 @@
 #board-title holder {
 	font-family: 'Noto Sans', 'sans-serif';
 	color: #4f4f4f;
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 1.6;
 	letter-spacing: 0px;
 	font-weight: normal;
@@ -52,25 +52,47 @@
 	left: 30%;
 }
 
-/* 수정 삭제 버튼 예쁘게  */
-#test_btn1 {
+/* 
+#test_btn111 {
 	margin-right: 0px;
 }
 
-#test_btn2 {
+#test_btn211 {
 	margin-left: 2px;
 }
 
-#btn_group button {
+#btn_group11 {
 	border: 1px solid gray;
 	background-color: rgba(0, 0, 0, 0);
 	color: gray;
 	padding: 5px;
 }
 
-#btn_group button:hover {
+.btn_group11 button:hover {
 	color: white;
 	background-color: gray;
+}
+ */
+
+
+
+#boardcss_list_add_button_table {
+	width: 100%;
+	margin: 0 auto 15px;
+	/*position: relative; background: #bddcff; font-weight: bold;*/
+}
+
+/* 화면에 보여지는 글 등록 버튼 */
+#boardcss_list_add_button_table .add_button {
+	cursor: pointer;
+	border: 1px solid #bebebe;
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	width: 80px;
+	padding: 6px 0 6px;
+	text-align: center;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -101,7 +123,7 @@
 
 		<div class="margin-top-xxl">
 			<p>
-				<span style="font-size: 14px;">${nt.n_content } </span> <br> <img
+				<span style="font-size: 18px;">${nt.n_content } </span> <br> <img
 					alt="X" src="${pageContext.request.contextPath}/resources/img/${nt.n_photo }" style="width: 250px">
 			</p>
 		</div>
@@ -111,14 +133,16 @@
 		<div class="list_tap"></div>
 
 
-		<div id="btn_group">
 			<c:if test="${member_session.m_id eq 'admin'}">
-				<button id="test_btn1" onclick="goUpdateNotice(${nt.n_no })">수정</button>
-				<button id="test_btn2" onclick="goDelNotice(${nt.n_no })">삭제</button>
+		
+		<div id="boardcss_list_add_button_table">
+				<button class="btn" onclick="goUpdateNotice(${nt.n_no })">수정</button>
+				<button class="btn" onclick="goDelNotice(${nt.n_no })">삭제</button>
+			</div>
+		
+		
 			</c:if>
-		</div>
 	</div>
-
 
 
 

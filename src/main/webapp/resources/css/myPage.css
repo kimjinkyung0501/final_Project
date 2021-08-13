@@ -45,7 +45,58 @@
 
 .info_div{
 	display:flex;
-	width: 70%;
 	align-items: center;
 	justify-content: center;
 }
+
+/* 회원가입 수정  */
+#memberInfo_div{
+   display:flex;
+   flex-direction : column;
+   background-color: gray;
+   width: 600px;
+   align-items: center;
+}
+
+.infoDiv{
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+}
+
+.profileImg{
+   width: 100px;
+   height: 100px;
+}
+
+.title{
+   display: flex;
+}
+
+.content_photo{
+   display: flex;
+   flex-direction: row;
+   justify-content:space-around;
+   align-items: center;
+}
+
+.content_name, .content_id, .contentPw, .content_email{
+   display: flex;
+   flex-direction: column;
+   width: auto;
+}
+
+.commitName{
+   display: flex;
+
+}
+
+
+#memberInfo_div .infoDiv{
+   display: flex;
+   width: 600px;
+   height: 70px;
+   align-items : center;
+
+}
+/* 회원가입 수정 끝  */

@@ -65,7 +65,7 @@
 			<span>${sessionScope.member_session.m_email}</span>
 		</div>
 		<div>
-			<button>수정하기</button>
+			<button class="emailChangeBtn">수정하기</button>
 		</div>
 	</div>
 </div>
@@ -90,7 +90,6 @@
 
 
 </body>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/myPageJS.js"></script>
+
 
 </html>

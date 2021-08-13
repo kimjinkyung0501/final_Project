@@ -22,7 +22,7 @@ body {
 	margin: 15px;
 	text-align: left;
 	font-family: 'PT Serif', serif;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Nanum Myeongjo', serif;
 }
 
 .about-table {

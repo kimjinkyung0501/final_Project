@@ -24,6 +24,11 @@
 	overflow: hidden;
 }
 
+.over_h a{
+color: gray;
+font-size: 10pt;
+}
+
 .txt_c {
 	text-align: center !important;
 }
@@ -135,7 +140,7 @@ ${sessionScope.kakao_member_session.kakao_nickname}님 안녕하세요
 		</div>
 		<div>
 			<img onclick="kakaoLogin();" src="${pageContext.request.contextPath}/resources/img/kakaoImg.png"
-				style="width: 200px; align-content: center;">
+				style="width: 200px; align-content: center; margin-left: 35px; margin-top: 30px;">
 		</div>
 	</div>
 

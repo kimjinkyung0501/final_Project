@@ -9,7 +9,7 @@
 $(document).ready(function(){
 	//menu v1 
 	$(".menu-v1").mouseover(function(){
-		$(this).children(".submenu").slideDown();
+		$(this).children(".submenu").stop().slideDown();
 	});
 	$(".menu-v1").mouseleave(function(){
 		$(this).children(".submenu").stop().slideUp();
@@ -25,6 +25,7 @@ $(document).ready(function(){
 	padding: 0;
 	list-style: none;
 	box-sizing: border-box;
+	font-family: 'PT Serif', serif;
 }
 /* 
 a {
@@ -47,15 +48,13 @@ a {
 
 .menu-v1 {
 	line-height: 2;
-	border: 1px solid #222;
 }
 
 .menu-v1:hover {
-	background-color: #000;
 }
 
 .menu-v1:hover>a {
-	color: white;
+	color: black;
 	font-weight: bold;
 }
 
@@ -63,10 +62,10 @@ a {
 	margin-top: 7px;
 	background-color: #fff;
 	display: none;
+	font-size: 7px;
 }
 
 .menu-v1 .submenu li:hover {
-	background-color: #000;
 	color: white;
 	font-weight: bold;
 }

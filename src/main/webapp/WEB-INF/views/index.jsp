@@ -21,13 +21,34 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"
 	rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/index.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/searchMemberInfo.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/myPage.css">
 <link rel="icon" type="image/png" href="…">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<script type="text/javascript">
+$(document).ready(function(){
+	//menu v1 
+	$(".menu-v1").mouseover(function(){
+		$(this).children(".submenu").stop().slideDown();
+	});
+	$(".menu-v1").mouseleave(function(){
+		$(this).children(".submenu").stop().slideUp();
+	});
+	
+});
 
+
+</script>
 </head>
 
 
@@ -38,7 +59,7 @@
 		<div class="icon-close">
 			<!-- 	<img src="resources/img/menuIcon.png" style="width: 25px;"> -->
 		</div>
-		<div class="black" style="width: 150px;"></div>
+		<div class="black" style="width: 360px;"></div>
 		<a href="/jk/" style="font-size: 20pt; font-weight: bold;">생활수집</a>
 
 
@@ -71,12 +92,7 @@
 								href="${pageContext.request.contextPath}/common/login.main">Log
 									in </a></span></li>
 					</c:when>
-			<%-- 		<c:when test="${sessionScope.login_number != 2}">
-
-						<li style="display: inline"><span><a
-								href="${pageContext.request.contextPath}/common/login.main">Log
-									in </a></span></li>
-					</c:when> --%>
+	
 
 					<c:when test="${member_session.m_id eq 'admin'}">
 						<li style="display: inline"><span><a href="">Manager
@@ -88,13 +104,9 @@
 					<li style="display: inline"><span><a
 								href="${pageContext.request.contextPath}/">Store </a></span></li>
 						<li style="display: inline"><span><a
-								onclick="logout()">Log out </a></span></li>
+								onclick="logout('${sessionScope.member_session}','${sessionScope.kakao_member_session }')">Log out </a></span></li>
 					</c:when>
-				<%-- 	<c:when test="${sessionScope.login_number == 2}">
-						<li style="display: inline"><span><a
-								onclick="logout()">Log out </a></span></li>
-					</c:when> --%>
-
+		
 
 				</c:choose>
 
@@ -115,7 +127,7 @@
 			</button>
 		</div>
 	</form>
-	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
+<%-- 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
 	<div class="menu2">
 		<ul id="menu2">
 			<li>Class</li>
@@ -125,11 +137,55 @@
 			<li class="menu-v1"><a
 				href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
 				</li>
+ --%>
 
+<div style="width: 100%; min-height: 10px; height: 40px;"></div>
+
+
+
+	<div id="container">
+		<ul id="nav-v1">
+			<li class="menu-v1"><a href="#">Class</a>
+				<ul class="submenu">
+					<li><a href="#">드로잉</a></li>
+					<li><a href="#">공예</a></li>
+					<li><a href="#">요리</a></li>
+					<li><a href="#">사진</a></li>
+					<li><a href="#">음악</a></li>
+					<li><a href="#">게임</a></li>
+					<li><a href="#">디자인</a></li>
+					<li><a href="#">개발</a></li>
+					<li><a href="#">글쓰기</a></li>
+					<li><a href="#">기타</a></li>	
+				</ul></li>
+			<li class="menu-v1"><a href="#">Product</a>
+				<ul class="submenu">
+					<li><a href="#">식품</a></li>
+					<li><a href="#">악세사리</a></li>
+					<li><a href="#">의류</a></li>
+					<li><a href="#">전자기기</a></li>
+					<li><a href="#">주방</a></li>
+					<li><a href="#">잡화</a></li>	
+					<li><a href="#">인테리아</a></li>
+					<li><a href="#">육아</a></li>		
+					<li><a href="#">기타</a></li>
+				</ul></li>
+			<li class="menu-v1"><a href="#">Story</a></li>
+
+			<li class="menu-v1"><a href="#">Chat</a></li>
+
+			<li class="menu-v1"><a href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
+				<ul class="submenu">
+					<li><a href="#">주문조회</a></li>
+					<li><a href="#">장바구니</a></li>
+					<li><a href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
+				</ul></li>
+				</ul>
+		<div class="clear"></div>
+		</div>		
 		
-
-		<div class="text-table" style="padding-left: 0px; margin-left: 0px;">
-			<div style="width: 100%; min-height: 10px; height: 60px;"></div>
+		<div class="text-table" style="padding-left: 10px; margin-left: 10px;">
+			<div style="width: 100%;  height: 5px;"></div>
 			<p>
 				<a href="${pageContext.request.contextPath}/notice/notice.go"><span
 					style="letter-spacing: 1px;">READ ME FIRST</span></a>
@@ -149,10 +205,11 @@
 					style="letter-spacing: 1px;">POLICY</span></a>
 			</p>
 		</div>
-</ul>
-		</ul>
+		
+		
+		
 
-	</div>
+
 
 
 
@@ -247,4 +304,7 @@
 	src="${pageContext.request.contextPath}/resources/js/searchMemberInfo.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/reginPage.js"></script>
 
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/myPageJS.js"></script>
 </html>

@@ -1,3 +1,8 @@
+let check_info = document.getElementById("check_info").value;
+var emailCheckValue = document.getElementById("emailCheckValue").value;
+let checkIdValue = document.getElementById("checkIdValue").value;
+   
+   
 function reginValid() {
    const m_name = document.getElementById("m_name");
    const m_id = document.getElementById("m_id");
@@ -15,56 +20,64 @@ function reginValid() {
       alert("이름을 입력하여 주세요");
       return false;
    }
+
    else if (isEmpty(m_id)) {
       alert("ID를 입력하여 주세요");
       return false;
    }
-   else if (isEmpty(m_pw)) {
-      alert("PassWord를 입력하여 주세요");
-      return false;
-   }
-   else if (m_pw.value != m_pw_compare.value) {
-      alert("PassWord를 확인하여 주세요");
-      return false;
-   }
-   else if(isEmpty(m_addr)||isEmpty(m_addr2)){
-      alert("주소를 입력해주세요");
+
+     else if(isEmpty(m_email)){
+      alert("이메일을 입력하여 주세요");
       return false;
    }
    else if(isEmpty(m_phone)){
       alert("번호를 입력해주세요");
       return false;
    }
-   
+    
+
+     else if (checkIdValue == "false" || checkIdValue == undefined) {
+      alert("값이 비어있거나 중복체크를 해주세요");
+      return false;
+   }
+
+   else if (isEmpty(m_pw)) {
+      alert("PassWord를 입력하여 주세요");
+      return false;
+   }
+
+   else if (m_pw.value != m_pw_compare.value) {
+      alert("PassWord를 확인하여 주세요");
+      return false;
+   }
+
+   else if(isEmpty(m_addr)||isEmpty(m_addr2)){
+      alert("주소를 입력해주세요");
+      return false;
+   }
+   else if(emailCheckValue == "false"){
+      alert("이메일 인증을 완료해주세요");
+      return false;
+   }
+
    else if (notCorrectAddr(m_addr)) {
       alert("주소값에 허용되지 않은 문자열이 들어가 있습니다.");
       return false;
    }
+   else if (check_info == "false" || check_info == undefined) {
+      alert("휴대폰 인증을 실시해주세요");
+      return false;
+   }
+
    else if (notCorrectAddr(m_addr2)) {
       alert("주소값에 허용되지 않은 문자열이 들어가 있습니다.");
       return false;
    }
+
    else if (notCorrectPhoneNumber(m_phone)) {
       alert("핸드폰 번호에 '-' 와 공백을 제거해 주세요");
       return false;
    }
-
-   else if (checkIdValue == "false" || checkIdValue == undefined) {
-      alert("값이 비어있거나 중복체크를 해주세요");
-      return false;
-   }
-/*   else if (check_info == "false" || check_info == undefined) {
-      alert("휴대폰 인증을 실시해주세요");
-      return false;
-   }*/
-   else if(isEmpty(m_email)){
-      alert("이메일을 입력하여 주세요");
-      return false;
-   }
-   /*else if(emailCheckValue=="false"){
-      alert("이메일 인증을 완료해주세요");
-      return false;
-   }*/
    //이메일 인증 안할 시 안 넘어가게
    //일단은 막아둘께
    return true;
@@ -74,9 +87,9 @@ function reginValid() {
 $(document).ready(function() {
    //회원 가입 버튼을 클릭했을 때 입력한 핸드폰 번호가 인증되어진
    //상태일 경우 회원가입 가능하게
-   $('.reginBtn').click(function() {
-      var m_phone = $('#m_phone').val();
-      if (reginValid()) {
+      $('.reginBtn').click(function() {
+      if(reginValid()){
+        var m_phone = $('#m_phone').val();
          $.ajax({
             url: "checkSuccessInfo.do",
             method: "get",
@@ -87,23 +100,24 @@ $(document).ready(function() {
                let successInfo = data;
                if (successInfo) {
                   check_info = "true";
+               return true;
                }
-
+            else{
+               return false;               
             }
-         })
+            }
+            })
             .fail(function() {
                alert("통신 실패");
-            })
-            
-            
-            
-            
+            })         
       }
       else{
          return false;
       }
 
-   })
+      })
+
+
    $('.checkEmail').click(function (){
       let userId = $('#m_id').val();
       let userEmail = $('#m_email').val();
@@ -115,35 +129,34 @@ $(document).ready(function() {
          data: {
          t_m_id: userId,
          t_m_email: userEmail
-      },
+         },
          success: function(data) {
          //data가 boolean타입으로 리턴됨
          if(data){
             //메일이 정상적으로 보내졌을 경우 뜨는 알람
             emailCheckValue = "true";
+         alert(emailCheckValue);
             alert("이메일을 확인해 주세요");
          }
          else{
             //false로 리턴되었을 때 뜨는 알람
             alert("이미 사용중인 이메일 입니다.")
          }
-}
-   })
-   .fail(function() {
-
-         
+      }
+         })
+         .fail(function() {
          alert("이메일 전송 실패");
-      })
-   }
+         })
+      }
    else{
       return false;
-   }      
+      }      
       
    })
    
 
    //ID중복 검사 부분
-   $('.checkIdkkk').click(function() {
+   $('.checkId').click(function() {
       const m_id = $('#m_id').val();
       if (m_id == "") {
          alert("ID를 입력하여주세요");
@@ -174,8 +187,16 @@ $(document).ready(function() {
                alert("ajax 실패");
             })
       }
-   });
+   })
+
 })
+
+
+
+/*도로명 주소 검색 부분*/
+
+const confmKey = devU01TX0FVVEgyMDIxMDgxMzA5MTM1ODExMTUxOTE;
+
 
 
 

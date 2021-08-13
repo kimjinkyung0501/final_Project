@@ -34,14 +34,28 @@ function loginCheck() {
          })
          }
 }
-
-function logout(){
-   let ok = confirm("로그아웃 하시겠습니까?");
-   if(ok){
-      location.href="/jk/common/logout.do";
-      //풀 패키징 경로
-   }
+function logout(nomalMember, kakaoMember){
+   
+   
+   if(nomalMember != "" && kakaoMember == ""){
+      let ok = confirm("로그아웃 하시겠습니까?");
+         if(ok){
+         location.href="/jk/common/logout.do";
+         //풀 패키징 경로
+            }
+      }
+      else if(nomalMember == "" && kakaoMember != ""){
+         kakaoLogout();
+      }
+   
+   
+   
 }
 
-
-
+function kakaoLogout(){
+   let apikey = "97e12e516bb866800a64e5676c4184c1";
+   let redirectUrl = "http://localhost:80/jk/common/kakao.logout"   
+   
+   location.href="https://kauth.kakao.com/oauth/logout?client_id="+ apikey + "&logout_redirect_uri=" + redirectUrl;
+   
+}

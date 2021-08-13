@@ -18,7 +18,7 @@
 	</div>
 </div>
 
-<form action="/common/changePw.do" method="post">
+<form action="changePw.do" method="post">
 <div>
 	<div>새로운 비밀번호</div>
 	<div> 
