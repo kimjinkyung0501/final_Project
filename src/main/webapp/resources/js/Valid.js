@@ -1,6 +1,4 @@
 
-let checkIdValue = document.getElementsByClassName("checkId").value;
-let emailCheckValue = document.getElementById("emailCheckValue").value;
 
 
    

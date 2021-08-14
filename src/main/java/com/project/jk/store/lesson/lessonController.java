@@ -29,7 +29,7 @@ public class lessonController {
 	public String lessonregdo(Lesson l, HttpServletRequest request) {
 	
 		ldao.reglesson(l,request);
-		request.setAttribute("contentPage", "home.jsp");
+		request.setAttribute("contentPage", "lessonPage/Result.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "lesson.delete", method = RequestMethod.GET)

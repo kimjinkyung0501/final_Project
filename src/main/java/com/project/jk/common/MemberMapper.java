@@ -5,44 +5,56 @@ import java.util.List;
 
 public interface MemberMapper {
 
-	public Member loginCheck(Member member);
+   public Member loginCheck(Member member);
 
-	public List<Member> checkId_select(Member m);
+   public List<Member> checkId_select(Member m);
 
-	public int insertPhoneKey(String Key);
+   public int insertPhoneKey(String Key);
 
-	public List<MemberPhoneKey> compareKey(MemberPhoneKey key);
+   public List<MemberPhoneCheck> compareKey(MemberPhoneCheck key);
 
-	public int updateSuccessInfo();
+   public int updateSuccessInfo();
 
-	public List<MemberPhoneKey> checkSuccessInfo(MemberPhoneKey mpk);
+   public MemberPhoneCheck checkSuccessInfo(MemberPhoneCheck mpc);
 
-	public int insertKey(TempMemberInfo tmi);
+   public int insertKey(TempMemberInfo tmi);
 
-	public int updateTempMemberInfo(TempMemberInfo tmi);
+   public int updateTempMemberInfo(TempMemberInfo tmi);
 
-	public int regMember(Member member);
+   public int regMember(Member member);
 
-	public int insertTempInfo(TempMemberInfo tmp);
+   public int insertTempInfo(TempMemberInfo tmp);
 
-	public void changeName(DataChangeBean dcb);
+   public void changeName(DataChangeBean dcb);
 
-	public void changeId(DataChangeBean dcb);
+   public void changeId(DataChangeBean dcb);
 
-	public Member comparePw(Member member);
+   public Member comparePw(Member member);
 
-	public int changePw(Member member);
+   public int changePw(Member member);
 
-	public void changeProfile(Member member_session);
+   public void changeProfile(Member member_session);
 
-	public int checkEmail(TempMemberInfo tmi);
+   public int checkEmail(TempMemberInfo tmi);
 
-	public int changeMemberEmail(TempMemberInfo tmi);
+   public int changeMemberEmail(TempMemberInfo tmi);
 
-	public Member searchIdByNameAndEmail(Member member);
+   public Member searchIdByNameAndEmail(Member member);
 
-	public void changePwWithTempPw(HashMap<String, String> tempPwMap);
-	
-	public int regAddr(Member member);
+   public void changePwWithTempPw(HashMap<String, String> tempPwMap);
 
+   public TempMemberInfo checkEmailSuccess(TempMemberInfo tmi);
+
+   public int regAddr(Member member);
+
+   public Member searchIdByPhone(Member member);
+
+   
+   
+   
+   public int updatePhoneKey(MemberPhoneCheck mpk);
+
+   public int memberUniqueNo(String userPhoneNumber);
+
+   public Member getUserEmail(Member member);
 }

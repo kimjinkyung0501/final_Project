@@ -11,12 +11,17 @@ select * from member where m_id = #{m_id}
 select * from member where m_id = #{m_id}
 </select>
 
-<select id="compareKey" parameterType="com.project.jk.common.MemberPhoneKey" resultType="com.project.jk.common.MemberPhoneKey">
+<select id="compareKey" parameterType="com.project.jk.common.MemberPhoneCheck" resultType="com.project.jk.common.MemberPhoneCheck">
 select m_p_id from member_phone_check where m_p_number = #{m_p_number}
 </select>
 
-<select id="checkSuccessInfo" parameterType="com.project.jk.common.MemberPhoneKey" resultType="com.project.jk.common.MemberPhoneKey">
-select m_p_successInfo from member_phone_check where m_p_number = #{m_p_number}
+<select id="checkEmailSuccess" parameterType="com.project.jk.common.TempMemberInfo" resultType="com.project.jk.common.TempMemberInfo">
+select * from temp_member where t_m_id = #{t_m_id}
+</select>
+
+
+<select id="checkSuccessInfo" parameterType="com.project.jk.common.MemberPhoneCheck" resultType="com.project.jk.common.MemberPhoneCheck">
+select * from member_phone_check where m_p_number = #{m_p_number}
 </select>
 
 <select id="comparePw" resultType="com.project.jk.common.Member" parameterType="com.project.jk.common.Member">
@@ -31,15 +36,23 @@ select count(*) from member where m_email = #{t_m_email}
 select * from member where m_name = #{m_name} and m_email = #{m_email}
 </select>
 
-<update id="changePwWithTempPw" parameterType="hashmap">
-update member set m_pw = #{tempPw} where m_name = #{m_name} and m_email = #{m_email}
-</update>
 
-<update id="changeMemberEmail" parameterType="com.project.jk.common.TempMemberInfo">
-update member set m_email = #{t_m_email} where m_id = #{t_m_id}
-</update>
+<!-- 8월 14일 추가 부분 -->
+<select id="searchIdByPhone" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_name = #{m_name} and m_phone = #{m_phone}
+</select>
 
-<insert id="insertPhoneKey" parameterType="com.project.jk.common.MemberPhoneKey">
+<select id="memberUniqueNo" parameterType="String" resultType="Integer">
+select m_p_no from member_phone_check where m_p_number = #{m_p_number}
+</select>
+
+<select id="getUserEmail" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_phone = #{m_phone}
+</select>
+
+
+
+<insert id="insertPhoneKey" parameterType="com.project.jk.common.MemberPhoneCheck">
 insert into member_phone_check values(member_phone_seq.nextval, #{m_p_number}, #{m_p_id}, #{m_p_successInfo})
 </insert>
 
@@ -56,7 +69,8 @@ insert into temp_member values(#{t_m_id}, #{t_m_email}, #{t_m_key})
 </insert>
 
 
-<update id="updateSuccessInfo" parameterType="com.project.jk.common.MemberPhoneKey">
+
+<update id="updateSuccessInfo" parameterType="com.project.jk.common.MemberPhoneCheck">
 update member_phone_check set m_p_successInfo = #{m_p_successInfo} where m_p_number = #{m_p_number}
 </update>
 
@@ -79,11 +93,23 @@ update member set m_pw = #{m_pw} where m_id = #{m_id}
 <update id="changeProfile" parameterType="com.project.jk.common.Member">
 update member set = m_photo #{m_photo} where m_id = #{m_id}
 </update>
+<update id="changePwWithTempPw" parameterType="hashmap">
+update member set m_pw = #{tempPw} where m_name = #{m_name} and m_email = #{m_email}
+</update>
+
+<update id="changeMemberEmail" parameterType="com.project.jk.common.TempMemberInfo">
+update member set m_email = #{t_m_email} where m_id = #{t_m_id}
+</update>
 
 <update id="regAddr" parameterType="com.project.jk.common.Member">
 update member set m_addr = #{m_addr} where m_id = #{m_id}
 </update>
 
 
+
+<!-- 8월 14일 추가 -->
+<update id="updatePhoneKey" parameterType="com.project.jk.common.MemberPhoneCheck">
+update member_phone_check set m_p_successInfo = #{m_p_successInfo}, m_p_id = #{m_p_id} where m_p_no = #{m_p_no}
+</update>
 
 </mapper>

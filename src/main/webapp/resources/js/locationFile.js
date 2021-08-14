@@ -36,7 +36,7 @@ function goMyPage(nomalMember, kakaoMember){
 
 
 	
-myPage.addEventListener("click", goSimplePage)
+myPage.addEventListener("click", goSimplePage);
 sideMenu1.addEventListener("click", toOrderPage);
 sideMenu2.addEventListener("click", toCart);
 sideMenu3.addEventListener("click", changeInfo);

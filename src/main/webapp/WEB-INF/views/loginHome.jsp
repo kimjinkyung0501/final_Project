@@ -150,5 +150,8 @@ ${sessionScope.kakao_member_session.kakao_nickname}님 안녕하세요
 
 
 </body>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/Valid.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/kakaoJS.js"></script>
 </html>

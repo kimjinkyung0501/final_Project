@@ -9,8 +9,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}resources/css/myPage.css">
 <style type="text/css">
-body{
-    margin: 15px;
+body {
+	margin: 15px;
 }
 
 .box {
@@ -121,6 +121,18 @@ ul.mylist li:hover, ol.mylist li:hover {
 	display: list-item;
 	text-align: -webkit-match-parent;
 }
+
+
+#BT{
+border:0.1px solid ;   
+background-color : white;
+font:14pt;
+font-weight:bold;   
+width:150px;
+height:40px;  
+}
+
+
 </style>
 </head>
 <body>
@@ -146,10 +158,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 					<div class="xans-element- xans-myshop xans-myshop-orderstate"
 						style="float: left;">
 						<div class="title">
-							<h3>
-								나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)
-								</span>
-							</h3>
+							<h3>나의 주문처리 현황</h3>
 						</div>
 						<div class="state">
 							<ul class="order">
@@ -163,17 +172,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
 							</ul>
 
-							<ul>
-								<li>
-									<div>
-										<div style="width: 70%;">
-											${sessionScope.member_session.m_addr }</div>
-										<div style="width: 30%;">
-											<button>등록 및 수정</button>
-										</div>
-									</div>
-								</li>
-							</ul>
+							<div style="width: 100%; min-height: 1px; height: 50px;"></div>
 
 							<!--       
 <ul class="cs">
@@ -191,6 +190,19 @@ ul.mylist li:hover, ol.mylist li:hover {
 						</div>
 					</div>
 				</div>
+						<div style="width: 100%; min-height: 1px; height: 40px; "></div>
+					<div style="margin-left: 30px;">
+										<input id="BT" type="button" value="주소 확인" onclick="view()">
+									</div>
+									<div id="hiddenTB" style="display: none">
+										<div>
+											<div style="width: 70%;margin-left: 30px;">
+												${sessionScope.member_session.m_addr }</div>
+											<div style="width: 30%;">
+												<a style="margin-left: 30px;" href="${pageContext.request.contextPath}/common/regAddr.go">[수정]</a>
+											</div>
+										</div>
+									</div>
 			</div>
 		</c:when>
 
@@ -210,10 +222,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 					<div class="xans-element- xans-myshop xans-myshop-orderstate"
 						style="float: left;">
 						<div class="title">
-							<h3>
-								나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)
-								</span>
-							</h3>
+							<h3>나의 주문처리 현황</h3>
 						</div>
 						<div class="state">
 							<ul class="order">
@@ -227,6 +236,21 @@ ul.mylist li:hover, ol.mylist li:hover {
 										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
 
 							</ul>
+
+
+
+							<ul>
+								<li>
+									<div>
+										<div style="width: 70%;">
+											${sessionScope.member_session.m_addr }</div>
+										<div style="width: 30%;">
+											<button>등록 및 수정</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+
 							<!--       
 <ul class="cs">
 <li>
@@ -263,6 +287,27 @@ ul.mylist li:hover, ol.mylist li:hover {
 
 
 
+	<script type="text/javascript">
+		function view() {
+
+			if (hiddenTB.style.display == "none") {
+
+				hiddenTB.style.display = "block";
+
+				BT.value = "접어두기";
+
+			}
+
+			else {
+
+				hiddenTB.style.display = "none";
+
+				BT.value = "주소 확인";
+
+			}
+
+		}
+	</script>
 
 
 

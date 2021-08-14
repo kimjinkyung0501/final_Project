@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body{
-    margin: 15px;
+body {
+	margin: 15px;
 }
 
 .text-box {
@@ -18,8 +18,6 @@ body{
 	margin: 0;
 	padding: 0;
 }
-
-
 
 .categorize ul li {
 	list-style: none;
@@ -43,10 +41,9 @@ body{
 	font-weight: bold;
 }
 
-.search_content{
+.search_content {
 	float: left;
 }
-
 
 a {
 	text-decoration: none;
@@ -57,6 +54,7 @@ a {
 li a:hover:not(.active) {
 	
 }
+
 </style>
 
 </head>
@@ -96,9 +94,7 @@ li a:hover:not(.active) {
 		</div>
 	</div>
 
-
-
-
+	
 
 
 

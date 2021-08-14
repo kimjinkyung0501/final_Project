@@ -153,7 +153,7 @@ $(document).ready(function() {
    
 
    //ID중복 검사 부분
-   $('.checkId').click(function() {
+   $('#checkId').click(function() {
       const m_id = $('#m_id').val();
       if (m_id == "") {
          alert("ID를 입력하여주세요");

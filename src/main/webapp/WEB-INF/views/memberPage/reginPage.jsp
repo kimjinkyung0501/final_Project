@@ -289,6 +289,7 @@ select {
 			<span class="box int_id"> <input type="text" name="m_id"
 				id="m_id" class="int" maxlength="20">
 			</span> <span>
+				<input hidden="1" id="checkIdValue" value="false">
 				<button type="button" value="" id="checkId" >중복체크</button>
 			</span>
 		</div>
@@ -335,13 +336,15 @@ select {
 			<span class="box int_email"> <input type="email"
 				name="m_email" id="m_email" class="int" maxlength="100">
 			</span>
+			<input hidden="1" id="emailCheckValue" value="false">
+			<button class="checkEmail">인증하기</button>
 		</div>
 
 
 		<div style="width: 100%; min-height: 1px; height: 50px;"></div>
 
 		<!-- JOIN BTN-->
-		<button class="reginBtn" id="btnJoin">가입하기</button>
+		<button onsubmit="return reginValid();" class="reginBtn" id="btnJoin">가입하기</button>
 	</form>
 
 
@@ -376,4 +379,10 @@ select {
 	</script>
 
 </body>
+<script type="text/javascript" 
+src="${pageContext.request.contextPath}/resources/js/phoneCertification.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/ValidLib.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/reginPage.js"></script>
 </html>

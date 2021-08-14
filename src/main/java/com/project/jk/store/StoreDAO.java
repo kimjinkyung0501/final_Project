@@ -46,7 +46,7 @@ public class StoreDAO {
 				request.setAttribute("r", "입점 완료 되었습니다 :)");
 			}else {
 				
-				request.setAttribute("r", "입점 실패하였습니다.");
+				request.setAttribute("r", "입점 실패 하였습니다. 다시 한번 시도 해 주세요.");
 			}
 			
 			
@@ -124,7 +124,7 @@ public class StoreDAO {
 		 if(ss.getMapper(StoreMapper.class).deleteStore(s)==1) {
 			 request.setAttribute("r", "폐점 되었습니다. 다음에 또 이용 해 주세요.");
 		 }else {
-			 request.setAttribute("r", "오류가 발생했습니다");
+			 request.setAttribute("r", "폐점 처리 중 오류가 발생했습니다.");
 			 
 		 }
 		
@@ -164,10 +164,10 @@ public class StoreDAO {
 		}
 		
 			if(ss.getMapper(StoreMapper.class).updateStore(s)==1) {
-				request.setAttribute("r", "수정성공");
+				request.setAttribute("r", "상점 정보가 수정되었습니다 :)");
 			}else {
 				
-				request.setAttribute("r", "수정실패");
+				request.setAttribute("r", "수정 실패하였습니다. 다시 한번 시도 해 주세요.");
 			}
 			
 			

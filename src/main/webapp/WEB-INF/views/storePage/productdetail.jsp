@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,12 @@ body {
 
 .form-group {
 	margin-bottom: 1rem;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: gray;
+	border-color: gray;
 }
 
 .form-control {
@@ -85,7 +92,7 @@ body {
 }
 
 .container {
-	width: 760px;
+	width: 620px;
 }
 
 .btn-primary {
@@ -113,6 +120,47 @@ body {
 	transition: color .15s ease-in-out, background-color .15s ease-in-out,
 		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+.btn {
+	width: 100px;
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+div.box_type_3 {
+	width: 740px;
+	margin: 0 auto;
+}
+
+div.box_type_3 .e_prod_view_left {
+	float: left;
+}
+
+div.box_type_3 .e_prod_view_left .prodHr {
+	height: 15px;
+}
+
+div.e_prod_view_x2 {
+	display: inline-block;
+}
+
+div.e_prod_view_left {
+	margin-right: 17px;
+}
 </style>
 
 </head>
@@ -127,58 +175,121 @@ body {
 		<div class="container">
 
 
+			<c:choose>
+			
+			
+
+				<c:when test="${!empty p.p_photo1 && p.p_photo2 eq '없다' && p.p_photo3 eq '없다' }">
+
+					<div>
+						<img class="col-sm-2" alt="" src="resources/img/${p.p_photo1}"
+							style="width: 550px; height: 430px;">
 
 
-			<div class="form-group row">
-				<div>
-					<img class="col-sm-2" alt="" src="resources/img/${p.p_photo1}"
-						style="width: 300px; height: 300px;">
+					</div>
 
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2">제품명</label>
-				<div class="com-sm-3">
-					<input type="text" id="name" name="p_name" class="form-control"
-						value="${p.p_name }">
-				</div>
-			</div>
+				</c:when>
+			
+					<c:when
+					test="${!empty p.p_photo1 && !empty p.p_photo2 && p.p_photo3 eq '없다'}">
+					<div class="e_view_box">
+						<div class="e_prod_view_x2 e_prod_view_left">
+							<div>
+								<img class="col-sm-2" alt="" src="resources/img/${p.p_photo1}"
+									style="width: 280px; height: 280px;">
+							</div>
+						</div>
+						<div class="e_prod_view_x2">
+							<div>
+								<img class="col-sm-2" alt="" src="resources/img/${p.p_photo2}"
+									style="width: 280px; height: 280px;">
+							</div>
+						</div>
+					</div>
+
+				</c:when>
+			
+				<c:when test="${!empty p.p_photo1 && !empty p.p_photo2 && !empty p.p_photo3}">
+					<div class="e_view_box box_type_3" style="margin: 0 auto;">
+						<div class="e_prod_view_left">
+							<div>
+								<img alt="" src="resources/img/${p.p_photo1}"
+									style="height: 160px; margin-left: 20px;">
+							</div>
+							<div class="prodHr"></div>
+							<div>
+								<img alt="" src="resources/img/${p.p_photo2}"
+									style="height: 160px; margin-left: 20px;">
+							</div>
+						</div>
+
+						<div class="e_prod_view_right">
+							<div>
+								<img alt="" src="resources/img/${p.p_photo3}"
+									style="height: 340px; width: 320px; margin-left: 20px;">
+							</div>
+						</div>
+						<div class="clr"></div>
+					</div>
+				</c:when>
+
+		
 
 
-			<div class="form-group row">
-				<label class="col-sm-2">가격</label>
-				<div class="com-sm-3">
-					<input type="text" id="unitPrice" name="p_price"
-						class="form-control" value="${p.p_price }">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2">제품 설명</label>
-				<div class="com-sm-5">
-					<textarea cols="50" rows="2" class="textarea" name="p_content">${p.p_content}</textarea>
-
-				</div>
-			</div>
 
 
-			<div class="form-group row">
-				<label class="col-sm-2">제품 분류</label>
-				<div class="com-sm-3">
-					<input type="text" id="unitPrice" name="p_price"
-						class="form-control" value="${p.p_label }">
-				</div>
-			</div>
-
-
+			</c:choose>
 
 		</div>
 
+
+
+		<div style="width: 100%; min-height: 10px; height: 40px;"></div>
+
+		<div class="form-group row">
+			<label class="col-sm-2">제품명</label>
+			<div class="com-sm-3">
+				<input type="text" id="name" name="p_name" class="form-control"
+					value="${p.p_name }">
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-sm-2">가격</label>
+			<div class="com-sm-3">
+				<input type="text" id="unitPrice" name="p_price"
+					class="form-control" value="${p.p_price }">
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2">제품 설명</label>
+			<div class="com-sm-5">
+				<textarea cols="50" rows="2" class="textarea" name="p_content">${p.p_content}</textarea>
+
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-sm-2">제품 분류</label>
+			<div class="com-sm-3">
+				<input type="text" id="unitPrice" name="p_price"
+					class="form-control" value="${p.p_label }">
+			</div>
+		</div>
+
+
+
 	</div>
-	<button
+
+	<div style="width: 100%; min-height: 10px; height: 20px;"></div>
+	<button class="btn"
 		onclick="location.href='${pageContext.request.contextPath}/product.update.go?p_no=${p.p_no }'">수정</button>
-	<button onclick="prodcutDel(${p.p_no});">삭제</button>
-	<button>주문확인</button>
+	<button class="btn" onclick="prodcutDel(${p.p_no});">삭제</button>
+	<button class="btn">주문확인</button>
+	
 	<script type="text/javascript" src="resources/js/storeJs.js"></script>
 </body>
 </html>

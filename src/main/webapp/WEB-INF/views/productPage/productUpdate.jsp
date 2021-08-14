@@ -108,7 +108,7 @@ body {
 	font-size: 10pt;
 }
 
-.textarea {
+#p_content {
 	width: 285px;
 	height: 100px;
 	resize: vertical;
@@ -194,8 +194,8 @@ body {
 				<div class="form-group row">
 					<label class="col-sm-2">제품 설명</label>
 					<div class="com-sm-5">
-						<textarea cols="50" rows="2" class="form-control" name="p_content"
-							name="p_content"></textarea>
+						<textarea cols="50" rows="2" class="form-control" id="p_content"
+							name="p_content">${p.p_content }</textarea>
 						<input type="hidden" name="p_rn" value="${param.p_rn }">
 					</div>
 				</div>
@@ -224,7 +224,7 @@ body {
 					<label class="col-sm-2">이미지</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo1">
-<input type="hidden"name="p_photo1_old"value="${p_photo1 }">
+<input type="hidden"name="p_photo1_old" value="${p_photo1 }">
 					</div>
 				</div>
 
@@ -232,7 +232,7 @@ body {
 					<label class="col-sm-2">이미지2(선택)</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo2">
-<input type="hidden"name="p_photo1_old"value="${p_photo2 }">
+<input type="hidden"name="p_photo1_old" value="${p_photo2 }">
 					</div>
 				</div>
 
@@ -240,7 +240,7 @@ body {
 					<label class="col-sm-2">이미지3(선택)</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo3">
-<input type="hidden"name="p_photo1_old"value="${p_photo3 }">
+<input type="hidden"name="p_photo1_old" value="${p_photo3 }">
 					</div>
 				</div>
 

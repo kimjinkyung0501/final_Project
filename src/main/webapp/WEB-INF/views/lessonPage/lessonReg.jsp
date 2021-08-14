@@ -143,7 +143,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">가격</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitPrice" name="i_price"
+						<input type="text" id="unitPrice" name="l_price"
 							class="form-control">
 					</div>
 				</div>
@@ -151,7 +151,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">수업설명</label>
 					<div class="com-sm-5">
-						<textarea cols="50" rows="2" class="textarea" name="i_content"
+						<textarea cols="50" rows="2" class="textarea" name="l_content"
 							placeholder="1000자 이내로 적어주세요."></textarea>
 
 					</div>
@@ -163,7 +163,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">분류</label>
 					<div class="com-sm-5">
-						<select class="select" name="p_label">
+						<select class="select" name="l_label">
 							<option value="드로잉">드로잉</option>
 							<option value="공예">공예</option>
 							<option value="요리">요리</option>
@@ -181,7 +181,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">이미지</label>
 					<div>
-						<input type="file" class="form-control" name="p_photo1">
+						<input type="file" class="form-control" name="l_photo">
 					</div>
 				</div>
 

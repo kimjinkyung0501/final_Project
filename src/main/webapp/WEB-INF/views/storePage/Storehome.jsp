@@ -13,7 +13,7 @@ body {
 
 .text-box {
 	position: absolute;
-	left: 650px;
+	left: 680px;
 	top: 200px;
 }
 
@@ -33,7 +33,6 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	left: 30px;
 }
 
 .jb-table .jb-table-row .jb-table-cell {
@@ -50,7 +49,7 @@ body {
 
 .jb-table-cell {
 	display: table-cell;
-	padding: 0px 30px;
+	margin-left:25px;
 	height: 120px;
 }
 
@@ -73,7 +72,6 @@ body {
 	display: block;
 	font-size: 1.3em;
 	font-weight: bold;
-	margin: 1em auto;
 	padding: 1em 3em;
 	position: relative;
 	text-transform: uppercase;
@@ -135,7 +133,7 @@ body {
 			<div style="width: 0; min-height: 10px; height: 50px;"></div>
 			<div style="width: 0; min-height: 10px; height: 50px;"></div>
 			<a href="${pageContext.request.contextPath}/store.reg.go"
-				class="btn-5"><img style="width: 45px; padding-bottom: 0;"
+				class="btn-5"><img style="width: 45px; padding-bottom: 0; "
 				src="${pageContext.request.contextPath}/resources/img/storeIcon.png"><br>입점신청</a>
 
 		</c:when>
@@ -151,17 +149,17 @@ body {
 				<div class="jb-table">
 					<div class="jb-table-row">
 						<div class="jb-table-cell" style="float: left;">
-							<div class="box" style="background: #BDBDBD; margin-right: 10px;">
+							<div class="box" style="background: #BDBDBD; margin-right: 20px;">
 								<img class="profile" style="vertical-align: middle;"
 									src="${pageContext.request.contextPath}/resources/img/${sessionScope.member_session.m_photo}" />
 							</div>
-							<p style="margin-top: 20px; font-size: 18px;" class="info_div">${sessionScope.member_session.m_name}
-								판매자님 <br> 안녕하세요. <br> 생활수집과 함께 즐거운 판매 하세요 :)
+							<p style="margin-top: 20px; width : 170px; font-size: 16px;" class="info_div">${sessionScope.member_session.m_name}
+								판매자님 안녕하세요. <br> <br>생활수집과 함께 해주셔서 감사합니다. :)
 							</p>
 						</div>
 					</div>
 				</div>
-				<div style="width: 0; min-height: 10px; height: 50px;"></div>
+				<div style="width: 0; min-height: 10px; height: 100px;"></div>
 				<input type="hidden" name="s_id"
 					value="${sessionScope.member_session.m_id}">
 				<div style="width: 0; min-height: 10px; height: 50px;"></div>

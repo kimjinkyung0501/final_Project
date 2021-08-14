@@ -52,7 +52,7 @@ public class LessonDAO {
 			l.setL_video(l_video);
 			
 			if(ss.getMapper(LessonMapper.class).regLesson(l)==1) {
-				request.setAttribute("r", "등록성공");
+				request.setAttribute("r", "클래스 등록가 등록되었습니다:) ");
 			}else {
 				request.setAttribute("r", "등록실패");
 				
@@ -109,7 +109,7 @@ public class LessonDAO {
 		}
 			
 			if(ss.getMapper(LessonMapper.class).lessonUpdate(l)==1) {
-				request.setAttribute("r", "수정성공");
+				request.setAttribute("r", "클래스가 수정되었습니다 :) ");
 			}else {
 				request.setAttribute("r", "수정실패");
 				
@@ -138,7 +138,7 @@ public class LessonDAO {
 		System.out.println(request.getParameter("l_no"));
 		l.setL_no(Integer.parseInt(request.getParameter("l_no")));
 		if (ss.getMapper(LessonMapper.class).lessonDelete(l)==1) {
-			request.setAttribute("r", "삭제성공");
+			request.setAttribute("r", "클래스가 삭제되었습니다.");
 		}else {
 			request.setAttribute("r", "삭제실패");
 			

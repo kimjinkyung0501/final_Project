@@ -17,7 +17,7 @@ body {
 .text-box {
 	position: absolute;
 	top: 120px;
-	left: 400px;
+	left: 500px;
 }
 
 .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5,
@@ -46,7 +46,6 @@ body {
 .form-control {
 	margin-left: 15px;
 	display: block;
-	width: 120%;
 	padding: .375rem .75rem;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -74,8 +73,8 @@ body {
 	font-size: 10pt;
 }
 
-.textarea {
-	width: 285px;
+textarea {
+	width: 230px;
 	height: 100px;
 	resize: vertical;
 	margin-left: 15px;
@@ -85,7 +84,7 @@ body {
 }
 
 .container {
-	width: 760px;
+	width: 670px;
 }
 
 .btn-primary {
@@ -146,12 +145,6 @@ body {
 							class="form-control">
 					</div>
 				</div>
-
-
-<div class="flex">
-      <span class="currency">\</span>
-      <input id="amount" name="amount" type="text" maxlength="15" />
-    </div>
 
 
 

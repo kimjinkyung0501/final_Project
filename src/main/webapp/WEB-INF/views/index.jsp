@@ -320,15 +320,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/locationFile.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/kakaoJS.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/ValidLib.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/Valid.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/searchMemberInfo.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/reginPage.js?ver=123"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/myPageJS.js"></script>
+
+
+
 </html>

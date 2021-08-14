@@ -90,6 +90,7 @@
 
 
 </body>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/myPageJS.js"></script>
 
 </html>

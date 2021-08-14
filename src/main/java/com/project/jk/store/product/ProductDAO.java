@@ -61,9 +61,9 @@ public class ProductDAO {
 		}
 		
 			if (ss.getMapper(ProductMapper.class).productReg(p) == 1) {
-				request.setAttribute("r", "제품등록 성공");
+				request.setAttribute("r", "제품이 등록되었습니다 :) ");
 			} else {
-				request.setAttribute("r", "제품등록 실패");
+				request.setAttribute("r", "제품 등록에 실패하였습니다.");
 
 			}
 
@@ -132,7 +132,7 @@ public class ProductDAO {
 			}
 			
 			if (ss.getMapper(ProductMapper.class).updateProduct(p) == 1) {
-				request.setAttribute("r", "제품수정 성공");
+				request.setAttribute("r", "제품이 수정되었습니다 :) ");
 			} else {
 				request.setAttribute("r", "제품수정 실패");
 				
@@ -158,9 +158,9 @@ public class ProductDAO {
 		System.out.println(request.getParameter("p_no"));
 		p.setP_no(Integer.parseInt(request.getParameter("p_no")));
 		if (ss.getMapper(ProductMapper.class).deleteProduct(p)==1) {
-			request.setAttribute("r", "삭제성공");
+			request.setAttribute("r", "제품이 삭제되었습니다 :) ");
 		}else {
-			request.setAttribute("r", "삭제실패");
+			request.setAttribute("r", "삭제에 실패하였습니다.");
 			
 		}
 		

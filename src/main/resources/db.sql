@@ -8,13 +8,21 @@ m_phone	varchar2(12 char) not null,
 m_email	varchar2(25 char) not null,
 m_grade char(1) not null,
 m_photo varchar2(20 char)
-)
+);
 
 insert into member values(
 'admin', 'admin', 'admin', '경기도 여주시',
 '01011111111', 'kdj9878@naver.com', '1',
 null
 );
+
+
+insert into member values(
+'동준', 'k', 'kdj', '경기도 여주시',
+'01032084487', 'wlsrud54@naver.com', '1',
+null
+);
+
 
 select * from member;
 delete from member;
@@ -46,7 +54,7 @@ m_p_no number(20) primary key,
 m_p_number varchar2(12 char) not null,
 m_p_id varchar2(10 char) not null,
 m_p_successInfo varchar2(5 char)not null
-)
+);
 
 create sequence member_phone_seq;
 select * from member_phone_check;
@@ -54,6 +62,8 @@ select * from member_phone_check;
 select m_p_id from member_phone_check where m_p_number = 01032084487;
 
 insert into member_phone_check values(member_phone_seq.nextval, '01011111111', 'admin', 'false');
+insert into member_phone_check values(member_phone_seq.nextval, '01032084487', '831054', 'true');
+
 
 delete from MEMBER_PHONE_CHECK;
 drop table member_phone_check cascade constraint purge;

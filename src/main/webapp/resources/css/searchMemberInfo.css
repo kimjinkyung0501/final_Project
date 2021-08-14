@@ -1,18 +1,45 @@
 @charset "UTF-8";
 
-#btn_group1{
+.emailBtnForId{
 	border: 1px solid #777e88;
 	background-color: rgba(0, 0, 0, 0);
 	color: #4f4f4f;
 	padding: 5px;
 }
-.btn_group1{
+.submitPhoneKeyBtn{
+	border: 1px solid #777e88;
+	background-color: rgba(0, 0, 0, 0);
+	color: #4f4f4f;
+	padding: 5px;
+}
+.emailBtnForPw{
 	border: 1px solid #777e88;
 	background-color: rgba(0, 0, 0, 0);
 	color: #4f4f4f;
 	padding: 5px;
 }
 
+.searchPwByPhone{
+	border: 1px solid #777e88;
+	background-color: rgba(0, 0, 0, 0);
+	color: #4f4f4f;
+	padding: 5px;
+	
+}
+.submitPhoneKeyForPwBtm{
+	border: 1px solid #777e88;
+	background-color: rgba(0, 0, 0, 0);
+	color: #4f4f4f;
+	padding: 5px;
+	
+}
+
+.searchIdByPhone{
+	border: 1px solid #777e88;
+	background-color: rgba(0, 0, 0, 0);
+	color: #4f4f4f;
+	padding: 5px;
+}
 .table {
 	border-collapse: collapse;
 	border-top: 2px solid #168;
