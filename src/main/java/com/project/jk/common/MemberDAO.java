@@ -374,6 +374,37 @@ public class MemberDAO {
 	   
 	   
 
+		   
+		   //주소지 등록
+		   public void regAddr(HttpServletRequest request, Member member) {
+			// TODO Auto-generated method stub
+			String m_id = request.getParameter("m_id");
+			System.out.println(m_id);
+			
+			String temp_m_addr = request.getParameter("m_addr");
+			String m_addr_zipno = request.getParameter("m_addr_zipno");
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append(m_addr_zipno+"-"+temp_m_addr);
+			String m_addr = sb.toString();
+			System.out.println(m_addr);
+			member.setM_id(m_id);
+			member.setM_addr(m_addr);
+			try {
+				ss.getMapper(MemberMapper.class).regAddr(member);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		   }
+			
+			
+			
+			
+			
 
 }
 

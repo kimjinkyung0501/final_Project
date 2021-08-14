@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+body{
+    margin: 15px;
+}
 .loginForm {
 	padding: 0px; margin-right : auto;
 	margin-left: auto;

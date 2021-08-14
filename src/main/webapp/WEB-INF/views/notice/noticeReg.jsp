@@ -27,6 +27,9 @@ $(document).ready(function(){
 
 </script>
 <style type="text/css">
+body{
+    margin: 15px;
+}
 .board_write .title_box img.non_member {
 	width: 36px;
 	height: 36px;

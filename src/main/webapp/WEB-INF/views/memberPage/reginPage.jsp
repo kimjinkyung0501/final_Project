@@ -7,13 +7,19 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+
+body{
+    margin: 15px;
+}
+
+
 #wrapper {
 	left: 100px;
 }
 
 .text-box {
 	position: absolute;
-	left:650px;
+	left: 650px;
 	top: 270px;
 }
 /* 입력폼 */
@@ -45,8 +51,7 @@ h3 {
 }
 
 input {
-    font-family: 'Pretendard-Regular';
-
+	font-family: 'Pretendard-Regular';
 }
 
 .box.int_id {
@@ -190,6 +195,8 @@ select {
 	border: 0;
 }
 
+
+
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -218,11 +225,21 @@ select {
 	-moz-appearance: none;
 	appearance: none;
 }
+
+#imageCanvas {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	left: 33%;
+	top: 0;
+	pointer-events: none;
+	border-radius: 50px;
+	background:
+		url('${pageContext.request.contextPath}/resources/img/default_profile.jpg')
+		50% 50%/cover no-repeat;
+}
 </style>
-<script>
-	
-</script>
-<script type="text/javascript" src="resources/js/Valid.js"></script>
+
 </head>
 <body>
 
@@ -233,23 +250,27 @@ select {
 
 
 	<form action="regin.do" method="post" enctype="multipart/form-data">
-		<!-- photo-->
-		<div>
-			<div id="fileupload_profile_img2" class="fileupload_profile_img">
-				<div id="profile_img2" class="img-circle"
-					style="margin: 0 auto; width: 80px; height: 80px; background: url('${pageContext.request.contextPath}/resources/img/default_profile.jpg') 50% 50%/cover no-repeat;"></div>
 
-				<span></span>
+
+		<div class="preview">
+			<div class="upload">
+				<div class="post_btn">
+					<canvas id="imageCanvas"></canvas>
+				</div>
 			</div>
 		</div>
-<div style="width: 100%; min-height: 1px; height: 20px;"></div>
+				<div style="width: 100%; min-height: 1px; height: 120px;"></div>
+		<div class="filebox">
+		<input class="upload-name" value="Profile" disabled="disabled"
+				style="width: 200px;"> <label for="id_photo">업로드</label>
+			<input type="file" name="m_photo" id="id_photo" class="upload-hidden">
+	</div>
+	
+	
+			
 
-<div class="filebox bs3-primary preview-image">
-              <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-
-			<label for="input-file">업로드</label> <input type="file" name="m_photo" 
-				id="input-file" class="upload-hidden">
-		</div>
+		<!-- photo-->
+		<div style="width: 100%; min-height: 1px; height: 20px;"></div>
 
 		<!-- name -->
 		<div>
@@ -268,7 +289,7 @@ select {
 			<span class="box int_id"> <input type="text" name="m_id"
 				id="m_id" class="int" maxlength="20">
 			</span> <span>
-				<button type="button" value="" class="checkIdkkk">중복체크</button>
+				<button type="button" value="" id="checkId" >중복체크</button>
 			</span>
 		</div>
 
@@ -296,9 +317,9 @@ select {
 			<h3 class="join_title">
 				<label for="phoneNo">휴대전화</label>
 			</h3>
-			<span class="box int_mobile"> <input id="m_phone" name="m_phone"
-				type="text" class="int" maxlength="16"> <input hidden="1"
-				value="false" id="check_info">
+			<span class="box int_mobile"> <input id="m_phone"
+				name="m_phone" type="text" class="int" maxlength="16"> <input
+				hidden="1" value="false" id="check_info">
 			</span> <span>
 				<button class="phoneCheck" type="button"
 					onclick="return phoneCer();">인증하기</button>
@@ -316,27 +337,43 @@ select {
 			</span>
 		</div>
 
-		<!--  주소 -->
-		<div>
-			<h3 class="join_title">
-				<label for="phoneNo">주소</label>
-			</h3>
-			<span class="box int_mobile"><input name="m_addr" id="m_addr"
-				type="text" class="int" maxlength="100"> </span>
-		</div>
-		<div>
-			<h3 class="join_title">
-				<label for="phoneNo">상세 주소</label>
-			</h3>
-			<span class="box int_mobile"><input name="m_addr2"
-				id="m_addr2" type="text" class="int" maxlength="100"> </span>
-		</div>
+
 		<div style="width: 100%; min-height: 1px; height: 50px;"></div>
 
 		<!-- JOIN BTN-->
 		<button class="reginBtn" id="btnJoin">가입하기</button>
 	</form>
 
+
+
+
+	<script>
+		var fileInput = document.querySelector("#id_photo"), button = document
+				.querySelector(".input-file-trigger"), the_return = document
+				.querySelector(".file-return");
+
+		// Show image
+		fileInput.addEventListener('change', handleImage, false);
+		var canvas = document.getElementById('imageCanvas');
+		var ctx = canvas.getContext('2d');
+
+		function handleImage(e) {
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				var img = new Image();
+				// var imgWidth =
+				img.onload = function() {
+					canvas.width = 300;
+					canvas.height = 300;
+					ctx.drawImage(img, 0, 0, 300, 300);
+				};
+				img.src = event.target.result;
+				// img.width = img.width*0.5
+				// canvas.height = img.height;
+			};
+			reader.readAsDataURL(e.target.files[0]);
+		}
+	</script>
 
 </body>
 </html>

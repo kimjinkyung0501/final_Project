@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+
+body {
+	margin: 15px;
+}
+
+
+
+
 .holder {
 	position: relative;
 }
@@ -73,9 +82,6 @@
 	background-color: gray;
 }
  */
-
-
-
 #boardcss_list_add_button_table {
 	width: 100%;
 	margin: 0 auto 15px;
@@ -94,56 +100,61 @@
 	text-align: center;
 	font-weight: bold;
 }
+
 </style>
 </head>
 <body>
 
-
-	<div class="board_view ">
-		<h2>${nt.n_title}</h2>
-		<div class="board_name">
-			<a style="font-size: 4px" href="">NOTICE </a>
-		</div>
-		<input hidden="" value="${nt.n_no }">
-		<div style="width: 100%; min-height: 1px; height: 20px;"></div>
-
-		<div class="board_summary">
-			<div class="left">
-				<div class="avatar">
-					<img src="${pageContext.request.contextPath}/resources/img/default_profile.png" class="avatar-image"
-						style="width: 50px;">
-					<div class="avatar1">
-						<div class="write">${nt.n_id }</div>
-
-					</div>
-				</div>
-				<hr size="1" noshade style="width: 200%;">
+		<div class="board_view ">
+			<h2>${nt.n_title}</h2>
+			<div class="board_name">
+				<a style="font-size: 4px" href="">NOTICE </a>
 			</div>
-		</div>
+			<input hidden="" value="${nt.n_no }">
+			<div style="width: 100%; min-height: 1px; height: 20px;"></div>
 
-		<div class="margin-top-xxl">
-			<p>
-				<span style="font-size: 18px;">${nt.n_content } </span> <br> <img
-					alt="X" src="${pageContext.request.contextPath}/resources/img/${nt.n_photo }" style="width: 250px">
-			</p>
+			<div class="board_summary">
+				<div class="left">
+					<div class="avatar">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/default_profile.png"
+							class="avatar-image" style="width: 50px;">
+						<div class="avatar1">
+							<div class="write">${nt.n_id }</div>
+							<div style="width: 100%; min-height: 1px; height: 20px;"></div>
+						</div>
+					</div>
+					<hr size="1" noshade style="width: 400px;">
+				</div>
+			</div>
+
+			<div class="margin-top-xxl">
+				<div style="width: 100%; min-height: 1px; height: 20px;"></div>
+				<span style="font-size: 18px;">${nt.n_content } </span> <br>
+				<div style="width: 100%; min-height: 1px; height: 50px;"></div>
+
+				<img
+					src="${pageContext.request.contextPath}/resources/img/${nt.n_photo }"
+					style="width: 200px; height: 200px;">
+			</div>
+
+
+			<div class="file_area"></div>
 		</div>
-		<div class="file_area"></div>
-	</div>
-	<div class="comment_section">
-		<div class="list_tap"></div>
+		<div class="comment_section">
+			<div class="list_tap"></div>
 
 
 			<c:if test="${member_session.m_id eq 'admin'}">
-		
-		<div id="boardcss_list_add_button_table">
-				<button class="btn" onclick="goUpdateNotice(${nt.n_no })">수정</button>
-				<button class="btn" onclick="goDelNotice(${nt.n_no })">삭제</button>
-			</div>
-		
-		
-			</c:if>
-	</div>
 
+				<div id="boardcss_list_add_button_table">
+					<button class="btn" onclick="goUpdateNotice(${nt.n_no })">수정</button>
+					<button class="btn" onclick="goDelNotice(${nt.n_no })">삭제</button>
+				</div>
+
+
+			</c:if>
+		</div>
 
 
 

@@ -14,7 +14,9 @@
    });
 </script>
 <style type="text/css">
-
+body{
+    margin: 15px;
+}
 
 * {
    margin: 0;

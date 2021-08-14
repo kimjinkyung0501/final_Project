@@ -43,10 +43,10 @@ public class StoreDAO {
 			s.setS_exp(s_exp);
 			s.setS_img(s_img);
 			if(ss.getMapper(StoreMapper.class).reg(s)==1) {
-				request.setAttribute("r", "입점 성공");
+				request.setAttribute("r", "입점 완료 되었습니다 :)");
 			}else {
 				
-				request.setAttribute("r", "입점 실패");
+				request.setAttribute("r", "입점 실패하였습니다.");
 			}
 			
 			
@@ -122,7 +122,7 @@ public class StoreDAO {
 	public void deleteStore(Store s, HttpServletRequest request) {
 		
 		 if(ss.getMapper(StoreMapper.class).deleteStore(s)==1) {
-			 request.setAttribute("r", "폐점되었습니다");
+			 request.setAttribute("r", "폐점 되었습니다. 다음에 또 이용 해 주세요.");
 		 }else {
 			 request.setAttribute("r", "오류가 발생했습니다");
 			 

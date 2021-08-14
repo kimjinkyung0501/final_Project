@@ -80,5 +80,10 @@ update member set m_pw = #{m_pw} where m_id = #{m_id}
 update member set = m_photo #{m_photo} where m_id = #{m_id}
 </update>
 
+<update id="regAddr" parameterType="com.project.jk.common.Member">
+update member set m_addr = #{m_addr} where m_id = #{m_id}
+</update>
+
+
 
 </mapper>

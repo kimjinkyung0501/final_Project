@@ -42,4 +42,7 @@ public interface MemberMapper {
 	public Member searchIdByNameAndEmail(Member member);
 
 	public void changePwWithTempPw(HashMap<String, String> tempPwMap);
+	
+	public int regAddr(Member member);
+
 }

@@ -21,18 +21,16 @@ function goSimplePage(){
 	location.href="/jk/common/myPage.go"
 }
 
-function goMyPage(login_number){
-	if(login_number == "" || login_number == undefined){
-		alert("로그인을 먼저 해주세요");
-		return false;
-	}
-	else if(login_number == 1){
+function goMyPage(nomalMember, kakaoMember){
+	
+	if(nomalMember != "" && kakaoMember == ""){
 		location.href="/jk/common/myPage.go"
 		return true;
 	}
-	else if(login_number == 2){
+	else {
 		alert("카카오톡 로그인 시 일부 서비스가 제한됩니다.");
 		location.href="/jk/common/myPage.go"
+		return true;
 	}
 }
 

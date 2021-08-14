@@ -9,10 +9,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}resources/css/myPage.css">
 <style type="text/css">
-
 body{
-
-    padding: 0;
+    margin: 15px;
 }
 
 .box {
@@ -29,11 +27,11 @@ body{
 }
 
 .jb-table .jb-table-row .jb-table-cell {
+	
 }
 
 .jb-table {
 	display: table;
-	
 }
 
 .jb-table-row {
@@ -50,137 +48,134 @@ body{
 	vertical-align: top;
 }
 
-
-
 ul.mylist, ol.mylist {
-    list-style: none;
-    margin: 3px;
-    padding: 5px;
-    max-width: 900px;
-    width: 500px;
-  margin-left: 150px;
-    
+	list-style: none;
+	margin: 3px;
+	padding: 5px;
+	max-width: 900px;
+	width: 500px;
+	margin-left: 150px;
 }
-  
+
 ul.mylist li, ol.mylist li {
-    display: inline-block;
-    padding: 18px;
-    margin-bottom: 5px;
-    border: 1px solid #efefef;
-    font-size: 20px;
-    cursor: pointer;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+	display: inline-block;
+	padding: 18px;
+	margin-bottom: 5px;
+	border: 1px solid #efefef;
+	font-size: 20px;
+	cursor: pointer;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
 }
 
-ul.mylist li,
-ol.mylist li {
-    -webkit-transition: background-color 0.3s linear;
-    -moz-transition: background-color 0.3s linear;
-    -ms-transition: background-color 0.3s linear;
-    -o-transition: background-color 0.3s linear;
-    transition: background-color 0.3s linear;
-}
-  
-ul.mylist li:hover,
-ol.mylist li:hover {
-    background-color: #f6f6f6;
+ul.mylist li, ol.mylist li {
+	-webkit-transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-ms-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+	transition: background-color 0.3s linear;
 }
 
-
+ul.mylist li:hover, ol.mylist li:hover {
+	background-color: #f6f6f6;
+}
 
 /*  지금 하는거야 */
 .xans-myshop-orderstate {
-    margin: 20px 0 0;
-    width: 650px;
+	margin: 20px 0 0;
+	width: 650px;
 }
 
 .xans-myshop-orderstate .title {
-    padding: 11px 21px;
-    margin: 0;
-    border-bottom: 1px solid #e9e9e9;
-    background: #f6f6f6;
-}
-.xans-myshop-orderstate .state {
-    overflow: hidden;
-    padding: 19px 0;
-    
+	padding: 11px 21px;
+	margin: 0;
+	border-bottom: 1px solid #e9e9e9;
+	background: #f6f6f6;
 }
 
+.xans-myshop-orderstate .state {
+	overflow: hidden;
+	padding: 19px 0;
+}
 
 .xans-myshop-orderstate .order li {
-    float: left;
-    width: 24%;
-    padding: 0 0 4px;
-    margin: 0 -1px 0 0;
-    border-right: 1px dotted #c9c7ca;
-    text-align: center;
+	float: left;
+	width: 24%;
+	padding: 0 0 4px;
+	margin: 0 -1px 0 0;
+	border-right: 1px dotted #c9c7ca;
+	text-align: center;
 }
 
 .xans-myshop-orderstate .cs {
-    float: left;
-    width: 20%;
-        padding: 0;
+	float: left;
+	width: 20%;
+	padding: 0;
 }
 
 .xans-myshop-orderstate .cs li {
-    padding: 0;
-    display: list-item;
-    text-align: -webkit-match-parent;
+	padding: 0;
+	display: list-item;
+	text-align: -webkit-match-parent;
 }
-
 </style>
 </head>
 <body>
 
 
 	<div style="width: 100%; min-height: 1px; height: 250px;"></div>
-	
 
 
-<c:set var="login_number" value="${sessionScope.login_number}" />
+
+	<c:set var="login_number" value="${sessionScope.login_number}" />
 	<c:choose>
 		<c:when test="${login_number == 1}">
 			<div class="jb-table">
 				<div class="jb-table-row">
 					<div class="jb-table-cell" style="float: left;">
-						<div class="box" 
-							style="background: #BDBDBD;margin-right: 10px;">
+						<div class="box" style="background: #BDBDBD; margin-right: 10px;">
 							<img class="profile" style="vertical-align: middle;"
 								src="${pageContext.request.contextPath}/resources/img/${sessionScope.member_session.m_photo}" />
 						</div>
-						<p style="margin-top: 20px; font-size: 18px;"
-							class="info_div">${sessionScope.member_session.m_name}님
+						<p style="margin-top: 20px; font-size: 18px;" class="info_div">${sessionScope.member_session.m_name}님
 							안녕하세요.</p>
 					</div>
-<div class="xans-element- xans-myshop xans-myshop-orderstate" style="float: left;">
-<div class="title">
-        <h3>나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)</span>
-</h3>
-    </div>
-<div class="state">
-        <ul class="order">
-<li>
-                <strong>결제완료</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
-            </li>
-            <li>
-                <strong>배송완료</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
-            </li>
-            <li>
-                <strong>주문취소</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
-            </li>
-            <li>
-                <strong>환불완료</strong>
-                <a href=""><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
-            </li>
-        </ul>
-  <!--       
+					<div class="xans-element- xans-myshop xans-myshop-orderstate"
+						style="float: left;">
+						<div class="title">
+							<h3>
+								나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)
+								</span>
+							</h3>
+						</div>
+						<div class="state">
+							<ul class="order">
+								<li><strong>결제완료</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_before_count">0</span></a></li>
+								<li><strong>배송완료</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_standby_count">0</span></a></li>
+								<li><strong>주문취소</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
+								<li><strong>환불완료</strong> <a href=""><span
+										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
+							</ul>
+
+							<ul>
+								<li>
+									<div>
+										<div style="width: 70%;">
+											${sessionScope.member_session.m_addr }</div>
+										<div style="width: 30%;">
+											<button>등록 및 수정</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<!--       
 <ul class="cs">
 <li>
            <span class="icoDot"></span>
@@ -193,52 +188,46 @@ ol.mylist li:hover {
                 <a href="/myshop/order/list.html?order_status=order_return" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
             </li>
         </ul>  -->
-</div>
-</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</c:when>
 
 
 
-			<c:when test="${login_number == 2}">
+		<c:when test="${login_number == 2}">
 			<div class="jb-table">
 				<div class="jb-table-row">
 					<div class="jb-table-cell" style="float: left;">
-						<div class="box" 
-							style="background: #BDBDBD;margin-right: 10px;">
+						<div class="box" style="background: #BDBDBD; margin-right: 10px;">
 							<img class="profile" style="vertical-align: middle;"
 								src="${sessionScope.kakao_member_session.kakao_profile_img}" />
 						</div>
-						<p style="margin-top: 20px; font-size: 18px;"
-							class="info_div">${sessionScope.kakao_member_session.kakao_nickname}님
+						<p style="margin-top: 20px; font-size: 18px;" class="info_div">${sessionScope.kakao_member_session.kakao_nickname}님
 							안녕하세요.</p>
 					</div>
-<div class="xans-element- xans-myshop xans-myshop-orderstate" style="float: left;">
-<div class="title">
-        <h3>나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)</span>
-</h3>
-    </div>
-<div class="state">
-        <ul class="order">
-<li>
-                <strong>결제완료</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
-            </li>
-            <li>
-                <strong>배송완료</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
-            </li>
-            <li>
-                <strong>주문취소</strong>
-                <a href="" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
-            </li>
-            <li>
-                <strong>환불완료</strong>
-                <a href=""><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
-            </li>
-        </ul>
-  <!--       
+					<div class="xans-element- xans-myshop xans-myshop-orderstate"
+						style="float: left;">
+						<div class="title">
+							<h3>
+								나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)
+								</span>
+							</h3>
+						</div>
+						<div class="state">
+							<ul class="order">
+								<li><strong>결제완료</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_before_count">0</span></a></li>
+								<li><strong>배송완료</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_standby_count">0</span></a></li>
+								<li><strong>주문취소</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
+								<li><strong>환불완료</strong> <a href=""><span
+										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
+
+							</ul>
+							<!--       
 <ul class="cs">
 <li>
            <span class="icoDot"></span>
@@ -251,8 +240,8 @@ ol.mylist li:hover {
                 <a href="/myshop/order/list.html?order_status=order_return" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
             </li>
         </ul>  -->
-</div>
-</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</c:when>
@@ -260,11 +249,14 @@ ol.mylist li:hover {
 	</c:choose>
 
 	<div style="width: 100%; min-height: 1px; height: 100px;"></div>
-  <ul class="mylist">
-        <li style="width: 150px;">주문조회</li>
-        <li style="width: 150px;">장바구니</li>
-        <li style="width: 155px;">정보수정</li>
-    </ul>
+	<ul class="mylist">
+		<li style="width: 150px;">주문조회</li>
+		<li style="width: 150px;">장바구니</li>
+		<li style="width: 155px;">정보수정</li>
+		<li style="width: 155px;"><a
+			href="${pageContext.request.contextPath}/common/regAddr.go">주소지
+				등록</a></li>
+	</ul>
 
 
 

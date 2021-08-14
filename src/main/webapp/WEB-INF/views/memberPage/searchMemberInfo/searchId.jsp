@@ -9,10 +9,13 @@
 <style type="text/css">
 .text-box{
 position: absolute;
-	top: 300px;
+	top: 200px;
+	left: 35%
 }
 
-
+body{
+    margin: 15px;
+}
 </style>
 </head>
 <body>

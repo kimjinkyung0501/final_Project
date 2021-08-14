@@ -70,7 +70,10 @@
 
 <body>
 <h3>${r}</h3>
-
-<a href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}"><img style="width: 45px; padding-bottom: 0;" src="${pageContext.request.contextPath}/resources/img/storeIcon.png"></a>
+<a class="btn-5" href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">
+					<img style="width: 45px; padding-bottom: 0;"
+						src="${pageContext.request.contextPath}/resources/img/storeIcon.png"><br>상점가기
+					
+				</a>
 </body>
 </html>

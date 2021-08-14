@@ -7,17 +7,16 @@
 
 header {
 	position:fixed;
-	width: 96%;
-	margin: 5px;
+	width: 98%;
 	display: flex;
 	justify-content: space-between;
 	height: 7px;
-	padding: 1rem;
 	font-family: 'Nanum Myeongjo', serif;
 	
 }
 
 header a {
+	margin-right : 2px;
 	text-align: center;
 	font-size: 17px;
 }
