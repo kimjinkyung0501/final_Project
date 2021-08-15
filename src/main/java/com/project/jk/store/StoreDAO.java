@@ -3,6 +3,7 @@ package com.project.jk.store;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.jk.common.Member;
+import com.project.jk.store.lesson.Lesson;
+import com.project.jk.store.lesson.LessonMapper;
 
 
 @Service
@@ -178,6 +181,12 @@ public class StoreDAO {
 			File f = new File(path + "/" + s_img);
 			f.delete();
 		}
+		
+	}
+	public void searchHomestore(String keyword, Store s, HttpServletRequest request) {
+
+		List<Store> stores = ss.getMapper(StoreMapper.class).searchHomestore(keyword);
+		request.setAttribute("stores", stores);	
 		
 	}
 	

@@ -22,4 +22,9 @@ delete store where s_no=#{s_no}
 <update id="updateStore" parameterType="com.project.jk.store.Store">
 update store set s_name=#{s_name},s_exp=#{s_exp},s_img=#{s_img} where s_id=#{s_id}
 </update>
+
+<select id="searchHomestore" resultType="com.project.jk.store.Store">
+select * from store where s_name like '%' || #{keyword } ||'%'
+</select>
+
 </mapper>

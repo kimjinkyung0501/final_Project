@@ -173,7 +173,7 @@ body {
 						
 					</div>
 				</div>
-
+<button>주문하기</button><button>장바구니</button>
 			</form>
 		</div>
 

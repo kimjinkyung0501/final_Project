@@ -3,14 +3,33 @@ package com.project.jk;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.project.jk.store.Store;
+import com.project.jk.store.StoreDAO;
+import com.project.jk.store.lesson.Lesson;
+import com.project.jk.store.lesson.LessonDAO;
+import com.project.jk.store.product.Product;
+import com.project.jk.store.product.ProductDAO;
 @Controller
 public class HC {
 	
 //	@Autowired
 //	private MDAO mdao;
+	
+	@Autowired
+	private StoreDAO sdao;
+	
+	@Autowired
+	private ProductDAO pdao;
+	
+	
+	@Autowired
+	private LessonDAO ldao;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
@@ -30,17 +49,22 @@ public class HC {
 		req.setAttribute("contentPage", "about.jsp");
 		return "index";
 	}
-	@RequestMapping(value = "/dropdown.test", method = RequestMethod.GET)
-	public String dropdown(HttpServletRequest req) {
-		req.setAttribute("contentPage", "NewFile.jsp");
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(HttpServletRequest req) {
+		req.setAttribute("contentPage", "test.jsp");
 		return "index";
 	}
+
 	
-	@RequestMapping(value = "/search.all", method = RequestMethod.GET)
-	public String searchAll(HttpServletRequest req) {
+	@RequestMapping(value = "search.all", method = RequestMethod.GET)
+	public String searchAll(Lesson l, Product p, Store s, HttpServletRequest request,
+			@RequestParam(value = "keyword") String keyword
+			) {
 		
-		
-		req.setAttribute("contentPage", "searchAll.jsp");
+		sdao.searchHomestore(keyword, s,request);
+		ldao.searchHomeLesson(keyword, l,request);
+		pdao.searchHomeProduct(keyword, p,request);
+		request.setAttribute("contentPage", "searchAll.jsp");
 		return "index";
 	}
 	

@@ -122,17 +122,14 @@ ul.mylist li:hover, ol.mylist li:hover {
 	text-align: -webkit-match-parent;
 }
 
-
-#BT{
-border:0.1px solid ;   
-background-color : white;
-font:14pt;
-font-weight:bold;   
-width:150px;
-height:40px;  
+#BT {
+	border: 0.1px solid;
+	background-color: white;
+	font: 14pt;
+	font-weight: bold;
+	width: 150px;
+	height: 40px;
 }
-
-
 </style>
 </head>
 <body>
@@ -190,19 +187,20 @@ height:40px;
 						</div>
 					</div>
 				</div>
-						<div style="width: 100%; min-height: 1px; height: 40px; "></div>
-					<div style="margin-left: 30px;">
-										<input id="BT" type="button" value="주소 확인" onclick="view()">
-									</div>
-									<div id="hiddenTB" style="display: none">
-										<div>
-											<div style="width: 70%;margin-left: 30px;">
-												${sessionScope.member_session.m_addr }</div>
-											<div style="width: 30%;">
-												<a style="margin-left: 30px;" href="${pageContext.request.contextPath}/common/regAddr.go">[수정]</a>
-											</div>
-										</div>
-									</div>
+				<div style="width: 100%; min-height: 1px; height: 40px;"></div>
+				<div style="margin-left: 30px;">
+					<input id="BT" type="button" value="주소 확인" onclick="view()">
+				</div>
+				<div id="hiddenTB" style="display: none">
+					<div>
+						<div style="width: 70%; margin-left: 30px;">
+							${sessionScope.member_session.m_addr }</div>
+						<div style="width: 30%;">
+							<a style="margin-left: 30px;"
+								href="${pageContext.request.contextPath}/common/regAddr.go">[수정]</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</c:when>
 
@@ -275,8 +273,10 @@ height:40px;
 	<div style="width: 100%; min-height: 1px; height: 100px;"></div>
 	<ul class="mylist">
 		<li style="width: 150px;">주문조회</li>
-		<li style="width: 150px;">장바구니</li>
-		<li style="width: 155px;">정보수정</li>
+		<li style="width: 155px;"><a
+			href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
+		<li style="width: 150px;"><a
+			href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
 		<li style="width: 155px;"><a
 			href="${pageContext.request.contextPath}/common/regAddr.go">주소지
 				등록</a></li>

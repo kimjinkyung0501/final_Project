@@ -441,8 +441,28 @@ public class MemberDAO {
          return userEmail;
       }
 
+    //8월 15일 추가
+    		public boolean getMemberCart(HttpServletRequest request) {
+    			// TODO Auto-generated method stub
+    			Member member = (Member) request.getSession().getAttribute("member_session");
+    			
+    			if (member != null) {
+    				List<OrderPage> order_list = ss.getMapper(MemberMapper.class).getUserCart(member);
+    				for (int i = 0; i < order_list.size(); i++) {
+    					int sumPrice = order_list.get(i).getP_price()*order_list.get(i).getO_quantidey();
+    					order_list.get(i).setSumPrice(sumPrice);
+    				}
+    				request.setAttribute("order_list", order_list);
+    				return true;
+    			}
+    			else {
+    				return false;
+    			}
+    			
+    		
+    		}
 
-      
+
       
       
       

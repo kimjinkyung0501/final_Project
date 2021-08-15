@@ -213,19 +213,19 @@ div.e_prod_view_left {
 					<div class="e_view_box box_type_3" style="margin: 0 auto;">
 						<div class="e_prod_view_left">
 							<div>
-								<img alt="" src="resources/img/${p.p_photo1}"
+								<img alt="" src="${pageContext.request.contextPath}/resources/img/${p.p_photo1}"
 									style="height: 160px; margin-left: 20px;">
 							</div>
 							<div class="prodHr"></div>
 							<div>
-								<img alt="" src="resources/img/${p.p_photo2}"
+								<img alt="" src="${pageContext.request.contextPath}/resources/img/${p.p_photo2}"
 									style="height: 160px; margin-left: 20px;">
 							</div>
 						</div>
 
 						<div class="e_prod_view_right">
 							<div>
-								<img alt="" src="resources/img/${p.p_photo3}"
+								<img alt="" src="${pageContext.request.contextPath}/resources/img/${p.p_photo3}"
 									style="height: 340px; width: 320px; margin-left: 20px;">
 							</div>
 						</div>

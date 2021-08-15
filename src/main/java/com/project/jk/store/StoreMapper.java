@@ -1,5 +1,7 @@
 package com.project.jk.store;
 
+import java.util.List;
+
 import com.project.jk.common.Member;
 
 public interface StoreMapper {
@@ -17,5 +19,7 @@ public interface StoreMapper {
 	public int deleteStore(Store s);
 
 	public int updateStore(Store s);
+
+	public List<Store> searchHomestore(String keyword);
 
 }

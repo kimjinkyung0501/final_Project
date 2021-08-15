@@ -47,13 +47,8 @@ public class HomeController {
       return "index";
    }
 
-   @RequestMapping(value = "common/toCart.go")
-   public String toCart(HttpServletRequest request) {
-      request.setAttribute("contentPage", "memberPage/myPageFolder/cartPage.jsp");
-      return "index";
-   }
 
-   @RequestMapping(value = "common/changeInfo.go")
+   @RequestMapping(value = "/common/changeInfo.go")
    public String toChangeInfo(HttpServletRequest request) {
       request.setAttribute("contentPage", "memberPage/myPageFolder/infoChangePage.jsp");
       return "index";
@@ -485,10 +480,44 @@ public class HomeController {
    }
 
 
-
    @RequestMapping(value = "common/jusoPopup.open")
    public String jusoPopupOpen() {
       return "memberPage/jusoPopup";
    }
+   
+   
+
+	//8월 15일 추가
+	@RequestMapping(value = "common/toCart.go")
+	public String toCart(HttpServletRequest request) {
+		
+		if (dao.getMemberCart(request)) {
+			request.setAttribute("contentPage", "memberPage/myPageFolder/cartPage.jsp");
+			return "index";
+		}
+		else {
+			
+			request.setAttribute("contentPage", "loginHome.jsp");
+			return "index";
+		}
+	}
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 }

@@ -24,6 +24,16 @@ null
 );
 
 
+
+insert into member values('nihonzin', '1234', '일본인','일본', '01000000000', 'a@p.com', '3', null)
+
+insert into store values('nihonzin',store_seq.nextval,'라면가게','라면','rs.img');
+
+
+
+
+
+
 select * from member;
 delete from member;
 
@@ -85,9 +95,11 @@ create sequence store_seq;
 drop table store cascade constraint purge;
 drop sequence store_seq;
 insert into store values('cjyv1029',store_seq.nextval,'라면가게','라면','rs.img');
+insert into store values('aa',store_seq.nextval,'라면가게','라면','rs.img');
 select * from STORE;
 
-delete from store where s_id='213';
+delete from store;
+drop sequence store_seq;
 
 --제품 테이블(아직 추가 안함)
 create table product(
@@ -110,6 +122,17 @@ create sequence product_seq;
 drop table product cascade constraint purge;
 drop sequence product_seq;
 
+
+delete from PRODUCT;
+select * from PRODUCT
+
+insert into PRODUCT values(1, product_seq.nextval, 100, '간장라면', 8000, '간장맛 라면입니다', '음식', '쇼유라멘.jpg', null, null);
+insert into PRODUCT values(1, product_seq.nextval, 100, '시오라면', 7000, '소금맛 라면입니다', '음식', '시오라멘.jpg', null, null);
+insert into PRODUCT values(1, product_seq.nextval, 100, '신라면', 5000, '매운 라면입니다', '음식', '신라면.jpg', null, null);
+
+
+
+
 --강의 테이블(아직 추가 안함)
 
 create table lesson(
@@ -131,4 +154,49 @@ select * from LESSON
 
 drop table lesson cascade constraint purge;
 drop sequence lesson_seq;
+
+
+
+-------------------------------------
+create table p_order(
+o_no number(8)not null,
+o_id varchar2(10 char)not null,
+o_m_addr varchar2(200 char)not null,
+o_quantidey number(20)not null,	
+o_phone varchar2(12 char)not null,
+o_o_nop number(10)not null primary key
+
+);
+
+
+create sequence p_order_seq;
+
+
+select p_name, p_photo1, p_price, s_name, o_quantidey
+from store, product, p_order
+where s_no = p_rn and o_no = p_no and o_id = (select m_id from member where m_id = 'aa')
+
+
+
+
+
+alter table p_order
+add constraint p_order_member
+foreign key(o_id) references member(m_id)
+on delete cascade
+
+--외래키 설정(product와 연결)
+alter table p_order
+add constraint p_order_product
+foreign key(o_no) references store(s_no)
+on delete cascade
+
+delete from P_ORDER where o_id = 'aa';
+delete from P_ORDER where o_id = '로그인 할 아이디';
+
+select * from P_ORDER
+
+insert into p_order values(1, 'aa', '경기도', 3, '01032084487',p_order_seq.nextval);
+insert into p_order values(2, 'aa', '경기도', 1, '01032084487',p_order_seq.nextval);
+insert into p_order values(3, 'aa', '경기도', 2, '01032084487',p_order_seq.nextval);
 

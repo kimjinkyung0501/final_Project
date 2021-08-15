@@ -9,5 +9,7 @@ public interface LessonMapper {
 	public Lesson getLesson(Lesson l);
 	public int lessonDelete(Lesson l);
 	public int lessonUpdate(Lesson l);
+	public List<Lesson> searchHomeLesson(String keyword);
+	
 	
 }

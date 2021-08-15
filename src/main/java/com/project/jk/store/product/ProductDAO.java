@@ -166,8 +166,11 @@ public class ProductDAO {
 		
 		
 	}
-	
-	
+	public void searchHomeProduct(String keyword, Product p, HttpServletRequest request) {
+		
+		List<Product> products = ss.getMapper(ProductMapper.class).searchHomeProduct(keyword);
+		request.setAttribute("products", products);
+	}
 	
 
 }

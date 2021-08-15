@@ -105,11 +105,19 @@ update member set m_email = #{t_m_email} where m_id = #{t_m_id}
 update member set m_addr = #{m_addr} where m_id = #{m_id}
 </update>
 
-
-
 <!-- 8월 14일 추가 -->
 <update id="updatePhoneKey" parameterType="com.project.jk.common.MemberPhoneCheck">
 update member_phone_check set m_p_successInfo = #{m_p_successInfo}, m_p_id = #{m_p_id} where m_p_no = #{m_p_no}
 </update>
+
+<!-- 8월 15일 작업 -->
+<select id="getUserCart" parameterType="com.project.jk.common.OrderPage" resultType="com.project.jk.common.OrderPage">
+select p_name, p_photo1, p_price, s_name, o_quantidey
+from store, product, p_order
+where s_no = p_rn and o_no = p_no and o_id = (select m_id from member where m_id = #{m_id})
+</select>
+
+
+
 
 </mapper>

@@ -146,5 +146,12 @@ public class LessonDAO {
 		
 		
 	}
+	public void searchHomeLesson(String keyword, Lesson l, HttpServletRequest request) {
+		List<Lesson> lessons = ss.getMapper(LessonMapper.class).searchHomeLesson(keyword);
+		request.setAttribute("lessons", lessons);		
+	}
+	
+	
+	
 	
 }

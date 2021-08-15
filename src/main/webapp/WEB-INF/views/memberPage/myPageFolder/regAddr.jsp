@@ -124,6 +124,7 @@ margin-left: 100px;
 
 
 	<form action="regAddr.do" name="form" id="form" method="post">
+	<div style="width: 100%; min-height: 1px; height: 10px;"></div>
 		<input hidden="1" name="m_id"
 			value="${sessionScope.member_session.m_id}"> 도로명주소<input
 			type="text" id="roadFullAddr" name="m_addr" /><br> 상세주소 <input

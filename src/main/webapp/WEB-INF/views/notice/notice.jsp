@@ -82,12 +82,15 @@
 
 
 <!-- 등록버튼 시작 -->
+		<c:if test="${member_session.m_id eq 'admin'}">
 <div id="boardcss_list_add_button_table">
 	<div class="boardcss_list_add_button">
 			<a href="${pageContext.request.contextPath}/notice/notice.reg.go" class="add_button">등록</a>
 			
 	</div>
 </div>
+
+			</c:if>
 <!-- 등록버튼 종료 -->
 
 				<div style="width: 0; min-height: 10px; height: 50px;"></div>

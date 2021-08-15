@@ -64,7 +64,7 @@
 		<div class="black" style="width: 360px;"></div>
 		<a href="/jk/" style="font-size: 20pt; font-weight: bold;">생활수집</a>
 
-
+<!-- 상단 우측 메뉴 -->
 		<nav id="menu1">
 			<ul style="list-style-type: none">
 				<li style="display: inline"><span><a href="/jk/">Home
@@ -121,29 +121,18 @@
 	</header>
 
 
-
-	<form action="search.all">
+<!-- 좌측 상단 검색 창  -->
+	<form action="${pageContext.request.contextPath}/search.all">
 		<div>
-			<input class="search_input" name="search" style="display:"
-				placeholder="Search" value="">
-			<button type="button" class="search_btn">
-				<img
-					src="${pageContext.request.contextPath}/resources/img/search_magnifier_icon_145939.png"
+			<input type="text" class="search_input" id="keyword" name="keyword" value="${keyword }" placeholder="Search" >
+			<button class="search_btn" id="btnSearch">
+				<img src="${pageContext.request.contextPath}/resources/img/search_magnifier_icon_145939.png"
 					class="search_icon">
 			</button>
 		</div>
 	</form>
-	<%-- 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
-	<div class="menu2">
-		<ul id="menu2">
-			<li>Class</li>
-			<li>Product</li>
-			<li>Story</li>
-			<li>Chat</li>
-			<li class="menu-v1"><a
-				href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
-				</li>
- --%>
+	
+	
 
 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
 
@@ -151,7 +140,7 @@
 
 	<div id="container">
 		<ul id="nav-v1">
-			<li class="menu-v1"><a href="#">Class</a>
+			<li class="menu-v1"><a href="${pageContext.request.contextPath}/lesson.go">Class</a>
 				<ul class="submenu">
 					<li><a href="#">드로잉</a></li>
 					<li><a href="#">공예</a></li>
@@ -164,7 +153,7 @@
 					<li><a href="#">글쓰기</a></li>
 					<li><a href="#">기타</a></li>
 				</ul></li>
-			<li class="menu-v1"><a href="#">Product</a>
+			<li class="menu-v1"><a href="${pageContext.request.contextPath}/product.go">Product</a>
 				<ul class="submenu">
 					<li><a href="#">식품</a></li>
 					<li><a href="#">악세사리</a></li>
@@ -192,24 +181,25 @@
 					<li class="menu-v1"><a
 						href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
 						<ul class="submenu">
-							<li><a href="#">주문조회</a></li>
-							<li><a href="#">장바구니</a></li>
+							<li><a href="${pageContext.request.contextPath}/common/toOrderPage.go">주문조회</a></li>
+							<li><a href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
 						</ul></li>
+						<li class="menu-v1"><a
+				href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store</a>
+			</li>
 				</c:when>
 			</c:choose>
 
 
-			<li class="menu-v1"><a
-				href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store</a>
-			</li>
+			
 		</ul>
 		<div class="clear"></div>
 	</div>
 
 	<div class="text-table" style="padding-left: 10px; margin-left: 10px;">
-		<div style="width: 100%; height: 5px;"></div>
+		<div style="width: 100%; height: 60px;"></div>
 		<p>
 			<a href="${pageContext.request.contextPath}/notice/notice.go"><span
 				style="letter-spacing: 1px;">READ ME FIRST</span></a>
@@ -221,7 +211,7 @@
 		</p>
 		<span style="letter-spacing: 1px;"><br></span>
 		<p>
-			<a href="${pageContext.request.contextPath}/dropdown.test"><span
+			<a href="${pageContext.request.contextPath}/test"><span
 				style="letter-spacing: 1px;">FAQ</span></a>
 		</p>
 		<span style="letter-spacing: 1px;"><br></span>

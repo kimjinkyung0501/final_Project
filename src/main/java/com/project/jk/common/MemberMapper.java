@@ -51,10 +51,11 @@ public interface MemberMapper {
 
    
    
-   
    public int updatePhoneKey(MemberPhoneCheck mpk);
 
    public int memberUniqueNo(String userPhoneNumber);
 
    public Member getUserEmail(Member member);
+
+	public List<OrderPage> getUserCart(Member member);
 }
