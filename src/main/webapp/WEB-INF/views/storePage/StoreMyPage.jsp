@@ -233,28 +233,28 @@ width: 80%;
 
 <div>
 <p>
-<h2 align="center">제품 관리</h2>
+<h2 align="center">제품 Best</h2>
 <p>
 <c:forEach var="p" items="${products}">
-<c:if test="${s.s_no==p.p_rn }">
 <div style="float: left; margin-left: 50px; border: 1px solid black; width: 150px;" onclick="location.href='seller.product.detail?p_no=${p.p_no}'" >
 <img alt="" src="resources/img/${p.p_photo1 }" style="width: 150px;height: 100px;"> 
 <h3>${p.p_name }</h3>
 </div>
-</c:if>
 </c:forEach>
 </div>
+
+
+
+
 <p>
 <div style="margin-top: 200px;">
-<h2 align="center">클래스 관리</h2>
+<h2 align="center">클래스 Best</h2>
 <p>
 <c:forEach var="l" items="${lessons }">
-<c:if test="${s.s_no==l.l_rn}">
 <div style="float: left; margin-left: 50px;border: 1px solid black; width: 150px;" onclick="location.href='seller.lesson.detail?l_no=${l.l_no}'">
 <img alt="" src="resources/img/${l.l_photo}" style="width: 150px;height: 100px;">
 <h3>${l.l_name }</h3>
 </div>
-</c:if>
 </c:forEach>
 
 </div>

@@ -51,10 +51,10 @@ body {
 ul.mylist, ol.mylist {
 	list-style: none;
 	margin: 3px;
-	padding: 5px;
+	padding: 3px;
 	max-width: 900px;
-	width: 500px;
-	margin-left: 150px;
+	width: 700px;
+	margin-left: 100px;
 }
 
 ul.mylist li, ol.mylist li {
@@ -62,13 +62,14 @@ ul.mylist li, ol.mylist li {
 	padding: 18px;
 	margin-bottom: 5px;
 	border: 1px solid #efefef;
-	font-size: 20px;
+	font-size: 18px;
 	cursor: pointer;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	padding-inline-start: 40px;
+	display: inline-block;
 }
 
 ul.mylist li, ol.mylist li {
@@ -270,16 +271,22 @@ ul.mylist li:hover, ol.mylist li:hover {
 
 	</c:choose>
 
-	<div style="width: 100%; min-height: 1px; height: 100px;"></div>
+	<div style="width: 100%; min-height: 1px; height: 80px;"></div>
 	<ul class="mylist">
-		<li style="width: 150px;">주문조회</li>
-		<li style="width: 155px;"><a
-			href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
+		<li style="width: 150px;"><a style="font-weight: bold;">ORDER</a><br>
+			<a>주문조회</a></li>
 		<li style="width: 150px;"><a
+			href="${pageContext.request.contextPath}/common/toCart.go"
+			style="font-weight: bold;"> CART</a><br> <a
+			href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
+		<li style="width: 145px;"><a
+			href="${pageContext.request.contextPath}/common/changeInfo.go"
+			style="font-weight: bold;"> INFO</a><br> <a
 			href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
-		<li style="width: 155px;"><a
-			href="${pageContext.request.contextPath}/common/regAddr.go">주소지
-				등록</a></li>
+		<li style="width: 158px;"><a
+			href="${pageContext.request.contextPath}/common/regAddr.go"
+			style="font-weight: bold;"> ADDRESS</a><br> <a
+			href="${pageContext.request.contextPath}/common/regAddr.go">주소등록</a></li>
 	</ul>
 
 

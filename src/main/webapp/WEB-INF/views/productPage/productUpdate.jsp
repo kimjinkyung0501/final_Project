@@ -185,7 +185,7 @@ body {
 				<div class="form-group row" id="form" >
 					<label for="amount" class="col-sm-2">가격</label>
 					<div class="com-sm-3">
-					 <span class="currency">\</span>
+					 <span class="currency"></span>
 						<input type="text" id="amount" name="p_price" maxlength="15" value="${p.p_price }"
 							class="form-control">
 					</div>

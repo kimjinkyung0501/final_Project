@@ -69,11 +69,11 @@ li a:hover:not(.active) {
 
 	<div class="categorize">
 		<ul class="site_nav">
-			<li><a class="searchmenu" href="#home">ALL</a></li>
-			<li><a class="searchmenu" href="#news">CLASS</a></li>
-			<li><a class="searchmenu" href="#contact">PRODUCT</a></li>
-			<li><a class="searchmenu" href="#about">STORE</a></li>
-			<li><a class="searchmenu" href="#about">ETC</a></li>
+			<li><a class="searchmenu" href="#ALL">ALL</a></li>
+			<li><a class="searchmenu" href="#CLASS">CLASS</a></li>
+			<li><a class="searchmenu" href="#PRODUCT">PRODUCT</a></li>
+			<li><a class="searchmenu" href="#STORE">STORE</a></li>
+			<li><a class="searchmenu" href="#ETC">ETC</a></li>
 		</ul>
 		<div style="width: 100%; min-height: 10px; height: 50px;"></div>
 		<hr style="border-top: 1px double lightgray; width: 700px;">

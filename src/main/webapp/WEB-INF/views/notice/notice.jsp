@@ -73,7 +73,7 @@
 .text-box {
     position: absolute;
     top: 30%;
-    left: 30%;
+    left: 25%;
 }
 </style>
 

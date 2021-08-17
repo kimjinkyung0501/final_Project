@@ -49,6 +49,7 @@
 				<beans:value>classpath:storeMapper.xml</beans:value>
 				<beans:value>classpath:productMapper.xml</beans:value>
 				<beans:value>classpath:lessonMapper.xml</beans:value>
+				<beans:value>classpath:homeMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

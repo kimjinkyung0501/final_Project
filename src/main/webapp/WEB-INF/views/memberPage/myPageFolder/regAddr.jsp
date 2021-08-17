@@ -21,6 +21,7 @@ body {
 	height: 130px;
 	border-radius: 70%;
 	overflow: hidden;
+	
 }
 
 .profile {
@@ -93,8 +94,14 @@ width : 230px;
 	color: #168;
 }
 
+.addrBtn{
+margin-left: 80px;
+margin-bottom : 10px;
+}
+
 button {
-margin-left: 100px;
+margin-left: 5px;
+margin-bottom : 10px;
 	border: 1px solid #777e88;
 	background-color: rgba(0, 0, 0, 0);
 	color: #4f4f4f;
@@ -130,9 +137,9 @@ margin-left: 100px;
 			type="text" id="roadFullAddr" name="m_addr" /><br> 상세주소 <input
 			type="text" id="addrDetail" name="m_addr2" /><br> 우편번호<input
 			type="text" id="zipNo" name="m_addr_zipno" /> <br> <br>
-		<button type="button" onclick="goPopup();">검색하기</button>
-		<br> <br>
-		<button onsubmit="return regAddr();">등록하기</button>
+		<span class="addrBtn">STEP. 1 <button type="button" onclick="goPopup();">검색하기</button></span>
+		<br> 
+		<span class="addrBtn">STEP. 2 <button onsubmit="return regAddr();">등록하기</button></span>
 	</form>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/reginPage.js"></script>

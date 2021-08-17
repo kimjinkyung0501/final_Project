@@ -35,7 +35,8 @@
 <link rel="icon" type="image/png" href="…">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
@@ -62,9 +63,9 @@
 			<!-- 	<img src="resources/img/menuIcon.png" style="width: 25px;"> -->
 		</div>
 		<div class="black" style="width: 360px;"></div>
-		<a href="/jk/" style="font-size: 20pt; font-weight: bold;">생활수집</a>
+		<a id="lC" href="/jk/" style="font-size: 20pt; font-weight: bold;">생활수집</a>
 
-<!-- 상단 우측 메뉴 -->
+		<!-- 상단 우측 메뉴 -->
 		<nav id="menu1">
 			<ul style="list-style-type: none">
 				<li style="display: inline"><span><a href="/jk/">Home
@@ -76,15 +77,15 @@
 				<li style="display: inline"><span><a href="">Story </a></span>
 				</li>
 				<li style="display: inline"><span><a href="">Chat </a></span></li>
-			
+
 
 
 				<!-- 로그인별 메뉴바 처리  -->
 				<c:choose>
 					<c:when test="${empty sessionScope}">
-	<li style="display: inline"><span><a
-						href="${pageContext.request.contextPath}/common/login.main">MyPage
-					</a></span></li>
+						<li style="display: inline"><span><a
+								href="${pageContext.request.contextPath}/common/login.main">MyPage
+							</a></span></li>
 						<li style="display: inline"><span><a
 								href="${pageContext.request.contextPath}/common/login.main">Log
 									in </a></span></li>
@@ -94,9 +95,7 @@
 					<c:when test="${member_session.m_id eq 'admin'}">
 						<li style="display: inline"><span><a href="">Manager
 							</a></span></li>
-						<li style="display: inline"><span><a
-								href="${pageContext.request.contextPath}/common/myPage.go">MyPage
-							</a></span></li>
+
 						<li style="display: inline"><span><a
 								onclick="return logout('${sessionScope.member_session}','${sessionScope.kakao_member_session }')">Log
 									out </a></span></li>
@@ -121,18 +120,20 @@
 	</header>
 
 
-<!-- 좌측 상단 검색 창  -->
+	<!-- 좌측 상단 검색 창  -->
 	<form action="${pageContext.request.contextPath}/search.all">
 		<div>
-			<input type="text" class="search_input" id="keyword" name="keyword" value="${keyword }" placeholder="Search" >
+			<input type="text" class="search_input" id="keyword" name="keyword"
+				value="${keyword }" placeholder="Search">
 			<button class="search_btn" id="btnSearch">
-				<img src="${pageContext.request.contextPath}/resources/img/search_magnifier_icon_145939.png"
+				<img
+					src="${pageContext.request.contextPath}/resources/img/search_magnifier_icon_145939.png"
 					class="search_icon">
 			</button>
 		</div>
 	</form>
-	
-	
+
+
 
 	<div style="width: 100%; min-height: 10px; height: 40px;"></div>
 
@@ -140,7 +141,10 @@
 
 	<div id="container">
 		<ul id="nav-v1">
-			<li class="menu-v1"><a href="${pageContext.request.contextPath}/lesson.go">Class</a>
+			<li class="menu-v1"><a
+				href="${pageContext.request.contextPath}/best.collection">Collect</a></li>
+			<li class="menu-v1"><a
+				href="${pageContext.request.contextPath}/store/lesson/lesson.go">Class</a>
 				<ul class="submenu">
 					<li><a href="#">드로잉</a></li>
 					<li><a href="#">공예</a></li>
@@ -153,7 +157,8 @@
 					<li><a href="#">글쓰기</a></li>
 					<li><a href="#">기타</a></li>
 				</ul></li>
-			<li class="menu-v1"><a href="${pageContext.request.contextPath}/product.go">Product</a>
+			<li class="menu-v1"><a
+				href="${pageContext.request.contextPath}/product.go">Product</a>
 				<ul class="submenu">
 					<li><a href="#">식품</a></li>
 					<li><a href="#">악세사리</a></li>
@@ -175,25 +180,32 @@
 					</li>
 
 				</c:when>
+				<c:when test="${member_session.m_id eq 'admin'}">
 
+					<li class="menu-v1"><a href="#">Manager</a></li>
+
+				</c:when>
 
 				<c:when test="${!empty sessionScope}">
+					
+					<li class="menu-v1"><a
+						href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store</a>
+					</li>
 					<li class="menu-v1"><a
 						href="${pageContext.request.contextPath}/common/myPage.go">MyPage</a>
 						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/common/toOrderPage.go">주문조회</a></li>
-							<li><a href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/common/toOrderPage.go">주문조회</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
 						</ul></li>
-						<li class="menu-v1"><a
-				href="${pageContext.request.contextPath}/store.go?m_id=${sessionScope.member_session.m_id}">Store</a>
-			</li>
 				</c:when>
 			</c:choose>
 
 
-			
+
 		</ul>
 		<div class="clear"></div>
 	</div>

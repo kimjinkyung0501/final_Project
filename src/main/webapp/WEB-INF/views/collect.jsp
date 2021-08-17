@@ -10,14 +10,12 @@
 body {
 	margin: 15px;
 }
-.text-box{
+
+.text-box {
 	position: absolute;
-	left: 400px;
+	left: 500px;
 	top: 170px;
-
 }
-
-
 
 .container1 {
 	display: flex;
@@ -48,8 +46,7 @@ img {
 .slides {
 	overflow: hidden;
 	height: 400px;
-	width: 500px; li
-	 { width : 0;
+	width: 500px; li { width : 0;
 	height: 100vmin;
 	position: absolute;
 	z-index: 1;
@@ -77,13 +74,28 @@ keyframes slide { 0% {
 }
 
 100
+
+
 %
 {
 transform
+
+
 :
-translateY(
-0%
-);
+
+
+translateY
+(
+
+
+0
+%
+
+
+)
+;
+
+
 }
 }
 @
@@ -91,31 +103,40 @@ keyframes hidden { 0% {
 	z-index: 2;
 }
 100
+
+
 %
 {
 z-index
+
+
 :
-2;
+
+
+2
+;
+
+
 }
 }
 </style>
 </head>
 <body>
 
-<h4 align="center">Product Best</h4>
-		<div style="margin-top: 50px;"></div>
-<div class="container1">
+	<h4 align="center">Product Best</h4>
+	<div style="margin-top: 50px;"></div>
+	<div class="container1">
 		<ul class="slides">
-			<li id="slide1"><img style="height: 400px; width: 500px;"
+			<li id="slide1"><img style="height: 440px; width: 500px;"
 				src="${pageContext.request.contextPath}/resources/img/100.jpg"
 				alt="" /></li>
-			<li id="slide2"><img style="height: 400px; width: 500px;"
+			<li id="slide2"><img style="height: 440px; width: 500px;"
 				src="${pageContext.request.contextPath}/resources/img/101.jpg"
 				alt="" /></li>
-			<li id="slide3"><img style="height: 400px; width: 500px;"
+			<li id="slide3"><img style="height: 440px; width: 500px;"
 				src="${pageContext.request.contextPath}/resources/img/102.jpg"
 				alt="" /></li>
-			<li id="slide4"><img style="height: 400px; width: 500px;"
+			<li id="slide4"><img style="height: 440px; width: 500px;"
 				src="${pageContext.request.contextPath}/resources/img/103.jpg"
 				alt="" /></li>
 		</ul>
@@ -139,56 +160,53 @@ z-index
 			</li>
 		</ul>
 	</div>
-	
-	
-	
-	
-	
-		<div style="margin-top: 150px;"></div>
-	
-	
-	
-	
-	
-<h4 align="center">Class Best</h4>
-		<div style="margin-top: 50px;"></div>
-<!-- 
+	<a> 상품명 상품가격</a>
+
+
+
+
+
+	<div style="margin-top: 150px;"></div>
+
+
+
+
+
+	<h4 align="center">Class Best</h4>
+	<div style="margin-top: 50px;"></div>
 	<div class="container1">
 		<ul class="slides">
 			<li id="slide6"><img style="height: 400px; width: 500px;"
-				src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg"
+				src="${pageContext.request.contextPath}/resources/img/101.jpg"
 				alt="" /></li>
 			<li id="slide7"><img style="height: 400px; width: 500px;"
-				src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg"
-				alt="" /></li>
+				src="${pageContext.request.contextPath}/resources/img/lp.jpg" alt="" /></li>
 			<li id="slide8"><img style="height: 400px; width: 500px;"
-				src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg"
+				src="${pageContext.request.contextPath}/resources/img/index.jpg"
 				alt="" /></li>
 			<li id="slide9"><img style="height: 400px; width: 500px;"
-				src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg"
+				src="${pageContext.request.contextPath}/resources/img/etcAll.png"
 				alt="" /></li>
 		</ul>
 
 		<ul class="thumbnails">
 			<li><a href="#slide6"><img
 					style="height: 100px; width: 150px;"
-					src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg" /></a>
-			</li>
+					src="${pageContext.request.contextPath}/resources/img/101.jpg" /></a></li>
 			<li><a href="#slide7"><img
 					style="height: 100px; width: 150px;"
-					src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg" /></a>
-			</li>
+					src="${pageContext.request.contextPath}/resources/img/lp.jpg" /></a></li>
 			<li><a href="#slide8"><img
 					style="height: 100px; width: 150px;"
-					src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg" /></a>
+					src="${pageContext.request.contextPath}/resources/img/index.jpg" /></a>
 			</li>
 			<li><a href="#slide9"><img
 					style="height: 100px; width: 150px;"
-					src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg" /></a>
+					src="${pageContext.request.contextPath}/resources/img/etcAll.png" /></a>
 			</li>
 		</ul>
-	</div> -->
-
+	</div>
+	<a> 클래스명 가격</a>
 
 
 </body>

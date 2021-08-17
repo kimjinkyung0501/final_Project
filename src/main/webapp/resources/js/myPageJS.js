@@ -1,4 +1,4 @@
-const content_name = document.querySelector('.content_name');
+ const content_name = document.querySelector('.content_name');
 const content_id = document.querySelector('.content_id');
 const content_pw = document.querySelector('.content_pw');
 const content_phone = document.querySelector('.content_phone');
