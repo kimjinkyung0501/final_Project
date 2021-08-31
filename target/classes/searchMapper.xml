@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.SearchMapper">
+
+
+<select id="searchByStore" parameterType="String" resultType="com.project.jk.SearchBean">
+select s_name as c_name, s_no,s_img as c_photo
+from store
+where s_name like '%'||'${keyword}'||'%'
+</select>
+
+<select id="searchByProduct" parameterType="String" resultType="com.project.jk.SearchBean">
+select  p_label as c_label, p_name as c_name, p_price as c_price, p_photo1 as c_photo, p_no
+from PRODUCT
+where p_name like '%'||'${keyword}'||'%'
+</select>
+
+<select id="searchByLesson" parameterType="String" resultType="com.project.jk.SearchBean">
+select  l_label as c_label, l_name as c_name, l_price as c_price, l_photo as c_photo, l_no
+from lesson
+where l_name like '%'||'${keyword}'||'%'
+</select>
+
+
+
+
+</mapper>

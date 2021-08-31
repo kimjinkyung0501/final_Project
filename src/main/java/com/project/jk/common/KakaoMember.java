@@ -1,11 +1,9 @@
 package com.project.jk.common;
 
+import org.springframework.stereotype.Repository;
 
-import org.springframework.stereotype.Service;
-
-
+@Repository
 //카카오톡으로 로그인 한 회원의 정보가 담기는 bean객체
-@Service
 public class KakaoMember {
 	private String kakaoMemberId;
 	private String kakao_nickname;

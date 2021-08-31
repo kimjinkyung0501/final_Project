@@ -5,7 +5,10 @@
 insert into lesson values(#{l_rn},lesson_seq.nextval,#{l_name},#{l_price},#{l_content},#{l_label},#{l_photo},#{l_video})
 </insert>
 <select id="getAllLesson" resultType="com.project.jk.store.lesson.Lesson">
-select * from lesson
+select * from lesson order by l_no
+</select>
+<select id="getAllLesson2" parameterType="com.project.jk.store.Store" resultType="com.project.jk.store.lesson.Lesson">
+select * from lesson where l_rn=#{s_no} order by l_no
 </select>
 <select id="getLesson" resultType="com.project.jk.store.lesson.Lesson">
 select * from Lesson where l_no=#{l_no}
@@ -16,9 +19,8 @@ delete lesson where l_no=#{l_no}
 <update id="lessonUpdate" parameterType="com.project.jk.store.lesson.Lesson">
 update lesson set l_name=#{l_name},l_price=#{l_price},l_content=#{l_content},l_label=#{l_label},l_photo=#{l_photo},l_video=#{l_video} where l_no=#{l_no}
 </update>
-
-<select id="searchHomeLesson" resultType="com.project.jk.store.lesson.Lesson">
-select * from lesson where l_name like '%' || #{keyword } ||'%'
+<select id="getLessonLabel" resultType="com.project.jk.store.lesson.Lesson">
+select * from Lesson where l_label=#{l_label} order by l_no
 </select>
 
 </mapper>

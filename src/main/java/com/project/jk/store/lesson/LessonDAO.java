@@ -1,7 +1,8 @@
 package com.project.jk.store.lesson;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.project.jk.store.Store;
+import com.project.jk.store.StoreMapper;
 import com.project.jk.store.product.Product;
-import com.project.jk.store.product.ProductMapper;
+
 
 
 
@@ -21,12 +24,13 @@ public class LessonDAO {
 
 	@Autowired
 	private SqlSession ss;
+	private ArrayList<Lesson> lessons;
 	
 	public void reglesson(Lesson l, HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
 		try {
-			mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+			mr = new MultipartRequest(request, path, 251277652, "UTF-8", new DefaultFileRenamePolicy());
 			System.out.println(path);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -41,6 +45,11 @@ public class LessonDAO {
 			String l_label = mr.getParameter("l_label");
 			String l_photo=mr.getFilesystemName("l_photo");
 			String l_video=mr.getFilesystemName("l_video");
+			
+			l_content = l_content.replace("\r\n", "<br>");
+
+	         
+	         
 			
 			
 			l.setL_rn(l_rn);
@@ -72,7 +81,7 @@ public class LessonDAO {
 		String path = request.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
 		try {
-			mr = new MultipartRequest(request, path, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+			mr = new MultipartRequest(request, path, 251277652, "UTF-8", new DefaultFileRenamePolicy());
 			System.out.println(path);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -90,6 +99,8 @@ public class LessonDAO {
 			String l_video=mr.getFilesystemName("l_video");
 			String l_video_old = mr.getParameter("l_video_old");
 			
+			l_content = l_content.replace("\r\n", "<br>");
+
 			
 			l.setL_no(l_no);
 			l.setL_name(l_name);
@@ -126,7 +137,7 @@ public class LessonDAO {
 		
 	}
 	public void getAllLesson(HttpServletRequest request) {
-		List<Lesson> lessons = ss.getMapper(LessonMapper.class).getAllLesson();
+		 lessons = ss.getMapper(LessonMapper.class).getAllLesson();
 		request.setAttribute("lessons", lessons);
 	}
 	public void getLesson(Lesson l, HttpServletRequest request) {
@@ -146,12 +157,76 @@ public class LessonDAO {
 		
 		
 	}
-	public void searchHomeLesson(String keyword, Lesson l, HttpServletRequest request) {
-		List<Lesson> lessons = ss.getMapper(LessonMapper.class).searchHomeLesson(keyword);
-		request.setAttribute("lessons", lessons);		
+	
+	
+	
+	
+	public void paging(int page, HttpServletRequest request) {
+		request.setAttribute("curPageNO", page);
+
+		int cnt = 12; // 
+		int total = lessons.size(); 
+		if (total != 0) {
+		int pageCount = (int) Math.ceil(total / (double) cnt);
+
+		request.setAttribute("pageCount", pageCount);
+
+		int start = total - (cnt * (page - 1));
+
+		int end = (page == pageCount) ? -1 : start - (cnt + 1);
+
+		ArrayList<Lesson> items = new ArrayList<Lesson>();
+		for (int i = start - 1; i > end; i--) {
+			items.add(lessons.get(i));
+		}
+
+		request.setAttribute("lessons", items);
+		
+	}
+	
+	
 	}
 	
 	
 	
+	
+	public void paging2(int page, HttpServletRequest request) {
+		request.setAttribute("curPageNO", page);
+		
+		int cnt = 3; // 
+		int total = lessons.size(); 
+		if (total != 0) {
+			int pageCount = (int) Math.ceil(total / (double) cnt);
+			
+			request.setAttribute("pageCount2", pageCount);
+			
+			int start = total - (cnt * (page - 1));
+			
+			int end = (page == pageCount) ? -1 : start - (cnt + 1);
+			
+			ArrayList<Lesson> items = new ArrayList<Lesson>();
+			for (int i = start - 1; i > end; i--) {
+				items.add(lessons.get(i));
+			}
+			
+			request.setAttribute("lessons", items);
+			
+		}
+		
+		
+	}
+	public void storeLesson(Store s, HttpServletRequest request) {
+		 lessons = ss.getMapper(StoreMapper.class).getlessons(s);
+		 request.setAttribute("lessons", lessons);
+	}
+	public void Llabel(Lesson l) {
+		lessons=ss.getMapper(LessonMapper.class).getLessonLabel(l);
+		
+	}
+	public void getAllLesson2(Store s, HttpServletRequest request) {
+		 lessons = ss.getMapper(LessonMapper.class).getAllLesson2(s);
+			request.setAttribute("lessons", lessons);
+		
+	}
 	
 }

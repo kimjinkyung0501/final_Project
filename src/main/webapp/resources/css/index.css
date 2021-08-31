@@ -1,22 +1,24 @@
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
 header {
-	position:fixed;
-	width: 95%;
+	margin-right : 2px;
+	position: fixed;
+	width: 98%;
+	z-index : 1;
 	display: flex;
 	justify-content: space-between;
-	height: 7px;
 	font-family: 'Nanum Myeongjo', serif;
-	
 }
 
 header a {
-	margin-right : 2px;
+	margin-right: 2px;
 	text-align: center;
 	font-size: 17px;
 }
@@ -40,13 +42,13 @@ a:hover {
 }
 
 body {
-	top: 0px;
 	background-image: url('resources/img/etcAll2.jpg');
 	background-repeat: no-repeat;
 	background-position: right;
 	background-size: 50% 100%;
 	font-family: 'PT Serif', serif;
- font-family: 'Pretendard-Regular';
+	font-family: 'Pretendard-Regular';
+	
 }
 
 /* body-colorfilter {
@@ -84,17 +86,16 @@ body {
 }
 
 #menu2 {
-
+	
 }
 
 #content {
 	margin: 0px;
-	max-height: 1500px;
+	/* max-height: 1500px; */
 	/* position: relative; */
 	align: left;
 	width: 100%;
-	height: 900px;
-	min-height: 1000px;
+	min-height: 700px;
 }
 
 footer {
@@ -123,7 +124,6 @@ footer {
 	font-family: 'PT Serif', serif;
 	font-size: 8px;
 	text-align: right;
-
 }
 
 li {
@@ -156,12 +156,8 @@ input:focus {
 	height: 23px;
 }
 
-
 /* 좌측 메뉴바 */
-
-
 * {
-	margin: 0;
 	padding: 0;
 	list-style: none;
 	box-sizing: border-box;
@@ -179,10 +175,9 @@ a {
 
 #container {
 	width: 1000px;
-	
 } /*v1*/
 #nav-v1 {
-		padding-left: 25px;
+	padding-left: 25px;
 	margin-left: 20px;
 	font-family: 'PT Serif', serif;
 	margin-right: 3%;
@@ -190,7 +185,6 @@ a {
 	height: auto;
 	font-size: 35px;
 	margin-left: 5px;
-	width: 150px;
 	text-align: center;
 }
 
@@ -199,15 +193,17 @@ a {
 }
 
 .menu-v1:hover {
+	
 }
 
 .menu-v1:hover>a {
 	color: black;
 	font-weight: bold;
-		font-family: 'PT Serif', serif;
+	font-family: 'PT Serif', serif;
 }
 
 .menu-v1 .submenu {
+	
 	margin-top: 7px;
 	background-color: #fff;
 	display: none;
@@ -216,8 +212,7 @@ a {
 }
 
 .menu-v1 .submenu li:hover {
-	color: white;
+/* 	color: white; */
 	font-weight: bold;
 	font-family: 'Nanum Myeongjo', serif;
 }
-

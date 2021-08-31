@@ -21,18 +21,39 @@ function goSimplePage(){
 	location.href="/jk/common/myPage.go"
 }
 
+function movieGo(l_no){
+   location.href="/jk/common/seeMovie.go?l_no="+l_no
+}
+
 function goMyPage(nomalMember, kakaoMember){
 	
 	if(nomalMember != "" && kakaoMember == ""){
 		location.href="/jk/common/myPage.go"
 		return true;
 	}
-	else {
+	else if(nomalMember == "" && kakaoMember != ""){
 		alert("카카오톡 로그인 시 일부 서비스가 제한됩니다.");
 		location.href="/jk/common/myPage.go"
 		return true;
 	}
+	
 }
+
+
+//8월 16일 수정
+function goChangeInfo(nomalMember, kakaoMember){
+		if(nomalMember != "" && kakaoMember == ""){
+		alert("카카오톡 회원은 수정할 수 없습니다.");
+		return false;
+	}
+	else {
+		location.href="/jk/common/changeInfo.go"
+		return true;
+	}
+}
+
+
+
 
 
 	

@@ -96,9 +96,9 @@ body {
 }
 
 .btn {
-margin-left: 10px;
+	margin-left: 10px;
 	width: 100px;
-	display : inline-block;
+	display: inline-block;
 	font-weight: 400;
 	text-align: center;
 	white-space: nowrap;
@@ -115,6 +115,20 @@ margin-left: 10px;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out,
 		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 	display: inline-block;
+}
+
+.productInfo {
+	color: #495057; padding-left : 10px;
+	width: 285px;
+	padding-top : 5px;
+	height: auto;
+	min-height: 100px;
+	resize: vertical;
+	margin-left: 15px;
+	border-radius: .25rem;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	padding-left: 10px;
 }
 </style>
 
@@ -153,8 +167,8 @@ margin-left: 10px;
 			<div class="form-group row">
 				<label class="col-sm-2">수업 번호</label>
 				<div class="com-sm-3">
-					<input type="text" id="name" name="l_no" class="form-control"
-						value="${l.l_no}">
+					<input type="text" id="name" readonly="readonly" name="l_no"
+						class="form-control" value="${l.l_no}">
 
 				</div>
 			</div>
@@ -162,8 +176,9 @@ margin-left: 10px;
 			<div class="form-group row">
 				<label class="col-sm-2">수업명</label>
 				<div class="com-sm-3">
-					<input type="text" id="name" name="l_name" class="form-control"
-						value="${l.l_name}"> <input type="hidden" name="l_rn"
+					<input type="text" id="name" name="l_name" readonly="readonly"
+						class="form-control" value="${l.l_name}"> <input
+						type="hidden" readonly="readonly" name="l_rn"
 						value="${param.l_rn }">
 				</div>
 			</div>
@@ -171,16 +186,26 @@ margin-left: 10px;
 
 			<div class="form-group row">
 				<label class="col-sm-2">가격</label>
+
+
+
+
 				<div class="com-sm-3">
-					<input type="text" id="unitPrice" name="l_price"
-						value="${l.l_price}" class="form-control">
+					<input type="text" id="unitPrice" readonly="readonly"
+						name="l_price" value="${l.l_price}" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<label class="col-sm-2">수업설명</label>
+
+
+
 				<div class="com-sm-5">
-					<textarea cols="50" rows="2" class="textarea" name="l_content">${l.l_content}</textarea>
+
+					<div class="productInfo">
+						<input name="l_content" hidden="1"> ${l.l_content}
+					</div>
 
 				</div>
 			</div>
@@ -191,8 +216,8 @@ margin-left: 10px;
 			<div class="form-group row">
 				<label class="col-sm-2">분류</label>
 				<div class="com-sm-5">
-					<input type="text" id="unitPrice" name="l_price"
-						class="form-control" value="${l.l_label }">
+					<input type="text" id="unitPrice" readonly="readonly"
+						name="l_price" class="form-control" value="${l.l_label }">
 				</div>
 			</div>
 

@@ -48,9 +48,10 @@ $(document).ready(function(){
    })
    
    /*비밀번호 찾을 때 이메일 인증*/
+   /*8월 23일 여기 수정*/
    $('.emailBtnForPw').on("click", function(){
-      var nameInput = $('#nameInput2').val();
-      var emailInput = $('#emailInput').val();
+      var nameInput = $('#nameInputForPw2').val();
+      var emailInput = $('#emailInputForPw').val();
       $.ajax({
          url : "/jk/common/searchPw.do",
          method :"post",
@@ -77,12 +78,12 @@ $(document).ready(function(){
 
    
    $('.searchIdByPhone').on("click", function(){
-      var ok = confirm("휴대폰 인증을 실시하시겠습니까?");
-      if(오케이){
+      var o = confirm("휴대폰 인증을 실시하시겠습니까?");
+      if(o){
          var m_name = $('#nameInput1').val();
          var m_phone = $('#phoneInput').val();
          $.ajax({
-            url : searchIdByPhone.do,
+            url : "/jk/common/searchIdByPhone.do",
             method : "post",
             data :{
                m_name : m_name,
@@ -93,7 +94,7 @@ $(document).ready(function(){
             if(data){
                alert("메세지를 확인해주세요.");
                $.ajax({
-                  url : "sendSNS.searchId",
+                  url : "/jk/common/sendSNS.searchId",
                   method : "post",
                   data :{
                      userPhoneNumber : m_phone
@@ -103,8 +104,6 @@ $(document).ready(function(){
                   }
                   
                })
-               
-                  
                   
             }
             else{
@@ -119,19 +118,21 @@ $(document).ready(function(){
    })
    
    
-   /*휴대폰 인증으로 아이디 찾기 */
+   /*핸드폰을 활용한 아이디 찾기 기능*/
+   /*인증하기 버튼을 클릭 했을 때 발생하는 이벤트*/
    $('.submitPhoneKeyBtn').on("click", function(){
       var phoneKey = $('#phoneKeyInput').val();
-      alert(phoneKey);
       var m_phone = $('#phoneInput').val();
       var m_name = $('#nameInput1').val();
+
+	//입력하지 않은 값이 하나라도 있을 경우 작동하지 않게
       if(phoneKey == "" || m_phone == "" || m_name == ""){
          alert("입력하지 않은 값이 있습니다.");
          return false;
       }
       else{
          $.ajax({
-            url : "compareKey",
+            url : "/jk/common/compareKey",
             method : "post",
             data : {
                m_p_id : phoneKey,
@@ -139,9 +140,10 @@ $(document).ready(function(){
             }
          })
          .done(function(data){
+		//사용자가 입력한 키값과 DB의 값이 일치할 경우 오는 콜백함수
             if(data){
                $.ajax({
-                  url : "sendEmail.checkId",
+                  url : "/jk/common/sendEmail.checkId",
                   method : "get",
                   data : {
                      m_phone : m_phone
@@ -172,12 +174,12 @@ $(document).ready(function(){
 
    /*비밀번호 찾기, 핸드폰 인증*/
    $('.searchPwByPhone').on("click", function(){
-      var ok = confirm("휴대폰 인증을 실시하시겠습니까?");
-      if(오케이){
+      var o = confirm("휴대폰 인증을 실시하시겠습니까?");
+      if(o){
          var m_name = $('#nameInputForPw').val();
          var m_phone = $('#phoneInputForPw').val();
          $.ajax({
-            url : searchIdByPhone.do,
+            url : "/jk/common/searchIdByPhone.do",
             method : "post",
             data :{
                m_name : m_name,
@@ -188,7 +190,7 @@ $(document).ready(function(){
             if(data){
                alert("메세지를 확인해주세요.");
                $.ajax({
-                  url : "sendSNS.searchPw",
+                  url : "/jk/common/sendSNS.searchPw",
                   method : "post",
                   data :{
                      userPhoneNumber : m_phone
@@ -208,10 +210,10 @@ $(document).ready(function(){
          })         
       }      
    })
+	
 
    $('.submitPhoneKeyForPwBtm').on("click", function(){
       var phoneKey = $('#phoneKeyInput').val();
-      alert(phoneKey);
       var m_phone = $('#phoneInputForPw').val();
       var m_name = $('#nameInputForPw').val();
       if(phoneKey == "" || m_phone == "" || m_name == ""){
@@ -220,7 +222,7 @@ $(document).ready(function(){
       }
       else{
          $.ajax({
-            url : "compareKey",
+            url : "/jk/common/compareKey",
             method : "post",
             data : {
                m_p_id : phoneKey,
@@ -230,7 +232,7 @@ $(document).ready(function(){
          .done(function(data){
             if(data){
                $.ajax({
-                  url : "sendEmail.checkPw",
+                  url : "/jk/common/sendEmail.checkPw",
                   method : "get",
                   data : {
                      m_phone : m_phone,
@@ -262,5 +264,4 @@ $(document).ready(function(){
 
    
 })
-
 

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.jk.common.Member;
+import com.project.jk.order.OrderDAO;
+import com.project.jk.order.p_order2;
 import com.project.jk.store.lesson.Lesson;
 import com.project.jk.store.lesson.LessonDAO;
 import com.project.jk.store.product.Product;
@@ -24,6 +26,8 @@ public class StoreController {
 	private ProductDAO pdao;
 	@Autowired
 	private LessonDAO ldao;
+	@Autowired
+	private OrderDAO odao;
 
 	@RequestMapping(value = "store.go", method = RequestMethod.GET)
 	public String store(Member m, HttpServletRequest request) {
@@ -35,8 +39,11 @@ public class StoreController {
 	public String storeMyPage(Store s ,Product p, HttpServletRequest request) {
 		
 		sdao.getStoreInfo(s, request);
-		pdao.getAllProduct(request);
-		ldao.getAllLesson(request);
+		Store sss = sdao.getStoreInfo5(s, request);
+		pdao.getAllProduct2(sss,request);
+		pdao.paging2(1, request);
+		ldao.getAllLesson2(sss,request);
+		ldao.paging2(1, request);
 		request.setAttribute("contentPage","storePage/StoreMyPage.jsp");
 		return "index";
 	}
@@ -103,5 +110,100 @@ public class StoreController {
 		request.setAttribute("contentPage", "lessonPage/Result.jsp"); 
 		return "index";
 	}
+	@RequestMapping(value = "storeproduct.paging", method = RequestMethod.GET)
+	public String paging(Store s,Product p, HttpServletRequest request) {
+		int p2 = Integer.parseInt(request.getParameter("p"));
+		
+		sdao.getStoreInfo(s, request);
+		Store sss = sdao.getStoreInfo5(s, request);
+		pdao.getAllProduct2(sss,request);
+		pdao.paging2(p2, request);
+		ldao.getAllLesson2(sss,request);
+		ldao.paging2(1, request);
+		request.setAttribute("contentPage","storePage/StoreMyPage.jsp");
+		
+		
+		return "index";
+	}
+	@RequestMapping(value = "storelesson.paging", method = RequestMethod.GET)
+	public String paging2(Store s,Lesson l, HttpServletRequest request) {
+		int p3 = Integer.parseInt(request.getParameter("p2"));
+		
+		sdao.getStoreInfo(s, request);
+		Store sss = sdao.getStoreInfo5(s, request);
+		pdao.getAllProduct2(sss,request);
+		pdao.paging2(1, request);
+		ldao.getAllLesson2(sss,request);
+		ldao.paging2(p3, request);
+		request.setAttribute("contentPage","storePage/StoreMyPage.jsp");
+		
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "userStoreDetail", method = RequestMethod.GET)
+	public String userStoreDetail(Store s, HttpServletRequest request) {
+		
+		sdao.getStoreInfo3(s, request);
+		pdao.storeProduct(s, request);
+		pdao.paging2(1, request);
+		ldao.storeLesson(s, request);
+		ldao.paging2(1, request);
+
+		request.setAttribute("contentPage","storePage/userStoreDetail.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "userStorelesson.paging", method = RequestMethod.GET)
+	public String spaging2(Store s,Lesson l, HttpServletRequest request) {
+		int p3 = Integer.parseInt(request.getParameter("p2"));
+		
+		sdao.getStoreInfo3(s, request);
+		pdao.storeProduct(s, request);
+		pdao.paging2(1, request);
+		ldao.storeLesson(s, request);
+		ldao.paging2(p3, request);
+		request.setAttribute("contentPage","storePage/userStoreDetail.jsp");
+		
+		
+		return "index";
+	}
+	@RequestMapping(value = "userStoreproduct.paging", method = RequestMethod.GET)
+	public String spaging(Store s,Product p, HttpServletRequest request) {
+		int p2 = Integer.parseInt(request.getParameter("p"));
+		
+		sdao.getStoreInfo3(s, request);
+		pdao.storeProduct(s, request);
+		pdao.paging2(p2, request);
+		ldao.storeLesson(s, request);
+		ldao.paging2(1, request);
+		request.setAttribute("contentPage","storePage/userStoreDetail.jsp");
+		
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "store.Porder", method = RequestMethod.GET)
+	public String sellerP_Order(Product p,p_order2 po2,HttpServletRequest request) {
+		
+		
+		
+		odao.PordercConfrim(p,request);
+		odao.paging(1, request);
+		request.setAttribute("contentPage", "storePage/storeOrder.jsp"); 
+		return "index";
+	}
+	@RequestMapping(value = "storeProductOrder.paging", method = RequestMethod.GET)
+	public String opaging2(Product p,p_order2 po2, HttpServletRequest request) {
+		int p2 = Integer.parseInt(request.getParameter("p2"));
+		
+		odao.PordercConfrim(p,request);
+		odao.paging(p2, request);
+		request.setAttribute("contentPage","storePage/storeOrder.jsp");
+		
+		
+		return "index";
+	}
+	
+	
 	
 }

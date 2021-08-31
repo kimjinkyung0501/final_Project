@@ -81,9 +81,8 @@
 }
 
 .content_name, .content_id, .contentPw, .content_email{
-   display: flex;
-   flex-direction: column;
-   width: auto;
+ /*   display: flex;
+   width: auto; */
 }
 
 .commitName{
@@ -91,6 +90,13 @@
 
 }
 
+
+
+/* .form_txtInput button {
+	border: none;
+	width: 20px;
+	background-color: white;
+} */
 
 #memberInfo_div .infoDiv{
    display: flex;

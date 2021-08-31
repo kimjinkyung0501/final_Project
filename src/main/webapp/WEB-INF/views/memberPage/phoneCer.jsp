@@ -10,10 +10,10 @@
 
 <div>
 인증번호 <input id="inputKey" type="number" maxlength="6">
-<button class="submitKey" onclick="submitKey();">인증하기</button>
+<button class="submitKey">인증하기</button>
 </div>
 </body>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/compareKey.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/compareKey.js"></script>
 
 </html>

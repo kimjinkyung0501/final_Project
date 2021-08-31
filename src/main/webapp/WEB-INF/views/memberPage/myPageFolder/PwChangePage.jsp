@@ -5,14 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/changePw.css">
-<link rel="stylesheet" href="resources/css/searchMemberInfo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/changePw.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/searchMemberInfo.css">
 <style type="text/css">
 .text-box {
 	position: absolute;
 	top: 200px;
 	left: 50%
 }
+.table{
+width: 200px;
+}
+
+#spanTag{
+font-size: 9pt;
+}
+
 
 body {
 	margin: 15px;
@@ -52,7 +60,7 @@ body {
 
 
 </body>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/ValidLib.js"></script>
-<script type="text/javascript" src="resources/js/myPageJS.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ValidLib.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/myPageJS.js"></script>
 </html>

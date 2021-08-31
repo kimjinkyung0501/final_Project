@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.order.OrderMapper">
+<insert id="pOrderReg" parameterType="com.project.jk.order.p_order2" >
+insert into taken_p_order values(p_order2_seq.nextval,#{p2_s_name},#{p2_o_id},#{p2_o_no},#{p2_name},#{p2_email},#{p2_phone},#{p2_addr},#{p2_p_name},#{p2_p_photo},#{p2_p_quantidey},#{p2_sumPrice},#{p2_date}, #{o_o_nop})
+</insert>
+<insert id="lOrderReg" parameterType="com.project.jk.order.L_order" >
+insert into l_order2 values(#{o_no},#{o_id},#{o_email},l_order2_seq.nextval)
+</insert>
+<update id="minusStock" parameterType="com.project.jk.order.p_order2">
+update product set p_stock= p_stock-#{p2_p_quantidey} where p_no=#{p2_o_no}
+</update>
+<update id="returnStock" parameterType="com.project.jk.order.p_order2">
+update product set p_stock= p_stock+#{p2_p_quantidey} where p_no=#{p2_o_no}
+</update>
+<delete id="deletePorder" parameterType="com.project.jk.order.p_order2">
+delete taken_p_order where p2_no=#{p2_no}
+</delete>
+<select id="PordercConfrim" parameterType="com.project.jk.store.product.Product" resultType="com.project.jk.order.p_order2" >
+select * from taken_p_order,product where p_no=p2_o_no and p_no=#{p_no} order by p2_date
+</select>
+
+<select id="rankProduct" resultType="com.project.jk.order.p_order2">
+SELECT p2_o_no, p2_p_name, p2_p_photo,
+sum(p2_p_quantidey) AS p2_p_quantidey
+FROM taken_p_order
+GROUP BY p2_o_no, p2_p_name, p2_p_photo
+ORDER BY p2_p_quantidey DESC
+</select>
+
+
+</mapper>

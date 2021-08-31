@@ -135,7 +135,7 @@ width: 100px;
 					<label class="col-sm-2">수업명</label>
 					<div class="com-sm-3">
 						<input type="text" id="name" name="l_name" value="${l.l_name }" class="form-control">
-						<input type="hidden" name="l_rn" value="${param.l_rn }">
+						<input type="hidden" name="l_no" value="${param.l_no }">
 					</div>
 				</div>
 
@@ -143,7 +143,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">가격</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitPrice" name="l_price" value="${l.l_price }"
+						<input type="number" id="unitPrice" name="l_price" value="${l.l_price }"
 							class="form-control">
 					</div>
 				</div>
@@ -180,16 +180,18 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">이미지</label>
 					<div>
-						<input type="file" class="form-control" name="l_photo" value="${l.l_photo }">
+						<input type="file" class="form-control" name="l_photo">
+						<input type="hidden" name="l_photo_old" value="${l.l_photo }" >
 					</div>
 				</div>
 
-
+			
 
 				<div class="form-group row">
 					<label class="col-sm-2">영상</label>
 					<div>
-						<input type="file" class="form-control" name="l_video"  value="${l.l_video }">
+						<input type="file" class="form-control" name="l_video" >
+						<input type="hidden" name="l_video_old" value="${l.l_video }" >
 					</div>
 				</div>
 

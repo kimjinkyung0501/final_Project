@@ -1,10 +1,5 @@
 package com.project.jk.common;
 
-
-import org.springframework.stereotype.Repository;
-
-//xml파일에 bean설정을 하지 않았기 때문에 Repository를 설정해줘야한다.
-@Repository
 public class TempMemberInfo {
 	private String t_m_id;
 	private String t_m_email;

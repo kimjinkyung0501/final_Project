@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.message.MessgeMapper">
+
+	<select id="showAll" resultType="com.project.jk.message.Message"
+		parameterType="com.project.jk.message.Message">
+
+		select trim(msg_reciver) as test from message where
+		trim(msg_sender) =
+		#{msg_sender}
+		group by trim(msg_reciver)
+		union
+		select
+		trim(msg_sender) as test from message where trim(msg_reciver) =
+		#{msg_reciver}
+		group by trim(msg_sender)
+
+	</select>
+
+	<select id="getNumber" resultType="int"
+		parameterType="com.project.jk.message.Message">
+
+		select msg_no from message
+		where msg_no = (
+		select
+		max(msg_no)
+		from message where
+		msg_sender = #{msg_sender} or msg_reciver
+		= #{msg_reciver}
+		)
+
+
+	</select>
+
+	<select id="getText" resultType="com.project.jk.message.Message">
+
+		select * from message where
+		msg_sender = #{msg_sender} and msg_reciver =
+		#{msg_reciver}
+		or
+		msg_sender = #{msg_reciver} and msg_reciver = #{msg_sender} order by
+		msg_no ASC
+	</select>
+
+
+	<select id="getLastText"
+		resultType="com.project.jk.message.Message">
+
+		select * from ( select * from message where msg_sender =
+		#{msg_sender} and
+		msg_reciver = #{msg_reciver}
+		or msg_sender =
+		#{msg_reciver} and msg_reciver = #{msg_sender} order by
+		msg_no DESC)
+		where rownum = 1
+
+	</select>
+
+
+	<select id="checkReciver" parameterType="String"
+		resultType="int">
+
+		select count(*) from member where m_id = #{s}
+
+	</select>
+
+
+	<insert id="sendText"
+		parameterType="com.project.jk.message.Message">
+
+		insert into message
+		values(message_no_seq.nextval,#{msg_sender},#{msg_reciver},
+		#{msg_text},sysdate,'no',null)
+
+	</insert>
+
+	<insert id="report"
+		parameterType="com.project.jk.message.Complain">
+
+		insert into complain values(complain_no_seq.nextval,
+		#{c_id}, #{c_reason},
+		#{c_content}, sysdate, (select m_phone from
+		member where m_id =
+		#{c_id}),
+		(select m_email from member where m_id =
+		#{c_id}),1)
+
+	</insert>
+
+	<!-- 안 읽은 메시지가 몇개인지 계산하기 -->
+	<select id="countNo" resultType="int"
+		parameterType="com.project.jk.message.Users">
+		select count(msg_readed) from message where msg_sender =
+		#{sender} and
+		msg_reciver = #{reciver} and msg_readed = 'no'
+	</select>
+
+	<!--메시지를 읽으면 메시지를 읽음으로 -->
+
+	<update id="toZero"
+		parameterType="com.project.jk.message.Message">
+
+		UPDATE message SET msg_readed = 'yes' WHERE msg_sender =
+		#{msg_reciver} and
+		msg_reciver = #{msg_sender}
+	</update>
+
+	<select id="howManyNew" resultType="int" parameterType="String">
+
+		select
+		count(msg_readed) from message where msg_reciver = #{id} and
+		msg_readed = 'no'
+
+	</select>
+
+
+</mapper>

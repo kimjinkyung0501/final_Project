@@ -8,20 +8,22 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/index.css">
 <style type="text/css">
-
 body {
-	background-image : url('${pageContext.request.contextPath}/resources/img/etcAll2.jpg');
-	background-repeat: no-repeat;
-	background-position: right;
+margin: 15px;
+	margin-right: 15px; background-image :
+	url('${pageContext.request.contextPath}/resources/img/etcAll2.jpg');
+	background-repeat : no-repeat; background-position : right;
 	background-size: 50% 100%;
-	margin: 15px;
 	text-align: left;
 	font-family: 'PT Serif', serif;
 	font-family: 'Noto Sans KR', sans-serif;
+	background-position: right;
+	background-repeat: no-repeat;
+	background-image:
+		url('${pageContext.request.contextPath}/resources/img/etcAll2.jpg');
 }
 </style>
 </head>
 <body>
-<h1>home</h1>
 </body>
 </html>

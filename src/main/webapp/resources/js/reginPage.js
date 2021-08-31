@@ -2,7 +2,9 @@ let check_info = document.getElementById("check_info").value;
 var emailCheckValue = document.getElementById("emailCheckValue").value;
 let checkIdValue = document.getElementById("checkIdValue").value;
    
-   
+const idSpan = document.getElementById('idspan_tag');
+const emailSpan = document.getElementById('emailSpan');
+
 function reginValid() {
    const m_name = document.getElementById("m_name");
    const m_id = document.getElementById("m_id");
@@ -18,44 +20,71 @@ function reginValid() {
       alert("이름을 입력하여 주세요");
       return false;
    }
+   else if (isEmpty(m_name)) {
+      alert("ID를 입력하여 주세요");
+      return false;
+   }
+   else if (notGoodId(m_name)) {
+      alert("이름이 적절하지 않습니다.");
+      return false;
+   }
+   else if(lessThan(m_name,2)){
+      alert("이름이 적절하지 않습니다.");
+      return false;
+   }
+   //////////////////////////////////////////
 
    else if (isEmpty(m_id)) {
       alert("ID를 입력하여 주세요");
+      return false;
+   }
+   else if (overThan(m_id, 10)) {
+      alert("아이디는 10자리 이하로 작성해주세요");
+      return false;
+   }
+   else if (notGoodId(m_id)) {
+      alert("아이디가 적절하지 않습니다.");
+      return false;
+   }
+   else if(lessThan(m_id,6)){
+      alert("아이디가 너무 짧습니다.");
       return false;
    }
    else if (isEmpty(m_pw)) {
       alert("PassWord를 입력하여 주세요");
       return false;
    }
-   else if(isEmpty(m_phone)){
-      alert("번호를 입력해주세요");
+   else if (notContainKey(m_pw)) {
+      alert("허용되지 않은 문자열은 사용할 수 없습니다.");
       return false;
    }
-
+   else if(lessThan(m_pw,10)){
+      alert("비밀번호는 10자리 이상으로 해주세요");
+      return false;
+   }
    else if (m_pw.value != m_pw_compare.value) {
       alert("PassWord를 확인하여 주세요");
       return false;
    }
-     else if(isEmpty(m_email)){
+   else if (isEmpty(m_phone)) {
+      alert("번호를 입력해주세요");
+      return false;
+   }
+
+   else if (isEmpty(m_email)) {
       alert("이메일을 입력하여 주세요");
       return false;
    }
 
-     else if (checkIdValue == "false") {
+   else if (checkIdValue == "false") {
       alert("값이 비어있거나 중복체크를 해주세요");
       return false;
    }
 
-   else if(emailCheckValue == "false"){
+   else if (emailCheckValue == "false") {
       alert("이메일 인증을 완료해주세요");
       return false;
    }
-/*   else if (check_info == "false") {
-      alert("휴대폰 인증을 실시해주세요");
-      return false;
-   }*/
-
-
    else if (notCorrectPhoneNumber(m_phone)) {
       alert("핸드폰 번호에 '-' 와 공백을 제거해 주세요");
       return false;
@@ -74,8 +103,6 @@ $(document).ready(function() {
       if(reginValid()){
       var m_id = $('#m_id').val();
       var m_phone = $('#m_phone').val();
-      alert(m_id);
-      alert(m_phone);
       $.ajax({
          url : "checkSuccessInfo.do",
          type : "post",
@@ -88,7 +115,7 @@ $(document).ready(function() {
             $('#reginForm').submit();
          }
          else{
-            alert("이메일 인증을 완료해주세요");            
+            alert("인증을 완료해주세요");            
          }
         },          
            error: function (e) {  
@@ -104,20 +131,13 @@ $(document).ready(function() {
 
       })
       
-      
-      
-      
-      
-      
-   
-
 
 
    $('.checkEmail').click(function (){
       let userId = $('#m_id').val();
       let userEmail = $('#m_email').val();
-      let ok = confirm("이메일 인증 완료시 정상적인 이용이 가능합니다.");
-      if (ok) {
+      let o = confirm("이메일 인증 완료시 정상적인 이용이 가능합니다.");
+      if (o) {
       $.ajax({
          url: "sendEmail.do",
          method: "get",
@@ -129,8 +149,8 @@ $(document).ready(function() {
          //data가 boolean타입으로 리턴됨
          if(data){
             //메일이 정상적으로 보내졌을 경우 뜨는 알람
-         alert(emailCheckValue);
          emailCheckValue = "true";
+         emailSpan.innerText = "이메일 인증 완료 시 가입이 가능합니다."
             alert("이메일을 확인해 주세요");
          }
          else{
@@ -142,7 +162,7 @@ $(document).ready(function() {
       }
          })
          .fail(function() {
-         alert("이메일 전송 실패");
+         alert("아이디를 확인해주세요");
          })
       }
    else{
@@ -171,6 +191,7 @@ $(document).ready(function() {
                let input_id = data;
                if (input_id) {
                   checkIdValue = "true";
+               idSpan.innerText= "중복 체크 완료";
                   alert("사용할 수 있는 아이디입니다.")
                }
                else {
@@ -185,7 +206,23 @@ $(document).ready(function() {
             })
       }
    })
-
+   $('.phoneCheck').click(function(){
+      const m_phone = $('#m_phone').val();
+      $.ajax({
+         url : "/jk/common/sendSNS",
+         method : "post",
+         data : {
+            userPhoneNumber : m_phone
+         },
+         success : function(){
+            window.open("/jk/common/checkPhoneKey.go?m_phone="+m_phone,"휴대폰 인증창", "width=400, height=400, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+         }
+      })
+      .fail(function(){
+         alert("ajax 실패");
+      })
+   
+});
 
 });
 
@@ -207,10 +244,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    document.form.zipNo.value = zipNo;
 }
 
+
+
 /*주소지 등록 form태그 작동시키는 기능*/
 function regAddr(){
-   var ok = confirm("주소지를 등록하시겠습니까?");
-   if(ok){
+   var o = confirm("주소지를 등록하시겠습니까?");
+   if(o){
       $(document).ready(function(){
          $('#form').submit();
       })

@@ -10,7 +10,7 @@ select * from notice where n_no = #{n_no}
 </select>
 
 <insert id="regNotice" parameterType="com.project.jk.notice.Notice">
-insert into notice values(notice_seq.nextval, #{n_id}, #{n_title}, sysdate, #{n_content}, #{n_photo})
+insert into notice values(notice_seq.nextval, #{n_id}, #{n_title}, sysdate, #{n_content}, #{n_photo}, 0)
 </insert>
 
 <delete id="delNotice" parameterType="com.project.jk.notice.Notice">
@@ -20,4 +20,10 @@ delete notice where n_no = #{n_no}
 <update id="updateNotice" parameterType="com.project.jk.notice.Notice">
 update notice set n_title = #{n_title}, n_content = #{n_content}, n_photo = #{n_photo} where n_no = #{n_no}
 </update>
+
+<update id="updateNoticeCnt" parameterType="com.project.jk.notice.Notice">
+update notice set n_count = n_count + 1 where n_no = #{n_no}
+</update>
+
+
 </mapper>

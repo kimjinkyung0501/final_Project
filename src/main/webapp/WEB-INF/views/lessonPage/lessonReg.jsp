@@ -135,7 +135,7 @@ width: 100px;
 					<label class="col-sm-2">수업명</label>
 					<div class="com-sm-3">
 						<input type="text" id="name" name="l_name" class="form-control">
-						<input type="hidden" name="l_rn" value="${param.l_rn }">
+						<input type="hidden" name="l_rn" value="${param.l_rn }" required="required"  >
 					</div>
 				</div>
 
@@ -143,8 +143,8 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">가격</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitPrice" name="l_price"
-							class="form-control">
+						<input type="number" id="unitPrice" name="l_price"
+							class="form-control" required="required" >
 					</div>
 				</div>
 
@@ -152,7 +152,7 @@ width: 100px;
 					<label class="col-sm-2">수업설명</label>
 					<div class="com-sm-5">
 						<textarea cols="50" rows="2" class="textarea" name="l_content"
-							placeholder="1000자 이내로 적어주세요."></textarea>
+							placeholder="1000자 이내로 적어주세요." required="required"></textarea>
 
 					</div>
 				</div>
@@ -181,7 +181,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">이미지</label>
 					<div>
-						<input type="file" class="form-control" name="l_photo">
+						<input type="file" class="form-control" name="l_photo" required="required">
 					</div>
 				</div>
 
@@ -190,7 +190,7 @@ width: 100px;
 				<div class="form-group row">
 					<label class="col-sm-2">영상</label>
 					<div>
-						<input type="file" class="form-control" name="l_video">
+						<input type="file" class="form-control" name="l_video" required="required">
 					</div>
 				</div>
 

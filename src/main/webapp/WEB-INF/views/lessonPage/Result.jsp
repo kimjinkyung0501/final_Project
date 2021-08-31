@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body {
-    margin: 15px;
-}
 
 .text-box {
 	position: absolute;

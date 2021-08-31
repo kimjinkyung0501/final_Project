@@ -1,14 +1,17 @@
 package com.project.jk.store.product;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import com.project.jk.order.p_order;
+import com.project.jk.order.p_order2;
+import com.project.jk.store.Store;
 
 
 public interface ProductMapper {
 
 	public int productReg(Product p);
 	
-	public List<Product> getAllProduct();
+	public ArrayList<Product> getAllProduct();
 
 	public Product getProduct(Product p);
 	
@@ -16,10 +19,11 @@ public interface ProductMapper {
 	
 	public int updateProduct(Product p);
 
-	public List<Product> searchHomeProduct(String keyword);
 
+	public int insertCart(p_order po);
 
+	public ArrayList<Product> getProductLabel(Product p);
 
-	
+	public ArrayList<Product> getAllProduct2(Store s);
 
 }

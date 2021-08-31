@@ -1,10 +1,5 @@
 package com.project.jk.common;
 
-
-import org.springframework.stereotype.Repository;
-
-//xml파일에 bean설정을 하지 않았기 때문에 Repository를 설정해줘야한다.
-//근데 파라미터로 받을 때 mapping을 해서 이런 상황에서는 안 해도 됨.
 public class Member {
 	private String m_id;
 	private String m_pw;

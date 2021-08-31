@@ -10,7 +10,8 @@
 	href="${pageContext.request.contextPath}resources/css/myPage.css">
 <style type="text/css">
 body {
-	margin: 15px;
+	margin-top: 15px;
+	margin-left: 15px;
 }
 
 .box {
@@ -49,11 +50,12 @@ body {
 }
 
 ul.mylist, ol.mylist {
+align-content : center;
 	list-style: none;
 	margin: 3px;
 	padding: 3px;
-	max-width: 900px;
-	width: 700px;
+	max-width: 600px;
+	width: 600px;
 	margin-left: 100px;
 }
 
@@ -136,6 +138,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 <body>
 
 
+
 	<div style="width: 100%; min-height: 1px; height: 250px;"></div>
 
 
@@ -161,13 +164,9 @@ ul.mylist li:hover, ol.mylist li:hover {
 						<div class="state">
 							<ul class="order">
 								<li><strong>결제완료</strong> <a href="" class="count"><span
-										id="xans_myshop_orderstate_shppied_before_count">0</span></a></li>
-								<li><strong>배송완료</strong> <a href="" class="count"><span
-										id="xans_myshop_orderstate_shppied_standby_count">0</span></a></li>
-								<li><strong>주문취소</strong> <a href="" class="count"><span
-										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
-								<li><strong>환불완료</strong> <a href=""><span
-										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
+										id="xans_myshop_orderstate_shppied_before_count">${orderCount}</span></a></li>
+								<li><strong>수강하기</strong> <a href="" class="count"><span
+										id="xans_myshop_orderstate_shppied_standby_count">${lessonCount }</span></a></li>
 							</ul>
 
 							<div style="width: 100%; min-height: 1px; height: 50px;"></div>
@@ -195,7 +194,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 				<div id="hiddenTB" style="display: none">
 					<div>
 						<div style="width: 70%; margin-left: 30px;">
-							${sessionScope.member_session.m_addr }</div>
+							${sessionScope.member_session.m_addr}</div>
 						<div style="width: 30%;">
 							<a style="margin-left: 30px;"
 								href="${pageContext.request.contextPath}/common/regAddr.go">[수정]</a>
@@ -224,7 +223,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 							<h3>나의 주문처리 현황</h3>
 						</div>
 						<div class="state">
-							<ul class="order">
+							<!-- <ul class="order">
 								<li><strong>결제완료</strong> <a href="" class="count"><span
 										id="xans_myshop_orderstate_shppied_before_count">0</span></a></li>
 								<li><strong>배송완료</strong> <a href="" class="count"><span
@@ -234,7 +233,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 								<li><strong>환불완료</strong> <a href=""><span
 										id="xans_myshop_orderstate_shppied_begin_count">0</span></a></li>
 
-							</ul>
+							</ul> -->
 
 
 
@@ -244,7 +243,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 										<div style="width: 70%;">
 											${sessionScope.member_session.m_addr }</div>
 										<div style="width: 30%;">
-											<button>등록 및 수정</button>
+											<!-- <button>등록 및 수정</button> -->
 										</div>
 									</div>
 								</li>
@@ -271,15 +270,21 @@ ul.mylist li:hover, ol.mylist li:hover {
 
 	</c:choose>
 
-	<div style="width: 100%; min-height: 1px; height: 80px;"></div>
+	<div style="width: 80%; min-height: 1px; height: 80px;"></div>
 	<ul class="mylist">
-		<li style="width: 150px;"><a style="font-weight: bold;">ORDER</a><br>
-			<a>주문조회</a></li>
+		<li style="width: 158px;"><a
+			href="${pageContext.request.contextPath}/common/take.class"
+			style="font-weight: bold;">CLASS</a><br> <a
+			href="${pageContext.request.contextPath}/common/take.class">수강하기</a>
+		</li>
+		<li style="width: 150px;"><a
+			href="${pageContext.request.contextPath}/common/toOrderPage.go"
+			style="font-weight: bold;">ORDER</a><br> <a>주문조회</a></li>
 		<li style="width: 150px;"><a
 			href="${pageContext.request.contextPath}/common/toCart.go"
 			style="font-weight: bold;"> CART</a><br> <a
 			href="${pageContext.request.contextPath}/common/toCart.go">장바구니</a></li>
-		<li style="width: 145px;"><a
+		<li style="width: 145px; margin-left: 60px;"><a
 			href="${pageContext.request.contextPath}/common/changeInfo.go"
 			style="font-weight: bold;"> INFO</a><br> <a
 			href="${pageContext.request.contextPath}/common/changeInfo.go">정보수정</a></li>
@@ -287,6 +292,7 @@ ul.mylist li:hover, ol.mylist li:hover {
 			href="${pageContext.request.contextPath}/common/regAddr.go"
 			style="font-weight: bold;"> ADDRESS</a><br> <a
 			href="${pageContext.request.contextPath}/common/regAddr.go">주소등록</a></li>
+
 	</ul>
 
 

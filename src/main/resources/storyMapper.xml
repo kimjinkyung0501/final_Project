@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.story.StoryMapper">
+<select id="storyAll" resultType="com.project.jk.story.Story">
+select * from story
+</select>
+
+<select id="getStory" resultType="com.project.jk.story.Story">
+select * from story where s_no = #{s_no}
+</select>
+
+<insert id="regStory" parameterType="com.project.jk.story.Story">
+insert into story values(story_seq.nextval, #{s_id}, #{s_title}, sysdate, #{s_content}, #{s_photo}, 0)
+</insert>
+
+<delete id="delStory" parameterType="com.project.jk.story.Story">
+delete story where s_no = #{s_no}
+</delete>
+
+<delete id="delStoryReply" parameterType="com.project.jk.story.StoryReply">
+delete story_reply where sr_pk = #{sr_pk}
+</delete>
+
+<update id="updateStory" parameterType="com.project.jk.story.Story">
+update story set s_title = #{s_title}, s_date = sysdate, s_content = #{s_content}, s_photo = #{s_photo} where s_no = #{s_no}
+</update>
+
+<update id="updateReply" parameterType="com.project.jk.story.StoryReply">
+update story_reply set sr_content = #{sr_content} where sr_pk = #{sr_pk}
+</update>
+
+<insert id="writeReply" parameterType="com.project.jk.story.StoryReply">
+insert into story_reply values(story_reply_seq.nextval, #{sr_id}, #{sr_no}, #{sr_content}, sysdate)
+</insert>
+
+<select id="getStoryP" parameterType="com.project.jk.story.StorySelector" resultType="com.project.jk.story.Story">
+select * from (
+         select rownum as rn, s_no, s_id, s_title, s_date, s_content, s_photo, s_like_count
+         from(
+            select * from member, story
+            where m_id = s_id and
+            s_content like '%'||#{search}||'%'
+            order by s_date desc
+         )
+      )
+      where rn &gt;= #{start} and rn &lt;= #{end}
+</select>
+
+<select id="getAllStoryCount" resultType="java.lang.Integer">
+select count(*) from member, story where m_id = s_id
+</select>
+
+<select id="getSearchStoryCnt" resultType="java.lang.Integer" parameterType="com.project.jk.story.StorySelector">
+select count(*) from story where s_title like '%'||#{search}||'%'
+</select>
+
+<select id="getReply" resultType="com.project.jk.story.StoryReply" parameterType="com.project.jk.story.Story">
+select * from story_reply where sr_no = #{s_no} order by sr_date
+</select>
+
+<select id="getReplyOne" parameterType="com.project.jk.story.StoryReply" resultType="com.project.jk.story.StoryReply">
+select * from story_reply where sr_pk = #{sr_pk}
+</select>
+
+<insert id="likeReg" parameterType="com.project.jk.story.StoryLike">
+insert into story_like values(story_like_seq.nextval, #{ls_no}, #{lm_id})
+</insert>
+
+<update id="likePlus" parameterType="com.project.jk.story.StoryLike">
+update story set s_like_count = s_like_count + 1 where s_no = #{ls_no}
+</update>
+
+<select id="confirmM_id" parameterType="com.project.jk.story.StoryLike" resultType="java.lang.Integer">
+select * from story, story_like where s_no = ls_no and lm_id = #{lm_id} and ls_no = #{ls_no}
+</select>
+
+<delete id="likeDel" parameterType="com.project.jk.story.StoryLike"> 
+delete story_like where ls_no = #{ls_no}
+</delete>
+
+<update id="likeMinus" parameterType="com.project.jk.story.StoryLike">
+update story set s_like_count = s_like_count - 1 where s_no = #{ls_no}
+</update>
+
+<select id="likeCheck" resultType="com.project.jk.story.StoryLike">
+select * from STORY_LIKE, member where lm_id = m_id and lm_id = #{lm_id}
+
+</select>
+
+</mapper>

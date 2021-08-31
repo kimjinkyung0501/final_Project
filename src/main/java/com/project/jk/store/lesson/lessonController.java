@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-import com.project.jk.store.product.Product;
+import com.project.jk.comment.L_CommentDAO;
+import com.project.jk.store.product.ProductDAO;
 
 
 
@@ -17,6 +17,10 @@ public class lessonController {
 	
 	@Autowired
 	private LessonDAO ldao;
+	@Autowired
+	private ProductDAO pdao;
+	@Autowired
+	private L_CommentDAO lcdao;
 
 	@RequestMapping(value = "lesson.reg.go", method = RequestMethod.GET)
 	public String productreg( HttpServletRequest request) {
@@ -53,4 +57,37 @@ public class lessonController {
 		return "index";
 		
 	}
+	@RequestMapping(value = "lesson.go", method = RequestMethod.GET)
+	public String productgo(HttpServletRequest request) {
+		ldao.getAllLesson(request);
+		ldao.paging(1, request);
+		pdao.getStore2(request);
+		request.setAttribute("contentPage", "lessonPage/lessonView.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "lesson.paging", method = RequestMethod.GET)
+	public String productpaging(HttpServletRequest request) {
+		int p2 = Integer.parseInt(request.getParameter("p"));
+		pdao.getStore2(request);
+		ldao.paging(p2, request);
+		request.setAttribute("contentPage", "lessonPage/lessonView.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "lesson.detail", method = RequestMethod.GET)
+	public String sellerproductdetail(Lesson l, HttpServletRequest request) {
+		lcdao.getAlllComment(l, request);
+		lcdao.paging(1, request);
+		ldao.getLesson(l, request);
+		request.setAttribute("contentPage", "lessonPage/userLessondetail.jsp"); 
+		return "index";
+	}
+	@RequestMapping(value = "lesson.label", method = RequestMethod.GET)
+	public String LessonLabel(Lesson l,HttpServletRequest request) {
+		ldao.Llabel(l);
+		ldao.paging(1, request);
+		pdao.getStore2(request);
+		request.setAttribute("contentPage", "lessonPage/lessonView.jsp");
+		return "index";
+	}
+	
 }

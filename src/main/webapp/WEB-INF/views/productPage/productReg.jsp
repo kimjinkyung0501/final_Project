@@ -134,15 +134,15 @@ textarea {
 				<div class="form-group row">
 					<label class="col-sm-2">상품명</label>
 					<div class="com-sm-3">
-						<input type="text" id="name" name="p_name" class="form-control">
+						<input type="text" id="name" name="p_name" class="form-control" required="required">
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2">재고</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitsInStock" name="p_stock"
-							class="form-control">
+						<input type="number" id="unitsInStock" name="p_stock"
+							class="form-control" required="required">
 					</div>
 				</div>
 
@@ -151,8 +151,8 @@ textarea {
 				<div class="form-group row">
 					<label class="col-sm-2">가격</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitPrice" name="p_price"
-							class="form-control">
+						<input type="number" id="unitPrice" name="p_price"
+							class="form-control" required="required">
 					</div>
 				</div>
 
@@ -160,7 +160,7 @@ textarea {
 					<label class="col-sm-2">제품 설명</label>
 					<div class="com-sm-5">
 						<textarea cols="50" rows="2" class="form-control" name="p_content"
-							placeholder="1000자 이내로 적어주세요."></textarea>
+							placeholder="1000자 이내로 적어주세요."  required="required"></textarea>
 						<input type="hidden" name="p_rn" value="${param.p_rn }">
 					</div>
 				</div>
@@ -188,7 +188,7 @@ textarea {
 				<div class="form-group row">
 					<label class="col-sm-2">이미지</label>
 					<div>
-						<input type="file" class="form-control" name="p_photo1">
+						<input type="file" class="form-control" name="p_photo1" required="required">
 					</div>
 				</div>
 

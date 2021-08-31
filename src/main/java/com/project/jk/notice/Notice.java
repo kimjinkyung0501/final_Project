@@ -11,12 +11,14 @@ public class Notice {
 	private Date n_date;
 	private String n_content;
 	private String n_photo;
-
+	private BigDecimal n_count;
+	
 	public Notice() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Notice(BigDecimal n_no, String n_id, String n_title, Date n_date, String n_content, String n_photo) {
+	public Notice(BigDecimal n_no, String n_id, String n_title, Date n_date, String n_content, String n_photo,
+			BigDecimal n_count) {
 		super();
 		this.n_no = n_no;
 		this.n_id = n_id;
@@ -24,6 +26,7 @@ public class Notice {
 		this.n_date = n_date;
 		this.n_content = n_content;
 		this.n_photo = n_photo;
+		this.n_count = n_count;
 	}
 
 	public BigDecimal getN_no() {
@@ -73,6 +76,16 @@ public class Notice {
 	public void setN_photo(String n_photo) {
 		this.n_photo = n_photo;
 	}
+
+	public BigDecimal getN_count() {
+		return n_count;
+	}
+
+	public void setN_count(BigDecimal n_count) {
+		this.n_count = n_count;
+	}
+	
+	
 	
 	
 	

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.admin.AdminMapper">
+
+
+	<!-- 회원의 등급 별로 조회 하는 쿼리 & 각각의 페이징 시작 -->
+
+	<select id="getShopInfo" resultType="com.project.jk.store.Store">
+		SELECT *
+		FROM (
+				SELECT ROWNUM RN, A.*
+				FROM (
+					select s_name
+							,s_exp
+							,s_id
+							,s_img
+							,s_no 
+					from store,member 
+					where s_id = m_id 
+					and m_grade=2
+					) A
+			)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="getShopInfo2"
+		resultType="com.project.jk.store.Store">
+				SELECT *
+		FROM (
+				SELECT ROWNUM RN, A.*
+				FROM (
+					select s_name
+							,s_exp
+							,s_id
+							,s_img
+							,s_no 
+					from store,member 
+					where s_id = m_id 
+					and m_grade=3
+					) A
+			)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="getShopInfo3"
+		resultType="com.project.jk.common.Member">
+				SELECT *
+		FROM (
+				SELECT ROWNUM RN, A.*
+				FROM (
+					select * from member where m_grade=4
+					) A
+			)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	
+
+
+	<!-- 총 상점 갯수 출력 grade2-->
+	<select id="countStore" resultType="int">
+		select count(1)
+		from store,member 
+		where s_id = m_id 
+		and m_grade=2
+	</select>
+	
+	<!-- 총 상점 갯수 출력 grade3-->
+	<select id="countStore2" resultType="int">
+		select count(1)
+		from store,member 
+		where s_id = m_id 
+		and m_grade=3
+	</select>
+	<!-- 총 상점 갯수 출력 grade4-->
+	<select id="countStore3" resultType="int">
+		select count(1)
+		from member 
+		where m_grade=4
+	</select>
+	
+	<!-- 상점의 승인 또는 거부 쿼리 grade4-->
+	<update id="storeApprove"
+		parameterType="com.project.jk.common.Member">
+		UPDATE member SET m_grade = #{m_grade} WHERE m_id = #{m_id}
+
+	</update>
+
+
+<!-- 모든 멤버출력 -->
+	<select id="getAllMember"
+		resultType="com.project.jk.common.Member" parameterType="com.project.jk.PagingVO">
+       SELECT *
+				FROM (
+						SELECT ROWNUM RN, A.*
+						FROM (
+				select * from member
+							
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+
+	</select>
+	
+	<!-- 총 회원 수 출력 -->
+	<select id="countMember" resultType="int">
+		select count(1)
+		from member 
+	</select>
+
+
+
+
+	<update id="memberRenew"
+		parameterType="com.project.jk.common.Member">
+		update member set m_pw = #{m_pw}, m_name = #{m_name}, m_addr = #{m_addr},
+		m_phone = #{m_phone}, m_grade = #{m_grade}, m_email = #{m_email}
+		where m_id = #{m_id}
+	</update>
+
+
+
+<!-- 멤버검색 -->
+	<select id="memberSeachByID"
+		resultType="com.project.jk.common.Member" parameterType="hashmap" >
+		
+		select * from member where m_id like '%'||#{Search_v}||'%'
+		
+	</select>
+
+	<select id="memberSeachByName"
+		resultType="com.project.jk.common.Member" parameterType="hashmap">
+		select * from member where m_name like '%'||#{Search_v}||'%'
+	</select>
+
+	<select id="memberSeachByPhone"
+		resultType="com.project.jk.common.Member" parameterType="hashmap">
+		select * from member where m_phone like '%'||#{Search_v}||'%'
+	</select>
+
+	<select id="memberSeachByAddr"
+		resultType="com.project.jk.common.Member" parameterType="hashmap">
+		select * from member where m_addr like '%'||#{Search_v}||'%'
+	</select>
+
+	<select id="memberSeachByGrade"
+		resultType="com.project.jk.common.Member" parameterType="hashmap">
+		select * from member where m_grade like '%'||#{Search_v}||'%'
+	</select>
+	
+
+	<select id="memberSeachByEmail"
+		resultType="com.project.jk.common.Member" parameterType="hashmap">
+		select * from member where m_email like '%'||#{Search_v}||'%'
+	</select>
+
+
+	<delete id="deleteShop"
+		parameterType="com.project.jk.common.Member">
+		delete from store where s_id = #{m_id}
+	</delete>
+	
+	
+	
+	<select id="getComplains" resultType="com.project.jk.message.Complain" parameterType="com.project.jk.admin.paginVO">
+	
+	  SELECT *
+				FROM (
+						SELECT ROWNUM RN, A.*
+						FROM (
+	select * from complain order by c_date DESC 
+							
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+	
+	</select>
+	<select id="countComplain" resultType="int">
+		select count(1)
+		from complain
+	</select>
+	
+	
+	<!-- 불만 처리상태 갱신  _처리시작-->
+	<update id="complainHandle_S" parameterType="com.project.jk.message.Complain">
+	update complain set c_state='2' where c_no= #{c_no}
+	</update>
+	
+	<!-- 불만 처리상태 갱신  _처리완료-->
+	<update id="complainHandle_C" parameterType="com.project.jk.message.Complain">
+	update complain set c_state='3' where c_no= #{c_no}
+	</update>
+	
+	<!-- 불만 처리상태 갱신  _처리보류-->
+	<update id="complainHandle_P" parameterType="com.project.jk.message.Complain">
+	update complain set c_state='4' where c_no= #{c_no}
+	</update>
+
+
+
+	
+     <select id="complainSearch1" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_id like '%'||#{seach_C}||'%' order by c_state
+     </select>
+     <select id="complainSearch2" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_content like '%'||#{seach_C}||'%' order by c_state
+     </select>
+     <select id="complainSearch3" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_phone like '%'||#{seach_C}||'%' order by c_state
+     </select>
+     <select id="complainSearch4" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_email like '%'||#{seach_C}||'%' order by c_state
+     </select>
+     <select id="complainSearch5" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_reason like '%'||#{seach_C}||'%' order by c_state
+     </select>
+     <select id="complainSearch6" resultType="com.project.jk.message.Complain" parameterType="java.util.HashMap">
+     select * from complain where c_state like '%'||#{seach_C}||'%' order by c_state
+     </select>
+
+    
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

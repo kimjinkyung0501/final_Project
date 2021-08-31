@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/searchMemberInfo.css">
 <style type="text/css">
 .text-box {
 	position: absolute;

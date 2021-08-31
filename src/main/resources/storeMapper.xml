@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.jk.store.StoreMapper">
-<insert id="reg">
+<insert id="reg" parameterType="com.project.jk.store.Store" >
 insert into store values(#{s_id},store_seq.nextval,#{s_name},#{s_exp},#{s_img})
 </insert>
 <update id="gradeUp" parameterType="com.project.jk.common.Member">
@@ -16,15 +16,28 @@ select * from store where s_id=#{s_id}
 <select id="getMemberInfo"  resultType="com.project.jk.common.Member">
 select * from member where m_id=#{m_id}
 </select>
+<select id="getStoreInfo2" resultType="com.project.jk.store.Store">
+select * from store 
+</select> 
+<select id="getStoreInfo3"  parameterType="com.project.jk.store.Store" resultType="com.project.jk.store.Store">
+select * from store where s_no=#{s_no}
+</select>
+<select id="getStoreInfo4"  parameterType="com.project.jk.store.product.Product" resultType="com.project.jk.store.Store">
+select * from store where s_no=#{p_rn}
+</select>
 <delete id="deleteStore" parameterType="com.project.jk.store.Store">
 delete store where s_no=#{s_no}
 </delete>
 <update id="updateStore" parameterType="com.project.jk.store.Store">
 update store set s_name=#{s_name},s_exp=#{s_exp},s_img=#{s_img} where s_id=#{s_id}
 </update>
-
-<select id="searchHomestore" resultType="com.project.jk.store.Store">
-select * from store where s_name like '%' || #{keyword } ||'%'
+<select id="getproducts" parameterType="com.project.jk.store.Store"  resultType="com.project.jk.store.product.Product">
+select * from store,product where s_no=p_rn and s_no=#{s_no} 
 </select>
+<select id="getlessons" parameterType="com.project.jk.store.Store" resultType="com.project.jk.store.lesson.Lesson">
+select * from store,lesson  where s_no=l_rn and s_no=#{s_no} 
+
+</select>
+
 
 </mapper>

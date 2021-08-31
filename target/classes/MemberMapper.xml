@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.jk.common.MemberMapper">
 
-
 <select id="loginCheck" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
 select * from member where m_id = #{m_id}
 </select>
@@ -11,19 +10,22 @@ select * from member where m_id = #{m_id}
 select * from member where m_id = #{m_id}
 </select>
 
+<!-- 해당 핸드폰 번호의 인증번호를 불러옴 -->
 <select id="compareKey" parameterType="com.project.jk.common.MemberPhoneCheck" resultType="com.project.jk.common.MemberPhoneCheck">
 select m_p_id from member_phone_check where m_p_number = #{m_p_number}
 </select>
 
+<!-- 해당하는 아이디의 이메일 인증상태를 불러옴 -->
 <select id="checkEmailSuccess" parameterType="com.project.jk.common.TempMemberInfo" resultType="com.project.jk.common.TempMemberInfo">
 select * from temp_member where t_m_id = #{t_m_id}
 </select>
-
-
+ 
+<!-- 해당하는 핸드폰 번호의 인증 상태를 불러옴 -->
 <select id="checkSuccessInfo" parameterType="com.project.jk.common.MemberPhoneCheck" resultType="com.project.jk.common.MemberPhoneCheck">
 select * from member_phone_check where m_p_number = #{m_p_number}
 </select>
 
+<!-- 아이디를 통해 사용자가 현재 사용하고 있는 비밀번호가 입력한 입력되어진 값이 일치할 때 데이터가 나옴  -->
 <select id="comparePw" resultType="com.project.jk.common.Member" parameterType="com.project.jk.common.Member">
 select * from (select m_pw from member where m_id = #{m_id}) where m_pw = #{m_pw}
 </select>
@@ -32,22 +34,44 @@ select * from (select m_pw from member where m_id = #{m_id}) where m_pw = #{m_pw
 select count(*) from member where m_email = #{t_m_email}
 </select>
 
+<!-- 해당하는 이름과 이메일의 회원 정보를 불러옴 -->
 <select id="searchIdByNameAndEmail" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
 select * from member where m_name = #{m_name} and m_email = #{m_email}
 </select>
 
-
-<!-- 8월 14일 추가 부분 -->
+<!-- 휴대폰 번호로 회원의 아이디를 찾기 위한 sql문(휴대폰 번호도 PK로 활용가능하기에) -->
 <select id="searchIdByPhone" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
 select * from member where m_name = #{m_name} and m_phone = #{m_phone}
 </select>
 
+<!-- 해당하는 회원 핸드폰 번호의 고유 번호를 불러옴 -->
 <select id="memberUniqueNo" parameterType="String" resultType="Integer">
 select m_p_no from member_phone_check where m_p_number = #{m_p_number}
 </select>
 
+
 <select id="getUserEmail" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
 select * from member where m_phone = #{m_phone}
+</select>
+
+<!-- 장바구니에 담은 제품들 목록 보이게 -->
+<select id="getUserCart" parameterType="com.project.jk.common.OrderPage" resultType="com.project.jk.common.OrderPage">
+select p_name, p_photo1, p_price, s_name, o_quantidey, o_o_nop, o_no
+from store, product, p_order
+where s_no = p_rn and o_no = p_no and o_id = (select m_id from member where m_id = #{m_id})
+</select>
+
+
+
+
+
+
+<select id="idCheck" parameterType="com.project.jk.common.Member" resultType="java.lang.Integer">
+select count(*) from member where m_id = #{m_id}
+</select>
+
+<select id="compareId" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.Member">
+select * from member where m_id = #{m_id}
 </select>
 
 
@@ -78,21 +102,23 @@ update member_phone_check set m_p_successInfo = #{m_p_successInfo} where m_p_num
 update temp_member set t_m_key = 'y' where t_m_id = #{t_m_id}
 </update>
 
+<!-- 회원 정보 중 이름을 변경하는 sql문 -->
 <update id="changeName" parameterType="com.project.jk.common.DataChangeBean">
 update member set m_name = #{newData} where m_name = #{preData} and m_id = #{memberId}
 </update>
 
-<update id="changeId" parameterType="com.project.jk.common.DataChangeBean">
-update member set m_id = #{newData} where m_id = #{preData}
-</update>
-
+<!-- 회원의 비밀번호를 변경하는 sql문 -->
 <update id="changePw" parameterType="com.project.jk.common.Member">
 update member set m_pw = #{m_pw} where m_id = #{m_id}
 </update>
 
+<!-- 사용자의 프로필 이미지를 변경하는 sql문 -->
 <update id="changeProfile" parameterType="com.project.jk.common.Member">
-update member set = m_photo #{m_photo} where m_id = #{m_id}
+update member set m_photo = #{m_photo} where m_id = #{m_id}
 </update>
+
+<!-- 이메일을 활용하여 비밀번호를 찾는 기능을 실행 중 회원의 비밀번호를 -->
+<!-- 임시 비밀번호로 수정함 -->
 <update id="changePwWithTempPw" parameterType="hashmap">
 update member set m_pw = #{tempPw} where m_name = #{m_name} and m_email = #{m_email}
 </update>
@@ -105,19 +131,88 @@ update member set m_email = #{t_m_email} where m_id = #{t_m_id}
 update member set m_addr = #{m_addr} where m_id = #{m_id}
 </update>
 
-<!-- 8월 14일 추가 -->
+<!-- 해당 PK의 인증상태와 인증번호를 업데이트 -->
 <update id="updatePhoneKey" parameterType="com.project.jk.common.MemberPhoneCheck">
 update member_phone_check set m_p_successInfo = #{m_p_successInfo}, m_p_id = #{m_p_id} where m_p_no = #{m_p_no}
 </update>
 
-<!-- 8월 15일 작업 -->
-<select id="getUserCart" parameterType="com.project.jk.common.OrderPage" resultType="com.project.jk.common.OrderPage">
-select p_name, p_photo1, p_price, s_name, o_quantidey
-from store, product, p_order
-where s_no = p_rn and o_no = p_no and o_id = (select m_id from member where m_id = #{m_id})
+<update id="changeQuantidey" parameterType="hashmap">
+update product set p_stock = p_stock - #{p2_p_quantidey} 
+where p_no = (select p2_o_no from taken_p_order where o_o_nop = #{o_o_nop})
+</update>
+
+
+
+<delete id="deleteOrder" parameterType="com.project.jk.common.OrderPage">
+delete from p_order where o_o_nop = #{o_o_nop}
+</delete>
+
+
+
+
+
+<insert id="confirmOrder" parameterType="com.project.jk.common.ConfirmOrder">
+insert into taken_p_order
+values(taken_p_order_seq.nextval, #{p2_s_name}, #{p2_o_id}, #{p2_o_no}, #{p2_name}, #{p2_email}, #{p2_phone}, #{p2_addr}, #{p2_p_name}, #{p2_p_photo}, #{p2_p_quantidey}, #{p2_sumPrice}, #{p2_date}, #{o_o_nop})
+</insert>
+<update id="decreaseQuantidey" parameterType="com.project.jk.common.ConfirmOrder">
+update product set p_stock = p_stock - #{p2_p_quantidey} where p_no = #{p2_o_no}
+</update>
+<delete id="deleteCart" parameterType="com.project.jk.common.ConfirmOrder">
+delete from p_order where o_no = #{p2_o_no}
+</delete>
+
+<select id="getCompletedOrder" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.ConfirmOrder">
+select * from taken_p_order where p2_o_id= #{m_id}
 </select>
 
 
 
+<select id="getPrimary" parameterType="com.project.jk.common.ConfirmOrder" resultType="_int">
+select p2_no from taken_p_order where o_o_nop = #{o_o_nop}
+</select>
+
+<select id="getOrderList" resultType="com.project.jk.common.ConfirmOrder">
+select * from taken_p_order where p2_no = #{p2_no}
+</select>
+
+<select id="fromShopPage" parameterType="String" resultType="com.project.jk.common.ConfirmOrder">
+select * from taken_p_order where p2_o_id = #{m_id}
+</select>
+
+<!-- 8월 22일 작업 시작 -->
+<select id="getLessonList" parameterType="com.project.jk.common.Member" resultType="com.project.jk.common.LessonBean">
+select l_photo, l_label, l_content, l_price, l_name, l_no, o_id
+from lesson, l_order2
+where o_no = l_no and o_id = #{m_id}
+</select>
+
+<select id="getMovie" parameterType="com.project.jk.common.LessonBean" resultType="com.project.jk.common.LessonBean">
+select l_video from lesson where l_no = #{l_no}
+</select>
+
+
+
+<delete id="deleteTempInfo" parameterType="String">
+delete from temp_member where t_m_id = #{t_m_id}
+</delete>
+<select id="getOrderCount" parameterType="com.project.jk.common.Member" resultType="_int">
+select count(*) from taken_p_order where p2_o_id = #{m_id}
+</select>
+
+<select id="getLessonCount" parameterType="com.project.jk.common.Member" resultType="_int">
+select count(*) from l_order2 where o_id = #{m_id}
+</select>
+
+
+<!-- 8월 24일 작업 -->
+
+<select id="compareEmailKey" parameterType="String" resultType="String">
+select t_m_key from temp_member where t_m_email = #{m_email}
+</select>
+
+<delete id="deleteOldPhoneInfo" parameterType="com.project.jk.common.Member">
+delete from member_phone_check where m_p_number = #{m_phone}
+</delete>
 
 </mapper>

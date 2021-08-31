@@ -3,19 +3,19 @@ package com.project.jk.store;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.jk.common.Member;
-import com.project.jk.store.lesson.Lesson;
-import com.project.jk.store.lesson.LessonMapper;
+import com.project.jk.store.product.Product;
 
 
 @Service
@@ -39,6 +39,15 @@ public class StoreDAO {
 			String s_name=mr.getParameter("s_name");
 			String s_exp=mr.getParameter("s_exp");
 			String s_img=mr.getFilesystemName("s_img");
+			
+			 s_exp = s_exp.replace("\r\n", "<br>");
+			
+			
+			System.out.println(s_id);
+			System.out.println(s_name);
+			System.out.println(s_exp);
+			System.out.println(s_img);
+			
 			s_img = URLEncoder.encode(s_img, "utf-8");	//왜지? 어차피 utf-8로 받았는데
 			s_img = s_img.replace("+", " ");
 			s.setS_id(s_id);
@@ -122,6 +131,29 @@ public class StoreDAO {
 		request.setAttribute("s", sss);
 		
 	}
+	public void getStoreInfo3(Store s, HttpServletRequest request) {
+		
+		Store sss = ss.getMapper(StoreMapper.class).getStoreInfo3(s);
+		request.setAttribute("s", sss);
+		
+	}
+	public void getStoreInfo4(Product p, HttpServletRequest request) {
+		
+		Store sss = ss.getMapper(StoreMapper.class).getStoreInfo4(p);
+		request.setAttribute("s", sss);
+		
+	}
+	public Store getStoreInfo5(Store s, HttpServletRequest request) {
+		
+		Store sss = ss.getMapper(StoreMapper.class).getStoreInfo(s);
+		return sss;
+		
+		
+	}
+	
+	
+	
+	
 	public void deleteStore(Store s, HttpServletRequest request) {
 		
 		 if(ss.getMapper(StoreMapper.class).deleteStore(s)==1) {
@@ -156,7 +188,10 @@ public class StoreDAO {
 			String s_exp=mr.getParameter("s_exp");
 			String s_img=mr.getFilesystemName("s_img");
 			String s_img_old=mr.getParameter("s_img_old");
+              
+			 s_exp = s_exp.replace("\r\n", "<br>");
 
+			
 			s.setS_id(s_id);
 			s.setS_name(s_name);
 			s.setS_exp(s_exp);
@@ -183,12 +218,11 @@ public class StoreDAO {
 		}
 		
 	}
-	public void searchHomestore(String keyword, Store s, HttpServletRequest request) {
-
-		List<Store> stores = ss.getMapper(StoreMapper.class).searchHomestore(keyword);
-		request.setAttribute("stores", stores);	
-		
-	}
+	
+	
+	
+	
+	
 	
 	
 	

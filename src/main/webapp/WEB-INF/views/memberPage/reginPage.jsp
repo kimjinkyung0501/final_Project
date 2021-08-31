@@ -249,7 +249,7 @@ select {
 
 
 
-	<form action="regin.do" method="post" enctype="multipart/form-data">
+	<form action="regin.do" method="post" id="reginForm" enctype="multipart/form-data">
 
 
 		<div class="preview">
@@ -292,6 +292,8 @@ select {
 				<input hidden="1" id="checkIdValue" value="false">
 				<button type="button" value="" id="checkId" >중복체크</button>
 			</span>
+						<span id="idspan_tag"></span>
+			
 		</div>
 
 		<!-- PW1 -->
@@ -299,7 +301,7 @@ select {
 			<h3 class="join_title">
 				<label for="pswd1">비밀번호</label>
 			</h3>
-			<span class="box int_pass"> <input type="text" name="m_pw"
+			<span class="box int_pass"> <input type="password" name="m_pw"
 				id="m_pw" type="password" class="int" maxlength="20">
 			</span>
 		</div>
@@ -309,7 +311,7 @@ select {
 			<h3 class="join_title">
 				<label for="pswd2">비밀번호 재확인</label>
 			</h3>
-			<span class="box int_pass_check"> <input type="text"
+			<span class="box int_pass_check"> <input type="password"
 				id="m_pw_compare" type="password" class="int" maxlength="20">
 			</span>
 		</div>
@@ -323,7 +325,7 @@ select {
 				hidden="1" value="false" id="check_info">
 			</span> <span>
 				<button class="phoneCheck" type="button"
-					onclick="return phoneCer();">인증하기</button>
+					>인증하기</button>
 			</span>
 		</div>
 
@@ -337,7 +339,8 @@ select {
 				name="m_email" id="m_email" class="int" maxlength="100">
 			</span>
 			<input hidden="1" id="emailCheckValue" value="false">
-			<button class="checkEmail">인증하기</button>
+			<button type="button" class="checkEmail">인증하기</button>
+			<span id="emailSpan"></span>
 		</div>
 
 
@@ -350,7 +353,7 @@ select {
 
 
 
-	<script>
+	<!-- <script>
 		var fileInput = document.querySelector("#id_photo"), button = document
 				.querySelector(".input-file-trigger"), the_return = document
 				.querySelector(".file-return");
@@ -376,11 +379,10 @@ select {
 			};
 			reader.readAsDataURL(e.target.files[0]);
 		}
-	</script>
+	</script> -->
 
 </body>
-<script type="text/javascript" 
-src="${pageContext.request.contextPath}/resources/js/phoneCertification.js"></script>
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/ValidLib.js"></script>
 <script type="text/javascript"

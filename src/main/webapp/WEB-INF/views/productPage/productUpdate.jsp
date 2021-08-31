@@ -177,7 +177,7 @@ body {
 				<div class="form-group row">
 					<label class="col-sm-2">재고</label>
 					<div class="com-sm-3">
-						<input type="text" id="unitsInStock" name="p_stock" value="${p.p_stock }"
+						<input type="number" id="unitsInStock" name="p_stock" value="${p.p_stock }"
 							class="form-control">
 					</div>
 				</div>
@@ -186,7 +186,7 @@ body {
 					<label for="amount" class="col-sm-2">가격</label>
 					<div class="com-sm-3">
 					 <span class="currency"></span>
-						<input type="text" id="amount" name="p_price" maxlength="15" value="${p.p_price }"
+						<input type="number" id="amount" name="p_price" maxlength="15" value="${p.p_price }"
 							class="form-control">
 					</div>
 				</div>
@@ -224,7 +224,7 @@ body {
 					<label class="col-sm-2">이미지</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo1">
-<input type="hidden"name="p_photo1_old" value="${p_photo1 }">
+<input type="hidden"name="p_photo1_old" value="${p.p_photo1 }">
 					</div>
 				</div>
 
@@ -232,7 +232,7 @@ body {
 					<label class="col-sm-2">이미지2(선택)</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo2">
-<input type="hidden"name="p_photo1_old" value="${p_photo2 }">
+<input type="hidden"name="p_photo2_old" value="${p.p_photo2 }">
 					</div>
 				</div>
 
@@ -240,14 +240,14 @@ body {
 					<label class="col-sm-2">이미지3(선택)</label>
 					<div>
 						<input type="file" class="form-control" name="p_photo3">
-<input type="hidden"name="p_photo1_old" value="${p_photo3 }">
+<input type="hidden"name="p_photo3_old" value="${p.p_photo3 }">
 					</div>
 				</div>
 
 
 				<div class="form-group row">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-primary" value="등록">수정하기</button>
+						<button class="btn btn-primary">수정하기</button>
 					</div>
 				</div>
 

@@ -57,3 +57,4 @@ function kakaoLogout(){
    location.href="https://kauth.kakao.com/oauth/logout?client_id="+ apikey + "&logout_redirect_uri=" + redirectUrl;
    
 }
+

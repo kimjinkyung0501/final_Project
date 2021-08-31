@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.jk.comment.CommentMapper">
+<insert id="p_commentReg" parameterType="com.project.jk.comment.P_Comment">
+insert into p_comment values(#{p_c_id},#{p_c_no},#{p_c_photo},#{p_c_content},#{p_mark},sysdate,p_comment_seq.nextval) 
+</insert>
+<select id="getAllP_comment" parameterType="com.project.jk.store.product.Product" resultType="com.project.jk.comment.P_Comment">
+select * from p_comment where p_c_no=#{p_no} order by p_c_no
+</select>
+
+<delete id="p_commentdelete" parameterType="com.project.jk.comment.P_Comment">
+delete p_comment where p_c_pk=#{p_c_pk}
+</delete>
+
+<update id="p_commentUpdate" parameterType="com.project.jk.comment.L_Comment">
+update p_comment set p_c_content=#{p_c_content},p_mark=#{p_mark},p_date=sysdate where p_c_pk=#{p_c_pk}
+</update>
+<insert id="l_commentReg" parameterType="com.project.jk.comment.L_Comment">
+insert into l_comment values(#{l_c_id},#{l_c_no},#{l_c_photo},#{l_c_content},#{l_mark},sysdate,l_comment_seq.nextval) 
+</insert>
+<select id="getAllL_comment" parameterType="com.project.jk.store.lesson.Lesson" resultType="com.project.jk.comment.L_Comment">
+select * from l_comment where l_c_no=#{l_no} order by l_c_no
+</select>
+
+<delete id="l_commentdelete" parameterType="com.project.jk.comment.L_Comment">
+delete l_comment where l_c_pk=#{l_c_pk}
+</delete>
+
+<update id="l_commentUpdate" parameterType="com.project.jk.comment.L_Comment">
+update l_comment set l_c_content=#{l_c_content},l_mark=#{l_mark},l_date=sysdate where l_c_pk=#{l_c_pk}
+</update>
+
+
+</mapper>

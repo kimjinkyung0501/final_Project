@@ -136,7 +136,7 @@ textarea::placeholder {
 </head>
 <body>
 	<h5>공지사항 수정</h5>
-	<form action="notice.reg.do" method="post"
+	<form action="notice.update.do" method="post"
 		enctype="multipart/form-data">
 		<div class="board_write">
 			<div class="title_box">
